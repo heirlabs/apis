@@ -6,7 +6,7 @@ hero:
   text: Build Digital Inheritance Solutions
   tagline: Programmatic access to smart contract generation, vault management, and estate planning tools
   image:
-    src: /hero-image.svg
+    src: /hero-image.png
     alt: HEIR API
   actions:
     - theme: brand

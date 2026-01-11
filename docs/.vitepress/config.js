@@ -20,7 +20,7 @@ export default defineConfig({
   ],
 
   themeConfig: {
-    logo: '/logo.svg',
+    logo: '/logo.png',
     siteTitle: 'HEIR API',
     
     nav: [
