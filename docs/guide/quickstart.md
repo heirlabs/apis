@@ -5,7 +5,7 @@ Get up and running with the HEIR API in under 5 minutes.
 ## Step 1: Get an API Key
 
 1. Sign up at [heir.es](https://heir.es)
-2. Go to the [Developer Portal](https://api.heir.es/api/developer)
+2. Go to the [Developer Portal](https://heir.es/developers)
 3. Click **Create API Key**
 4. Copy your key (it won't be shown again!)
 

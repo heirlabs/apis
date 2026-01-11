@@ -5,7 +5,7 @@ All HEIR API requests require authentication using an API key. This guide covers
 ## Obtaining an API Key
 
 1. Sign in to [heir.es](https://heir.es)
-2. Navigate to the [Developer Portal](https://api.heir.es/api/developer)
+2. Navigate to the [Developer Portal](https://heir.es/developers)
 3. Click **Create API Key**
 4. Name your key and select scopes
 5. **Save your key immediately** - it won't be shown again!

@@ -15,7 +15,7 @@ The HEIR API provides programmatic access to smart contract generation, vault ma
 ## Quick Start
 
 ```bash
-# Get your API key from https://api.heir.es/api/developer
+# Get your API key from https://heir.es/developers
 
 # Generate an inheritance contract
 curl -X POST https://api.heir.es/api/v1/contracts/generate \
