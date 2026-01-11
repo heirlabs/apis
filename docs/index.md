@@ -72,14 +72,20 @@ curl -X POST https://api.heir.es/api/v1/contracts/generate \
   }'
 ```
 
-## API Tiers
+## API Access
 
-| Tier | Rate Limit | Contract Gen | Webhooks | Embedding | Price |
-|------|------------|--------------|----------|-----------|-------|
-| **Free** | 100/15min | 10/day | ❌ | ❌ | $0 |
-| **Developer** | 500/15min | 50/15min | ✅ | ❌ | $29/mo |
-| **Partner** | 2,500/15min | 250/15min | ✅ | ✅ | $79/mo |
-| **Enterprise** | 10,000/15min | 1,000/15min | ✅ | ✅ | Custom |
+**All subscriptions include API access.** Start with our free tier, then upgrade as you grow.
+
+| Tier | Rate Limit | Webhooks | Embedding | Included With |
+|------|------------|----------|-----------|---------------|
+| **Free** | 100 req/day | ❌ | ❌ | Everyone |
+| **Starter** | 1,000 req/day | ❌ | ❌ | $49/mo subscription |
+| **Professional** | 10,000 req/day | ✅ | ✅ | $149/mo subscription |
+| **Enterprise** | Unlimited | ✅ | ✅ | Custom subscription |
+
+::: tip Drafts Are Free
+Create unlimited estate plan drafts at no cost on [heir.es](https://heir.es). You only pay when you deploy.
+:::
 
 [View Full Pricing →](https://heir.es/pricing)
 
