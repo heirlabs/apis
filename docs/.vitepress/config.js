@@ -4,6 +4,12 @@ export default defineConfig({
   title: 'HEIR API',
   description: 'Documentation for the HEIR Protocol Headless API',
   
+  // Ignore external and planned links
+  ignoreDeadLinks: [
+    /^https?:\/\//, // All external links
+    /^mailto:/, // Email links
+  ],
+  
   head: [
     ['link', { rel: 'icon', type: 'image/png', href: '/favicon.png' }],
     ['meta', { name: 'theme-color', content: '#6366f1' }],
