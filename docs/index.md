@@ -76,9 +76,10 @@ curl -X POST https://api.heir.es/api/v1/contracts/generate \
 
 | Tier | Rate Limit | Contract Gen | Webhooks | Embedding | Price |
 |------|------------|--------------|----------|-----------|-------|
-| **Public** | 100/15min | 10/15min | ❌ | ❌ | Free |
-| **Partner** | 1,000/15min | 100/15min | ✅ | ✅ | $99/mo |
-| **Internal** | 10,000/15min | 1,000/15min | ✅ | ✅ | Custom |
+| **Free** | 100/15min | 10/day | ❌ | ❌ | $0 |
+| **Developer** | 500/15min | 50/15min | ✅ | ❌ | $29/mo |
+| **Partner** | 2,500/15min | 250/15min | ✅ | ✅ | $79/mo |
+| **Enterprise** | 10,000/15min | 1,000/15min | ✅ | ✅ | Custom |
 
-[View Pricing →](https://heir.es/pricing)
+[View Full Pricing →](https://heir.es/pricing)
 
