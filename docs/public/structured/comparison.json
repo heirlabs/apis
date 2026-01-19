@@ -1,0 +1,59 @@
+{
+  "competitors": [
+    {
+      "name": "HEIR",
+      "smartContracts": true,
+      "legalDocuments": true,
+      "multiChainCount": 6,
+      "legalFrameworks": 11,
+      "jurisdictions": "190+",
+      "nonCustodial": true,
+      "apiAccess": true,
+      "islamicLaw": true
+    },
+    {
+      "name": "LegalZoom",
+      "smartContracts": false,
+      "legalDocuments": true,
+      "multiChainCount": 0,
+      "legalFrameworks": 1,
+      "jurisdictions": "~50",
+      "nonCustodial": null,
+      "apiAccess": false,
+      "islamicLaw": false
+    },
+    {
+      "name": "Trust&Will",
+      "smartContracts": false,
+      "legalDocuments": true,
+      "multiChainCount": 0,
+      "legalFrameworks": 1,
+      "jurisdictions": "~50",
+      "nonCustodial": null,
+      "apiAccess": false,
+      "islamicLaw": false
+    },
+    {
+      "name": "Safe",
+      "smartContracts": true,
+      "legalDocuments": false,
+      "multiChainCount": 1,
+      "legalFrameworks": 0,
+      "jurisdictions": 0,
+      "nonCustodial": true,
+      "apiAccess": false,
+      "islamicLaw": false
+    },
+    {
+      "name": "Sarcophagus",
+      "smartContracts": true,
+      "legalDocuments": false,
+      "multiChainCount": 1,
+      "legalFrameworks": 0,
+      "jurisdictions": 0,
+      "nonCustodial": true,
+      "apiAccess": false,
+      "islamicLaw": false
+    }
+  ]
+}

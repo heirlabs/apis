@@ -118,6 +118,22 @@ X-RateLimit-Reset: 2024-01-15T12:30:00.000Z
 - [`GET /webhooks/events`](/api/webhooks#list-events) - List available events
 - [`POST /webhooks/subscriptions/:id/test`](/api/webhooks#test-webhook) - Test a webhook
 
+### Heirloom
+- [`GET /heirloom/setup`](/api/heirloom) - Get setup status
+- [`POST /heirloom/setup`](/api/heirloom) - Set agent name
+- [`GET /heirloom/agent`](/api/heirloom) - Get agent/character
+- [`GET /heirloom/agent/status`](/api/heirloom) - Get progress status
+- [`POST /heirloom/chat`](/api/heirloom) - Chat with agent
+- [`POST /heirloom/media/upload`](/api/heirloom) - Upload media
+- [`GET /heirloom/insights`](/api/heirloom) - Get insights
+
+### Heirloom Credits
+- [`GET /heirloom/credits/packs`](/api/heirloom-credits) - List credit packs
+- [`GET /heirloom/credits/wallet`](/api/heirloom-credits) - Get wallet status
+- [`POST /heirloom/credits/purchase`](/api/heirloom-credits) - Purchase credits
+- [`PUT /heirloom/credits/auto-reload`](/api/heirloom-credits) - Configure auto-reload
+- [`GET /heirloom/credits/history`](/api/heirloom-credits) - Credit history
+
 ### Embed
 - [`GET /embed/wizard`](/api/embed#wizard) - Embeddable wizard iframe
 - [`GET /embed/sdk.js`](/api/embed#sdk) - JavaScript SDK

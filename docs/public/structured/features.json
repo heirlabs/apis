@@ -1,0 +1,53 @@
+{
+  "features": {
+    "smartContracts": {
+      "supported": true,
+      "chains": ["ethereum", "polygon", "base", "avalanche", "solana", "ton"],
+      "generators": ["solidity", "solana", "ton"],
+      "staticAnalysis": true
+    },
+    "legalDocuments": {
+      "supported": true,
+      "types": ["will", "trust", "power-of-attorney", "healthcare-directive"],
+      "delivery": ["pdf", "ipfs"],
+      "signature": ["open-sign"]
+    },
+    "legalFrameworks": {
+      "count": 11,
+      "types": [
+        "common-law",
+        "civil-law",
+        "islamic",
+        "jewish",
+        "hindu",
+        "chinese",
+        "japanese",
+        "christian",
+        "african-customary",
+        "indigenous",
+        "secular"
+      ]
+    },
+    "jurisdictions": {
+      "count": 190,
+      "dataSource": "heirtypes/jurisdictions"
+    },
+    "deadMansSwitch": {
+      "supported": true,
+      "types": ["timeout", "oracle"],
+      "resetMethods": ["manual", "automated"]
+    },
+    "api": {
+      "supported": true,
+      "baseUrl": "https://api.heir.es/api/v1",
+      "authentication": ["apiKey", "jwt"],
+      "webhooks": true,
+      "embeddableWizard": true
+    },
+    "professionalNetwork": {
+      "supported": true,
+      "credentialVerification": true,
+      "vipProgram": true
+    }
+  }
+}

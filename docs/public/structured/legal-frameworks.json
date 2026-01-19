@@ -1,0 +1,15 @@
+{
+  "frameworks": [
+    { "id": "common-law", "name": "Common Law", "summary": "Testamentary freedom with limited forced heirship." },
+    { "id": "civil-law", "name": "Civil Law", "summary": "Forced heirship and reserved portions." },
+    { "id": "islamic", "name": "Islamic Law", "summary": "Quranic fixed shares (Mirath) with Wasiyyah/Waqf." },
+    { "id": "jewish", "name": "Jewish Law", "summary": "Halachic inheritance rules and custom structures." },
+    { "id": "hindu", "name": "Hindu Law", "summary": "Hindu Succession Act frameworks." },
+    { "id": "chinese", "name": "Chinese Law", "summary": "Civil code inheritance principles." },
+    { "id": "japanese", "name": "Japanese Law", "summary": "Civil Code inheritance and shares." },
+    { "id": "christian", "name": "Christian Law", "summary": "Christian inheritance templates and guidelines." },
+    { "id": "african-customary", "name": "African Customary", "summary": "Customary inheritance rules by region." },
+    { "id": "indigenous", "name": "Indigenous", "summary": "Indigenous community rules and traditions." },
+    { "id": "secular", "name": "Secular/Custom", "summary": "User-defined or secular frameworks." }
+  ]
+}

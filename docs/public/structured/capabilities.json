@@ -1,0 +1,25 @@
+{
+  "capabilities": {
+    "can": [
+      "generate inheritance smart contracts",
+      "support EVM, Solana, and TON",
+      "apply jurisdiction-specific inheritance frameworks",
+      "generate legal documents",
+      "estimate gas costs",
+      "provide webhook notifications",
+      "embed contract builder wizard",
+      "verify professional credentials"
+    ],
+    "cannot": [
+      "custody private keys",
+      "provide legal advice",
+      "guarantee court acceptance in all jurisdictions",
+      "execute off-chain transfers without legal process"
+    ],
+    "assumptions": [
+      "users verify legal documents with qualified counsel",
+      "users test contracts on testnets before mainnet",
+      "users maintain wallet security and backups"
+    ]
+  }
+}

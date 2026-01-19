@@ -17,6 +17,27 @@ export default defineConfig({
     ['meta', { property: 'og:title', content: 'HEIR API Documentation' }],
     ['meta', { property: 'og:description', content: 'Build on the HEIR Protocol - Digital inheritance infrastructure' }],
     ['meta', { property: 'og:url', content: 'https://docs.heir.es' }],
+    [
+      'script',
+      { type: 'application/ld+json' },
+      JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareApplication',
+        name: 'HEIR',
+        applicationCategory: 'FinanceApplication',
+        operatingSystem: 'Web',
+        offers: { '@type': 'Offer', price: '49.99', priceCurrency: 'USD' },
+        featureList: [
+          'Smart Contract Generation',
+          'Legal Documents',
+          'Multi-Chain Support',
+          '11 Legal Frameworks',
+          'Dead Man\'s Switch',
+          'API Access'
+        ],
+        url: 'https://docs.heir.es'
+      })
+    ],
   ],
 
   themeConfig: {
@@ -26,6 +47,9 @@ export default defineConfig({
     nav: [
       { text: 'Guide', link: '/guide/introduction' },
       { text: 'API Reference', link: '/api/' },
+      { text: 'Legal Frameworks', link: '/legal-frameworks/' },
+      { text: 'Tutorials', link: '/tutorials/' },
+      { text: 'Pricing', link: '/pricing/' },
       { text: 'SDKs', link: '/sdks/' },
       { text: 'Examples', link: '/examples/' },
       {
@@ -54,6 +78,7 @@ export default defineConfig({
           items: [
             { text: 'API Keys', link: '/guide/api-keys' },
             { text: 'Contracts', link: '/guide/contracts' },
+            { text: 'Heirloom', link: '/guide/heirloom' },
             { text: 'Webhooks', link: '/guide/webhooks' },
             { text: 'Embedding', link: '/guide/embedding' }
           ]
@@ -82,6 +107,8 @@ export default defineConfig({
             { text: 'Contracts', link: '/api/contracts' },
             { text: 'Webhooks', link: '/api/webhooks' },
             { text: 'Legal Documents', link: '/api/legal' },
+            { text: 'Heirloom', link: '/api/heirloom' },
+            { text: 'Heirloom Credits', link: '/api/heirloom-credits' },
             { text: 'Embed', link: '/api/embed' }
           ]
         },
@@ -104,6 +131,105 @@ export default defineConfig({
             { text: 'Python', link: '/sdks/python' },
             { text: 'Go', link: '/sdks/go' },
             { text: 'cURL', link: '/sdks/curl' }
+          ]
+        }
+      ],
+      '/legal-frameworks/': [
+        {
+          text: 'Legal Frameworks',
+          items: [
+            { text: 'Overview', link: '/legal-frameworks/' },
+            { text: 'Common Law', link: '/legal-frameworks/common-law' },
+            { text: 'Civil Law', link: '/legal-frameworks/civil-law' },
+            { text: 'Islamic Law', link: '/legal-frameworks/islamic/' },
+            { text: 'Jewish Law', link: '/legal-frameworks/jewish' },
+            { text: 'Hindu Law', link: '/legal-frameworks/hindu' },
+            { text: 'Chinese Law', link: '/legal-frameworks/chinese' },
+            { text: 'Japanese Law', link: '/legal-frameworks/japanese' },
+            { text: 'Christian Law', link: '/legal-frameworks/christian' },
+            { text: 'African Customary', link: '/legal-frameworks/african-customary' },
+            { text: 'Indigenous', link: '/legal-frameworks/indigenous' },
+            { text: 'Secular/Custom', link: '/legal-frameworks/custom' }
+          ]
+        }
+      ],
+      '/jurisdictions/': [
+        {
+          text: 'Jurisdictions',
+          items: [
+            { text: 'Overview', link: '/jurisdictions/' },
+            { text: 'North America', link: '/jurisdictions/by-region/north-america' },
+            { text: 'Europe', link: '/jurisdictions/by-region/europe' },
+            { text: 'Middle East', link: '/jurisdictions/by-region/middle-east' },
+            { text: 'Asia Pacific', link: '/jurisdictions/by-region/asia-pacific' },
+            { text: 'Latin America', link: '/jurisdictions/by-region/latin-america' },
+            { text: 'Africa', link: '/jurisdictions/by-region/africa' }
+          ]
+        }
+      ],
+      '/tutorials/': [
+        {
+          text: 'Tutorials',
+          items: [
+            { text: 'Overview', link: '/tutorials/' },
+            { text: 'Quickstart: Individual', link: '/tutorials/quickstart/individual' },
+            { text: 'Quickstart: Professional', link: '/tutorials/quickstart/professional' },
+            { text: 'Quickstart: Developer', link: '/tutorials/quickstart/developer' },
+            { text: 'Crypto-Only Estate', link: '/tutorials/use-cases/crypto-only-estate' },
+            { text: 'Mixed Estate', link: '/tutorials/use-cases/mixed-estate' },
+            { text: 'Islamic-Compliant', link: '/tutorials/use-cases/islamic-compliant' },
+            { text: 'Business Succession', link: '/tutorials/use-cases/business-succession' },
+            { text: 'International Estate', link: '/tutorials/use-cases/international-estate' },
+            { text: 'Family with Minors', link: '/tutorials/use-cases/family-with-minors' }
+          ]
+        }
+      ],
+      '/pricing/': [
+        {
+          text: 'Pricing',
+          items: [
+            { text: 'Overview', link: '/pricing/' },
+            { text: 'Plans', link: '/pricing/plans' },
+            { text: 'API Tiers', link: '/pricing/api-tiers' },
+            { text: 'Comparison', link: '/pricing/comparison' }
+          ]
+        }
+      ],
+      '/security/': [
+        {
+          text: 'Security',
+          items: [
+            { text: 'Overview', link: '/security/' },
+            { text: 'Architecture', link: '/security/architecture' },
+            { text: 'Encryption', link: '/security/encryption' },
+            { text: 'Smart Contract Security', link: '/security/smart-contract-security' },
+            { text: 'GDPR', link: '/security/compliance/gdpr' },
+            { text: 'CCPA', link: '/security/compliance/ccpa' },
+            { text: 'Financial Regulations', link: '/security/compliance/financial-regs' },
+            { text: 'Best Practices', link: '/security/best-practices' }
+          ]
+        }
+      ],
+      '/professionals/': [
+        {
+          text: 'Professionals',
+          items: [
+            { text: 'Overview', link: '/professionals/' },
+            { text: 'Certification', link: '/professionals/certification' },
+            { text: 'VIP Copilot', link: '/professionals/copilot' },
+            { text: 'Advisor Dashboard', link: '/professionals/dashboard' },
+            { text: 'Lead Management', link: '/professionals/leads' },
+            { text: 'Credential Verification', link: '/professionals/credential-verification' }
+          ]
+        }
+      ],
+      '/resources/': [
+        {
+          text: 'Resources',
+          items: [
+            { text: 'Glossary', link: '/resources/glossary' },
+            { text: 'FAQ', link: '/resources/faq' },
+            { text: 'Changelog', link: '/resources/changelog' }
           ]
         }
       ],

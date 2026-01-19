@@ -1,0 +1,45 @@
+{
+  "currency": "USD",
+  "plans": [
+    {
+      "name": "Basic",
+      "monthly": 49.99,
+      "annual": 537.49,
+      "trusts": 2,
+      "timerCreditsPerMonth": 50,
+      "gasCreditsUSD": 100
+    },
+    {
+      "name": "Family",
+      "monthly": 149.99,
+      "annual": 1612.49,
+      "trusts": 5,
+      "timerCreditsPerMonth": 200,
+      "gasCreditsUSD": 500
+    },
+    {
+      "name": "Estate",
+      "monthly": 1999.99,
+      "annual": 21499.49,
+      "trusts": 20,
+      "timerCreditsPerMonth": "unlimited",
+      "gasCreditsUSD": 5000
+    }
+  ],
+  "addons": [
+    {
+      "name": "Additional Trust Slot",
+      "monthly": 29.99,
+      "annual": 322.49
+    }
+  ],
+  "credits": [
+    { "name": "Timer Credit", "price": 4.99, "credits": 1 },
+    { "name": "Timer Credit Pack", "price": 22.99, "credits": 5 },
+    { "name": "Timer Credit Pack", "price": 44.99, "credits": 10 }
+  ],
+  "notes": [
+    "All prices are in USD.",
+    "Enterprise pricing available on request."
+  ]
+}

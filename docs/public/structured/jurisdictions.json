@@ -1,0 +1,620 @@
+{
+  "count": 205,
+  "jurisdictions": [
+    {
+      "slug": "afghanistan"
+    },
+    {
+      "slug": "albania"
+    },
+    {
+      "slug": "algeria"
+    },
+    {
+      "slug": "andorra"
+    },
+    {
+      "slug": "angola"
+    },
+    {
+      "slug": "antigua-and-barbuda"
+    },
+    {
+      "slug": "argentina"
+    },
+    {
+      "slug": "armenia"
+    },
+    {
+      "slug": "australia"
+    },
+    {
+      "slug": "austria"
+    },
+    {
+      "slug": "azerbaijan"
+    },
+    {
+      "slug": "bahamas"
+    },
+    {
+      "slug": "bahrain"
+    },
+    {
+      "slug": "bangladesh"
+    },
+    {
+      "slug": "barbados"
+    },
+    {
+      "slug": "belarus"
+    },
+    {
+      "slug": "belgium"
+    },
+    {
+      "slug": "belize"
+    },
+    {
+      "slug": "benin"
+    },
+    {
+      "slug": "bermuda"
+    },
+    {
+      "slug": "bhutan"
+    },
+    {
+      "slug": "bolivia"
+    },
+    {
+      "slug": "bosnia-and-herzegovina"
+    },
+    {
+      "slug": "botswana"
+    },
+    {
+      "slug": "brazil"
+    },
+    {
+      "slug": "british-virgin-islands"
+    },
+    {
+      "slug": "brunei"
+    },
+    {
+      "slug": "bulgaria"
+    },
+    {
+      "slug": "burkina-faso"
+    },
+    {
+      "slug": "burundi"
+    },
+    {
+      "slug": "cabo-verde"
+    },
+    {
+      "slug": "cambodia"
+    },
+    {
+      "slug": "cameroon"
+    },
+    {
+      "slug": "canada"
+    },
+    {
+      "slug": "cayman-islands"
+    },
+    {
+      "slug": "central-african-republic"
+    },
+    {
+      "slug": "chad"
+    },
+    {
+      "slug": "chile"
+    },
+    {
+      "slug": "china"
+    },
+    {
+      "slug": "colombia"
+    },
+    {
+      "slug": "comoros"
+    },
+    {
+      "slug": "congo"
+    },
+    {
+      "slug": "costa-rica"
+    },
+    {
+      "slug": "croatia"
+    },
+    {
+      "slug": "cuba"
+    },
+    {
+      "slug": "cyprus"
+    },
+    {
+      "slug": "czech-republic"
+    },
+    {
+      "slug": "democratic-republic-congo"
+    },
+    {
+      "slug": "denmark"
+    },
+    {
+      "slug": "djibouti"
+    },
+    {
+      "slug": "dominica"
+    },
+    {
+      "slug": "dominican-republic"
+    },
+    {
+      "slug": "ecuador"
+    },
+    {
+      "slug": "egypt"
+    },
+    {
+      "slug": "el-salvador"
+    },
+    {
+      "slug": "equatorial-guinea"
+    },
+    {
+      "slug": "eritrea"
+    },
+    {
+      "slug": "estonia"
+    },
+    {
+      "slug": "eswatini"
+    },
+    {
+      "slug": "ethiopia"
+    },
+    {
+      "slug": "fiji"
+    },
+    {
+      "slug": "finland"
+    },
+    {
+      "slug": "france"
+    },
+    {
+      "slug": "gabon"
+    },
+    {
+      "slug": "gambia"
+    },
+    {
+      "slug": "georgia"
+    },
+    {
+      "slug": "germany"
+    },
+    {
+      "slug": "ghana"
+    },
+    {
+      "slug": "greece"
+    },
+    {
+      "slug": "grenada"
+    },
+    {
+      "slug": "guatemala"
+    },
+    {
+      "slug": "guernsey"
+    },
+    {
+      "slug": "guinea"
+    },
+    {
+      "slug": "guinea-bissau"
+    },
+    {
+      "slug": "guyana"
+    },
+    {
+      "slug": "haiti"
+    },
+    {
+      "slug": "honduras"
+    },
+    {
+      "slug": "hong-kong"
+    },
+    {
+      "slug": "hungary"
+    },
+    {
+      "slug": "iceland"
+    },
+    {
+      "slug": "india"
+    },
+    {
+      "slug": "indonesia"
+    },
+    {
+      "slug": "iran"
+    },
+    {
+      "slug": "iraq"
+    },
+    {
+      "slug": "ireland"
+    },
+    {
+      "slug": "isle-of-man"
+    },
+    {
+      "slug": "israel"
+    },
+    {
+      "slug": "italy"
+    },
+    {
+      "slug": "ivory-coast"
+    },
+    {
+      "slug": "jamaica"
+    },
+    {
+      "slug": "japan"
+    },
+    {
+      "slug": "jersey"
+    },
+    {
+      "slug": "jordan"
+    },
+    {
+      "slug": "kazakhstan"
+    },
+    {
+      "slug": "kenya"
+    },
+    {
+      "slug": "kiribati"
+    },
+    {
+      "slug": "kosovo"
+    },
+    {
+      "slug": "kuwait"
+    },
+    {
+      "slug": "kyrgyzstan"
+    },
+    {
+      "slug": "laos"
+    },
+    {
+      "slug": "latvia"
+    },
+    {
+      "slug": "lebanon"
+    },
+    {
+      "slug": "lesotho"
+    },
+    {
+      "slug": "liberia"
+    },
+    {
+      "slug": "libya"
+    },
+    {
+      "slug": "liechtenstein"
+    },
+    {
+      "slug": "lithuania"
+    },
+    {
+      "slug": "luxembourg"
+    },
+    {
+      "slug": "madagascar"
+    },
+    {
+      "slug": "malawi"
+    },
+    {
+      "slug": "malaysia"
+    },
+    {
+      "slug": "maldives"
+    },
+    {
+      "slug": "mali"
+    },
+    {
+      "slug": "malta"
+    },
+    {
+      "slug": "marshall-islands"
+    },
+    {
+      "slug": "mauritania"
+    },
+    {
+      "slug": "mauritius"
+    },
+    {
+      "slug": "mexico"
+    },
+    {
+      "slug": "micronesia"
+    },
+    {
+      "slug": "moldova"
+    },
+    {
+      "slug": "monaco"
+    },
+    {
+      "slug": "mongolia"
+    },
+    {
+      "slug": "montenegro"
+    },
+    {
+      "slug": "morocco"
+    },
+    {
+      "slug": "mozambique"
+    },
+    {
+      "slug": "myanmar"
+    },
+    {
+      "slug": "namibia"
+    },
+    {
+      "slug": "nauru"
+    },
+    {
+      "slug": "nepal"
+    },
+    {
+      "slug": "netherlands"
+    },
+    {
+      "slug": "new-zealand"
+    },
+    {
+      "slug": "nicaragua"
+    },
+    {
+      "slug": "niger"
+    },
+    {
+      "slug": "nigeria"
+    },
+    {
+      "slug": "north-korea"
+    },
+    {
+      "slug": "north-macedonia"
+    },
+    {
+      "slug": "norway"
+    },
+    {
+      "slug": "oman"
+    },
+    {
+      "slug": "pakistan"
+    },
+    {
+      "slug": "palau"
+    },
+    {
+      "slug": "palestine"
+    },
+    {
+      "slug": "panama"
+    },
+    {
+      "slug": "papua-new-guinea"
+    },
+    {
+      "slug": "paraguay"
+    },
+    {
+      "slug": "peru"
+    },
+    {
+      "slug": "philippines"
+    },
+    {
+      "slug": "poland"
+    },
+    {
+      "slug": "portugal"
+    },
+    {
+      "slug": "qatar"
+    },
+    {
+      "slug": "romania"
+    },
+    {
+      "slug": "russia"
+    },
+    {
+      "slug": "rwanda"
+    },
+    {
+      "slug": "saint-kitts-and-nevis"
+    },
+    {
+      "slug": "saint-lucia"
+    },
+    {
+      "slug": "saint-vincent-and-the-grenadines"
+    },
+    {
+      "slug": "samoa"
+    },
+    {
+      "slug": "san-marino"
+    },
+    {
+      "slug": "sao-tome-and-principe"
+    },
+    {
+      "slug": "saudi-arabia"
+    },
+    {
+      "slug": "senegal"
+    },
+    {
+      "slug": "serbia"
+    },
+    {
+      "slug": "seychelles"
+    },
+    {
+      "slug": "sierra-leone"
+    },
+    {
+      "slug": "singapore"
+    },
+    {
+      "slug": "slovakia"
+    },
+    {
+      "slug": "slovenia"
+    },
+    {
+      "slug": "solomon-islands"
+    },
+    {
+      "slug": "somalia"
+    },
+    {
+      "slug": "south-africa"
+    },
+    {
+      "slug": "south-korea"
+    },
+    {
+      "slug": "south-sudan"
+    },
+    {
+      "slug": "spain"
+    },
+    {
+      "slug": "sri-lanka"
+    },
+    {
+      "slug": "sudan"
+    },
+    {
+      "slug": "suriname"
+    },
+    {
+      "slug": "sweden"
+    },
+    {
+      "slug": "switzerland"
+    },
+    {
+      "slug": "syria"
+    },
+    {
+      "slug": "taiwan"
+    },
+    {
+      "slug": "tajikistan"
+    },
+    {
+      "slug": "tanzania"
+    },
+    {
+      "slug": "thailand"
+    },
+    {
+      "slug": "timor-leste"
+    },
+    {
+      "slug": "togo"
+    },
+    {
+      "slug": "tonga"
+    },
+    {
+      "slug": "trinidad-and-tobago"
+    },
+    {
+      "slug": "tunisia"
+    },
+    {
+      "slug": "turkey"
+    },
+    {
+      "slug": "turkmenistan"
+    },
+    {
+      "slug": "tuvalu"
+    },
+    {
+      "slug": "uae"
+    },
+    {
+      "slug": "uganda"
+    },
+    {
+      "slug": "ukraine"
+    },
+    {
+      "slug": "united-kingdom"
+    },
+    {
+      "slug": "united-states"
+    },
+    {
+      "slug": "uruguay"
+    },
+    {
+      "slug": "usa"
+    },
+    {
+      "slug": "uzbekistan"
+    },
+    {
+      "slug": "vanuatu"
+    },
+    {
+      "slug": "vatican-city"
+    },
+    {
+      "slug": "venezuela"
+    },
+    {
+      "slug": "vietnam"
+    },
+    {
+      "slug": "yemen"
+    },
+    {
+      "slug": "zambia"
+    },
+    {
+      "slug": "zimbabwe"
+    }
+  ]
+}
