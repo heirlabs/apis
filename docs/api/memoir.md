@@ -1,6 +1,6 @@
-# Heirloom API
+# Memoir API
 
-Heirloom endpoints are user-session endpoints (JWT cookies) protected by CSRF for state-changing operations.
+Memoir uses legacy endpoint paths under `/api/heirloom/*` and relies on user-session auth (JWT cookies) protected by CSRF for state-changing operations.
 
 ## Authentication & CSRF
 
@@ -52,7 +52,7 @@ Save questionnaire answers.
 ```
 
 ### POST /api/heirloom/chat
-Send a message to the Heirloom agent.
+Send a message to the Memoir agent.
 
 **Body:**
 ```json

@@ -1,4 +1,6 @@
-# Heirloom Credits API
+# Memoir Credits API
+
+Credits endpoints are served under `/api/heirloom/credits/*` for compatibility.
 
 Credits are required for media inference, voice cloning, and chat operations.
 

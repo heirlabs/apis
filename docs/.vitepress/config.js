@@ -78,7 +78,7 @@ export default defineConfig({
           items: [
             { text: 'API Keys', link: '/guide/api-keys' },
             { text: 'Contracts', link: '/guide/contracts' },
-            { text: 'Heirloom', link: '/guide/heirloom' },
+            { text: 'Memoir', link: '/guide/memoir' },
             { text: 'Webhooks', link: '/guide/webhooks' },
             { text: 'Embedding', link: '/guide/embedding' }
           ]
@@ -107,8 +107,8 @@ export default defineConfig({
             { text: 'Contracts', link: '/api/contracts' },
             { text: 'Webhooks', link: '/api/webhooks' },
             { text: 'Legal Documents', link: '/api/legal' },
-            { text: 'Heirloom', link: '/api/heirloom' },
-            { text: 'Heirloom Credits', link: '/api/heirloom-credits' },
+            { text: 'Memoir', link: '/api/memoir' },
+            { text: 'Memoir Credits', link: '/api/memoir-credits' },
             { text: 'Embed', link: '/api/embed' }
           ]
         },

@@ -1,6 +1,6 @@
-# Heirloom (MyHeir)
+# Memoir
 
-Heirloom is a legacy-capture feature that builds a personalized AI companion from your journals, questionnaires, and media. The output is a structured personality profile and a contextual chat agent that can preserve intent, values, and family guidance.
+Memoir is a legacy-capture feature that builds a personalized AI companion from your journals, questionnaires, and media. The output is a structured personality profile and a contextual chat agent that can preserve intent, values, and family guidance.
 
 ## Agent-Facing Summary
 
@@ -30,7 +30,7 @@ Heirloom is a legacy-capture feature that builds a personalized AI companion fro
 
 ## Data Contracts (Key Fields)
 
-- `agentName`: user-defined name for the Heirloom agent.
+- `agentName`: user-defined name for the Memoir agent.
 - `journals[]`: entries with content, mood, prompt, insights.
 - `questionnaires[]`: category-based questions and answers.
 - `media[]`: IPFS-backed assets with inference metadata.
@@ -38,7 +38,8 @@ Heirloom is a legacy-capture feature that builds a personalized AI companion fro
 
 ## Notes for AI Agents
 
-- Heirloom endpoints are **not API-key** endpoints; they rely on user session auth.
+- Memoir endpoints are **not API-key** endpoints; they rely on user session auth.
 - Non-GET requests require a valid CSRF token.
 - Chat/media actions can return `402` for insufficient credits.
+- Endpoints are served under legacy paths (`/api/heirloom/*`) for compatibility.
 - `GET /api/heirloom/agent` returns demo mode if ElizaOS is not configured.

@@ -118,21 +118,21 @@ X-RateLimit-Reset: 2024-01-15T12:30:00.000Z
 - [`GET /webhooks/events`](/api/webhooks#list-events) - List available events
 - [`POST /webhooks/subscriptions/:id/test`](/api/webhooks#test-webhook) - Test a webhook
 
-### Heirloom
-- [`GET /heirloom/setup`](/api/heirloom) - Get setup status
-- [`POST /heirloom/setup`](/api/heirloom) - Set agent name
-- [`GET /heirloom/agent`](/api/heirloom) - Get agent/character
-- [`GET /heirloom/agent/status`](/api/heirloom) - Get progress status
-- [`POST /heirloom/chat`](/api/heirloom) - Chat with agent
-- [`POST /heirloom/media/upload`](/api/heirloom) - Upload media
-- [`GET /heirloom/insights`](/api/heirloom) - Get insights
+### Memoir (Legacy Endpoint Paths)
+- [`GET /heirloom/setup`](/api/memoir) - Get setup status
+- [`POST /heirloom/setup`](/api/memoir) - Set agent name
+- [`GET /heirloom/agent`](/api/memoir) - Get agent/character
+- [`GET /heirloom/agent/status`](/api/memoir) - Get progress status
+- [`POST /heirloom/chat`](/api/memoir) - Chat with agent
+- [`POST /heirloom/media/upload`](/api/memoir) - Upload media
+- [`GET /heirloom/insights`](/api/memoir) - Get insights
 
-### Heirloom Credits
-- [`GET /heirloom/credits/packs`](/api/heirloom-credits) - List credit packs
-- [`GET /heirloom/credits/wallet`](/api/heirloom-credits) - Get wallet status
-- [`POST /heirloom/credits/purchase`](/api/heirloom-credits) - Purchase credits
-- [`PUT /heirloom/credits/auto-reload`](/api/heirloom-credits) - Configure auto-reload
-- [`GET /heirloom/credits/history`](/api/heirloom-credits) - Credit history
+### Memoir Credits
+- [`GET /heirloom/credits/packs`](/api/memoir-credits) - List credit packs
+- [`GET /heirloom/credits/wallet`](/api/memoir-credits) - Get wallet status
+- [`POST /heirloom/credits/purchase`](/api/memoir-credits) - Purchase credits
+- [`PUT /heirloom/credits/auto-reload`](/api/memoir-credits) - Configure auto-reload
+- [`GET /heirloom/credits/history`](/api/memoir-credits) - Credit history
 
 ### Embed
 - [`GET /embed/wizard`](/api/embed#wizard) - Embeddable wizard iframe
