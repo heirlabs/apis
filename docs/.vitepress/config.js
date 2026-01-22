@@ -51,6 +51,7 @@ export default defineConfig({
       { text: 'Tutorials', link: '/tutorials/' },
       { text: 'Pricing', link: '/pricing/' },
       { text: 'SDKs', link: '/sdks/' },
+      { text: 'MCP', link: '/mcp/' },
       { text: 'Examples', link: '/examples/' },
       {
         text: 'v1.0.0',
@@ -230,6 +231,24 @@ export default defineConfig({
             { text: 'Glossary', link: '/resources/glossary' },
             { text: 'FAQ', link: '/resources/faq' },
             { text: 'Changelog', link: '/resources/changelog' }
+          ]
+        }
+      ],
+      '/mcp/': [
+        {
+          text: 'Model Context Protocol',
+          items: [
+            { text: 'Overview', link: '/mcp/' },
+            { text: 'Available Tools', link: '/mcp/tools' },
+            { text: 'Authentication', link: '/mcp/authentication' }
+          ]
+        },
+        {
+          text: 'IDE Setup',
+          items: [
+            { text: 'Cursor', link: '/mcp/cursor' },
+            { text: 'VS Code', link: '/mcp/vscode' },
+            { text: 'Claude Desktop', link: '/mcp/claude' }
           ]
         }
       ],
