@@ -11,8 +11,8 @@ The Model Context Protocol (MCP) is an open standard that enables AI assistants 
 ### For Cursor IDE
 
 <div class="install-button">
-  <a href="cursor://anysphere.cursor-deeplink/mcp/install?name=heir&config=eyJ1cmwiOiJodHRwczovL21jcC5oZWlyLmVzIn0=" class="button primary">
-    📲 Install in Cursor
+  <a href="cursor://settings/extensions/heir-mcp" class="button primary">
+    📲 Configure in Cursor
   </a>
 </div>
 
@@ -30,11 +30,17 @@ Or manually add to `~/.cursor/mcp.json`:
 
 ### For VS Code
 
-<div class="install-button">
-  <a href="vscode://settings/mcp?name=heir&config=eyJ1cmwiOiJodHRwczovL21jcC5oZWlyLmVzIn0=" class="button primary">
-    📲 Install in VS Code
-  </a>
-</div>
+Install the MCP extension and then configure HEIR:
+
+```json
+{
+  "mcp.servers": {
+    "heir": {
+      "url": "https://mcp.heir.es"
+    }
+  }
+}
+```
 
 ### For Claude Desktop
 

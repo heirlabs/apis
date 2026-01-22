@@ -4,8 +4,8 @@ All HEIR MCP tools require authentication using your API key. This guide shows y
 
 ## Getting Your API Key
 
-1. **Sign up** at [app.heir.es](https://app.heir.es) if you don't have an account
-2. **Navigate** to [API Keys](https://app.heir.es/api-keys) in your dashboard
+1. **Sign up** at [heir.es](https://heir.es) if you don't have an account
+2. **Navigate** to Settings → Developer → API Keys in your dashboard
 3. **Create** a new API key with MCP permissions
 4. **Copy** your API key (format: `heir_pk_...`)
 
@@ -154,7 +154,7 @@ HEIR API keys support granular permissions. For MCP usage, ensure your key has:
 
 1. **Check tier**: Free tier is limited to 100 requests/hour
 2. **Upgrade**: Consider upgrading to Pro (10,000 requests/hour)
-3. **Usage**: Monitor usage in your [dashboard](https://app.heir.es/api-keys)
+3. **Usage**: Monitor usage in your dashboard at heir.es
 
 ### Config File Issues
 

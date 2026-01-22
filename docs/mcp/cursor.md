@@ -6,12 +6,12 @@ Connect HEIR's estate planning tools to Cursor IDE through the Model Context Pro
 
 <div class="install-section">
   <div class="install-button">
-    <a href="cursor://anysphere.cursor-deeplink/mcp/install?name=heir&config=eyJ1cmwiOiJodHRwczovL21jcC5oZWlyLmVzIiwiYXBpS2V5IjoiaGVpcl9wa19fX1lPVVJfS0VZX0hFUkVfXyJ9" class="button primary large">
-      📲 One-Click Install in Cursor
+    <a href="cursor://settings/extensions/heir-mcp" class="button primary large">
+      📲 Install HEIR MCP in Cursor
     </a>
   </div>
   <p class="install-note">
-    This will add HEIR to your MCP servers and prompt for your API key.
+    Open this link in Cursor to add HEIR to your MCP servers, then follow the manual setup below.
   </p>
 </div>
 
@@ -19,8 +19,8 @@ Connect HEIR's estate planning tools to Cursor IDE through the Model Context Pro
 
 ### Step 1: Get Your API Key
 
-1. Sign up at [app.heir.es](https://app.heir.es)
-2. Go to [API Keys](https://app.heir.es/api-keys)
+1. Sign up at [heir.es](https://heir.es)
+2. Go to Settings → Developer → API Keys
 3. Create a new key and copy it
 
 ### Step 2: Configure MCP
@@ -181,7 +181,7 @@ curl -H "Authorization: Bearer $HEIR_API_KEY" https://api.heir.es/api/jurisdicti
 
 **Problem**: Rate limit errors  
 - Upgrade to Pro tier (10,000 req/hour)
-- Monitor usage in [dashboard](https://app.heir.es/api-keys)
+- Monitor usage in your dashboard at heir.es
 
 ### Debug Mode
 
