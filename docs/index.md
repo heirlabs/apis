@@ -2,42 +2,42 @@
 layout: home
 
 hero:
-  name: HEIR API
-  text: Build Digital Inheritance Solutions
-  tagline: Programmatic access to smart contract generation, vault management, and estate planning tools
+  name: HEIR
+  text: Self-custody that can be inherited
+  tagline: Platform docs for the inheritance spine (Estate Home, health check, soft legacy, executor) plus the headless contract API for integrators.
   image:
     src: /hero-image.png
-    alt: HEIR API
+    alt: HEIR
   actions:
     - theme: brand
-      text: Get Started
-      link: /guide/quickstart
+      text: Inheritance Platform
+      link: /platform/
     - theme: alt
       text: API Reference
       link: /api/
     - theme: alt
-      text: View on GitHub
-      link: https://github.com/heirlabs/apis
+      text: Quick Start
+      link: /guide/quickstart
 
 features:
+  - icon: 🏠
+    title: Estate Home spine
+    details: Weighted readiness, gaps, CTAs, and ops honesty so setup score is never confused with live death clearance or oracle claims.
+  - icon: 📋
+    title: Crypto Estate Health Check
+    details: Public multi-step quiz aligned to Estate Home weights, with a real PDF one-pager for conversion and meetings.
   - icon: 📝
-    title: Smart Contract Generation
-    details: Generate inheritance smart contracts for Ethereum, Solana, and TON with a single API call. Support for multiple legal frameworks.
+    title: Smart contract generation
+    details: Headless generate/compile for EVM, Solana, TON and related paths — multi-chain maturity is uneven and documented honestly.
   - icon: 🔐
-    title: Secure by Design
-    details: API key authentication with tiered access, rate limiting, IP whitelisting, and webhook signature verification.
+    title: Soft legacy on death clearance
+    details: Vault items and death-triggered capsules release on the same death signal as claims — fail-closed when ops gates are off.
   - icon: 🪝
-    title: Real-time Webhooks
-    details: Subscribe to events like contract deployments, verifications, and dead man's switch triggers with automatic retries.
-  - icon: 🎨
-    title: Embeddable Wizard
-    details: White-label the contract builder wizard in your application with custom branding and theming.
-  - icon: ⚡
-    title: High Performance
-    details: Built for scale with tiered rate limits up to 10,000 requests per 15 minutes for enterprise customers.
+    title: Executor & heir package
+    details: Heir aggregation, claim entry, executor checklist, and offline asset inventory without fake bank rails.
   - icon: 📚
-    title: Comprehensive SDKs
-    details: Official SDKs for JavaScript, Python, and Go. OpenAPI spec for generating clients in any language.
+    title: HTTP-first integration
+    details: Use API keys + OpenAPI/curl today. Published multi-language SDKs are not shipping packages as of 2026-07 — we do not pretend otherwise.
 ---
 
 <style>
@@ -53,10 +53,10 @@ features:
 }
 </style>
 
-## Quick Example
+## Quick example — headless contract
 
 ```bash
-# Generate an inheritance contract
+# Generate an inheritance contract (API key)
 curl -X POST https://api.heir.es/api/v1/contracts/generate \
   -H "Authorization: Bearer heir_pk_xxx..." \
   -H "Content-Type: application/json" \
@@ -72,20 +72,29 @@ curl -X POST https://api.heir.es/api/v1/contracts/generate \
   }'
 ```
 
-## API Access
+## Quick example — public health check
 
-**All subscriptions include API access.** Start with our free tier, then upgrade as you grow.
+```bash
+curl -sS https://dev.heir.es/api/estate-health-check/schema
+```
+
+Spine routes above are documented for **`origin/devv`** (dev.heir.es) as of 2026-07-30. See [Platform](/platform/) and [Changelog](/changelog).
+
+## API access
+
+Subscriptions include API access for headless routes. Confirm current plan limits on [heir.es/pricing](https://heir.es/pricing).
 
 | Tier | Rate Limit | Webhooks | Embedding | Included With |
 |------|------------|----------|-----------|---------------|
 | **Free** | 100 req/day | ❌ | ❌ | Everyone |
 | **Starter** | 1,000 req/day | ❌ | ❌ | $49/mo subscription |
 | **Professional** | 10,000 req/day | ✅ | ✅ | $149/mo subscription |
-| **Enterprise** | Unlimited | ✅ | ✅ | Custom subscription |
+| **Enterprise** | Custom | ✅ | ✅ | Custom subscription |
 
-::: tip Drafts Are Free
-Create unlimited estate plan drafts at no cost on [heir.es](https://heir.es). You only pay when you deploy.
+::: tip Drafts
+Create estate plan drafts on [heir.es](https://heir.es). Deploy and paid features follow product billing — not every surface is free.
 :::
 
-[View Full Pricing →](https://heir.es/pricing)
+[Platform overview →](/platform/) · [Full pricing →](https://heir.es/pricing)
 
+*Not legal or financial advice.*

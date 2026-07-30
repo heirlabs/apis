@@ -94,27 +94,22 @@ curl -X POST https://api.heir.es/api/v1/api-keys \
 }
 ```
 
-## SDK Authentication
+## HTTP authentication (no published SDK)
 
-### JavaScript
+Published language SDKs are not available as of 2026-07-30. Pass the API key on every request:
+
+```bash
+curl -H "Authorization: Bearer heir_pk_xxx..." \
+  https://api.heir.es/api/v1/contracts/templates
+```
 
 ```javascript
-import { HeirClient } from '@heirlabs/sdk';
-const heir = new HeirClient('heir_pk_xxx...');
+await fetch('https://api.heir.es/api/v1/contracts/templates', {
+  headers: { Authorization: `Bearer ${process.env.HEIR_API_KEY}` },
+});
 ```
 
-### Python
-
-```python
-from heir import HeirClient
-heir = HeirClient('heir_pk_xxx...')
-```
-
-### Go
-
-```go
-client := heir.NewClient("heir_pk_xxx...")
-```
+See [JavaScript](/sdks/javascript), [Python](/sdks/python), [Go](/sdks/go).
 
 ## Security Recommendations
 

@@ -1,16 +1,25 @@
 # API Reference
 
-This section provides detailed documentation for all HEIR API endpoints.
+HEIR exposes **two** HTTP surfaces. Do not assume every product route is available under `/api/v1` with an API key.
 
-## Base URL
+## Surfaces
+
+| Group | Base | Auth | Docs |
+|-------|------|------|------|
+| **Headless v1** | `https://api.heir.es/api/v1/` | API key and/or session (hybrid) | Contracts, legal, webhooks, embed, … |
+| **Platform (session)** | Product host `/api/…` (e.g. dev.heir.es) | Session JWT/cookie; health check is public | [Estate Home](/api/estate-home), [Health Check](/api/estate-health-check), [Executor](/api/executor), … |
+
+Platform spine routes are documented as of **2026-07-30** on `origin/devv`. Confirm on your environment before production integrations.
+
+## Headless base URL
 
 ```
 https://api.heir.es/api/v1/
 ```
 
-## Authentication
+## Authentication (headless)
 
-All requests require an API key via one of these methods:
+API key methods:
 
 ```bash
 # Authorization header (recommended)
@@ -20,7 +29,7 @@ curl -H "Authorization: Bearer heir_pk_xxx..." https://api.heir.es/api/v1/...
 curl -H "X-API-Key: heir_pk_xxx..." https://api.heir.es/api/v1/...
 ```
 
-See [Authentication Guide](/guide/authentication) for details.
+Session platform routes use the product session (`heir_auth`), not an API key. See [Authentication Guide](/guide/authentication) and [Platform overview](/platform/).
 
 ## Response Format
 

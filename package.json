@@ -12,7 +12,9 @@
     "docs:preview": "vitepress preview docs",
     "test": "jest",
     "lint": "eslint src/",
-    "generate:openapi": "node scripts/generate-openapi.js"
+    "generate:openapi": "node scripts/generate-openapi.js",
+    "docs:verify": "node scripts/verify-docs-honesty.mjs",
+    "docs:check": "npm run docs:verify && npm run docs:build"
   },
   "keywords": [
     "heir",
@@ -55,4 +57,3 @@
     "jest": "^29.7.0"
   }
 }
-

@@ -46,6 +46,7 @@ export default defineConfig({
     
     nav: [
       { text: 'Guide', link: '/guide/introduction' },
+      { text: 'Platform', link: '/platform/' },
       { text: 'API Reference', link: '/api/' },
       { text: 'Legal Frameworks', link: '/legal-frameworks/' },
       { text: 'Tutorials', link: '/tutorials/' },
@@ -54,7 +55,7 @@ export default defineConfig({
       { text: 'MCP', link: '/mcp/' },
       { text: 'Examples', link: '/examples/' },
       {
-        text: 'v1.0.0',
+        text: '2026.7',
         items: [
           { text: 'Changelog', link: '/changelog' },
           { text: 'API Status', link: 'https://status.heir.es' }
@@ -93,6 +94,22 @@ export default defineConfig({
           ]
         }
       ],
+      '/platform/': [
+        {
+          text: 'Inheritance Platform',
+          items: [
+            { text: 'Overview', link: '/platform/' },
+            { text: 'Estate Home', link: '/platform/estate-home' },
+            { text: 'Health Check', link: '/platform/health-check' },
+            { text: 'Heir Package', link: '/platform/heir-package' },
+            { text: 'Soft Legacy', link: '/platform/soft-legacy' },
+            { text: 'Executor & Offline Assets', link: '/platform/executor' },
+            { text: 'Living Legacy', link: '/platform/living-legacy' },
+            { text: 'Multi-chain Estates', link: '/platform/multi-chain' },
+            { text: 'Ops Gates', link: '/platform/ops-gates' }
+          ]
+        }
+      ],
       '/api/': [
         {
           text: 'API Reference',
@@ -102,7 +119,17 @@ export default defineConfig({
           ]
         },
         {
-          text: 'Endpoints',
+          text: 'Platform (session)',
+          items: [
+            { text: 'Estate Home', link: '/api/estate-home' },
+            { text: 'Estate Health Check', link: '/api/estate-health-check' },
+            { text: 'Executor', link: '/api/executor' },
+            { text: 'Offline Assets', link: '/api/offline-assets' },
+            { text: 'Living Legacy', link: '/api/living-legacy' }
+          ]
+        },
+        {
+          text: 'Headless v1',
           items: [
             { text: 'API Keys', link: '/api/api-keys' },
             { text: 'Contracts', link: '/api/contracts' },

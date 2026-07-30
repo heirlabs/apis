@@ -58,7 +58,7 @@ Events are signed using HMAC-SHA256. Verify signatures using your webhook secret
 
 The current API version is \`v1\`. All endpoints are prefixed with \`/api/v1/\`.
 
-Legacy \`/api/\` endpoints are deprecated and will be removed on 2026-07-01.
+Prefer \`/api/v1/\` for headless integrator traffic. Unversioned \`/api/\` remains for product session routes and some legacy paths; check deprecation response headers per route.
     `,
     contact: {
       name: 'HEIR Support',

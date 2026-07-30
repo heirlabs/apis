@@ -7,23 +7,28 @@ Secure your integration with the HEIR API.
 ### Never Expose Keys
 
 ```javascript
-// ❌ Bad - key in client-side code
-const client = new HeirClient('heir_pk_xxx...'); // Exposed!
+// ❌ Bad - API key in browser bundle
+const res = await fetch('https://api.heir.es/api/v1/contracts/generate', {
+  headers: { Authorization: 'Bearer heir_pk_xxx...' }, // Exposed!
+});
 
-// ✅ Good - key on server only
-// Client calls your backend, which calls HEIR API
+// ✅ Good - key only on your server
+// Browser → your backend → HEIR API with HEIR_API_KEY from env
 ```
 
 ### Use Environment Variables
 
 ```bash
-# .env
+# .env (server only — never NEXT_PUBLIC_ / VITE_ for secret keys)
 HEIR_API_KEY=heir_pk_xxx...
 ```
 
 ```javascript
 // server.js
-const client = new HeirClient(process.env.HEIR_API_KEY);
+const apiKey = process.env.HEIR_API_KEY;
+await fetch('https://api.heir.es/api/v1/contracts/templates', {
+  headers: { Authorization: `Bearer ${apiKey}` },
+});
 ```
 
 ### Rotate Keys Regularly
@@ -123,8 +128,15 @@ const limiter = new Bottleneck({
   maxConcurrent: 5
 });
 
-const result = await limiter.schedule(() => 
-  heir.contracts.generate(params)
+const result = await limiter.schedule(() =>
+  fetch('https://api.heir.es/api/v1/contracts/generate', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${process.env.HEIR_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(params),
+  }).then((r) => r.json())
 );
 ```
 
@@ -171,15 +183,27 @@ function validateBeneficiary(beneficiary) {
 Never pass unsanitized user input to the API:
 
 ```javascript
-// ❌ Bad
-const result = await heir.contracts.generate({
-  ownerAddress: req.body.address // Could be anything!
+// ❌ Bad — raw body straight into HEIR
+await fetch('https://api.heir.es/api/v1/contracts/generate', {
+  method: 'POST',
+  headers: {
+    Authorization: `Bearer ${process.env.HEIR_API_KEY}`,
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({ ownerAddress: req.body.address }),
 });
 
-// ✅ Good
+// ✅ Good — validate first
 const address = sanitizeAddress(req.body.address);
 if (!address) return res.status(400).send('Invalid address');
-const result = await heir.contracts.generate({ ownerAddress: address });
+await fetch('https://api.heir.es/api/v1/contracts/generate', {
+  method: 'POST',
+  headers: {
+    Authorization: `Bearer ${process.env.HEIR_API_KEY}`,
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({ ownerAddress: address }),
+});
 ```
 
 ## Audit Logging
@@ -187,24 +211,25 @@ const result = await heir.contracts.generate({ ownerAddress: address });
 Log all API interactions:
 
 ```javascript
-async function apiCall(endpoint, params) {
+async function apiCall(path, init) {
   const startTime = Date.now();
-  
+  const endpoint = `https://api.heir.es/api/v1${path}`;
   try {
-    const result = await heir.request(endpoint, params);
-    
-    logger.info('API call succeeded', {
+    const res = await fetch(endpoint, init);
+    const result = await res.json();
+    logger.info('API call finished', {
       endpoint,
+      status: res.status,
       duration: Date.now() - startTime,
-      requestId: result.meta.requestId
+      requestId: result?.meta?.requestId,
     });
-    
+    if (!res.ok) throw new Error(result?.error?.message || res.statusText);
     return result;
   } catch (error) {
     logger.error('API call failed', {
       endpoint,
       error: error.message,
-      duration: Date.now() - startTime
+      duration: Date.now() - startTime,
     });
     throw error;
   }

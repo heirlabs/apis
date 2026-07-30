@@ -1,101 +1,90 @@
 # Introduction
 
-Welcome to the HEIR API documentation. The HEIR API provides programmatic access to the HEIR Protocol's digital inheritance infrastructure, enabling you to build applications that generate smart contracts, manage vaults, and integrate estate planning tools.
+Welcome to HEIR documentation. HEIR is a self-custody inheritance protocol and product: generate multi-chain estate contracts, measure readiness, deliver soft legacy (docs/messages) on death clearance, and expose headless APIs for integrators.
 
-## What is HEIR?
+**Public promise:** Self-custody that can be inherited.
 
-HEIR is a decentralized inheritance protocol that enables:
+## Two surfaces
 
-- **Smart Contract Generation** - Create legally-compliant inheritance contracts for multiple blockchains
-- **Dead Man's Switch** - Automatic asset distribution if the owner becomes unresponsive
-- **Multi-Jurisdictional Support** - Templates for Common Law, Civil Law, Islamic Law, and more
-- **Secure Vault Storage** - Encrypted storage for beneficiary information and documents
+| Surface | Who | Where | Auth |
+|---------|-----|-------|------|
+| **Platform** | Owners, heirs, executors, professionals | Product SPA + session `/api/*` | Session JWT / cookie; some public routes |
+| **Headless API** | Integrators & partners | `https://api.heir.es/api/v1/*` | API key and/or session (hybrid) |
+
+Start with the [Inheritance Platform](/platform/) for product behavior on **`origin/devv`** (dev.heir.es as of 2026-07-30). Use the [API Reference](/api/) for endpoint details. Use [Quick Start](/guide/quickstart) for headless contract generation.
+
+## What HEIR does
+
+- **Estate readiness spine** — Estate Home weighted score, gaps, CTAs, and ops honesty (`ops` object) so setup score ≠ live oracle/death clearance  
+- **Crypto Estate Health Check** — Public quiz + PDF leave-behind; optional auth merges live readiness  
+- **Multi-chain estate contracts** — EVM primary; Solana, TON, TRON, Midnight, Bitcoin (flagged) at varying maturity  
+- **Proof-of-life / dead-man coupling** — Multi-method verification feeding inheritance timers  
+- **Soft legacy release** — Vault items and death-triggered capsules open on the same death clearance signal as claims  
+- **Heir package & executor cockpit** — Heir aggregation + offline asset inventory (no bank rails)  
+- **Living Legacy** — Interview, completeness, plan/export (lawyer-ready drafts, not court-executed wills alone)  
+- **Headless API** — Contract generate/compile, legal, webhooks, embed wizard under `/api/v1`  
+
+## What HEIR is not
+
+- Not automatic probate or bank transfer  
+- Not a guarantee that every chain is equally mainnet-ready  
+- Not “quantum-safe coins” marketing (on-chain assets use each chain’s cryptography)  
+- Not a published multi-language SDK product yet — use HTTP + OpenAPI until packages ship  
 
 ## Who is this for?
 
-The HEIR API is designed for:
+- **Individuals** building a crypto + hybrid estate  
+- **Heirs and executors** after death clearance  
+- **Professionals** (attorneys, CPAs, advisors) via VIP/cert tracks (partial maturity)  
+- **Fintech / wallet / custodian integrators** via API keys  
+- **Developers** embedding the contract wizard  
 
-- **Fintech Companies** - Integrate inheritance planning into wealth management platforms
-- **Crypto Custodians** - Offer succession planning to institutional clients
-- **Estate Planning Attorneys** - Automate smart contract generation for clients
-- **DeFi Protocols** - Add inheritance features to wallets and vaults
-- **Insurance Companies** - Create blockchain-based beneficiary designations
+## Base URLs
 
-## API Features
+| Environment | Product | API |
+|-------------|---------|-----|
+| Production | `https://heir.es` | `https://api.heir.es` |
+| Dev / staging (devv) | `https://dev.heir.es` | same API host or env-specific — confirm for your deployment |
 
-### Contract Generation
-
-Generate smart contracts for inheritance distribution with a single API call:
-
-```javascript
-const response = await fetch('https://api.heir.es/api/v1/contracts/generate', {
-  method: 'POST',
-  headers: {
-    'Authorization': 'Bearer heir_pk_xxx...',
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    blockchain: 'evm',
-    ownerAddress: '0x...',
-    beneficiaries: [...],
-    inheritanceTemplate: 'common-law'
-  })
-});
-
-const { contractCode, compiled } = await response.json();
-```
-
-### Webhook Subscriptions
-
-Receive real-time notifications for important events:
-
-```javascript
-// Subscribe to contract deployment events
-await fetch('https://api.heir.es/api/v1/webhooks/subscriptions', {
-  method: 'POST',
-  headers: {
-    'Authorization': 'Bearer heir_pt_xxx...',
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    url: 'https://your-app.com/webhooks/heir',
-    events: ['contract.deployed', 'deadman.triggered']
-  })
-});
-```
-
-### Embeddable Wizard
-
-White-label the contract builder for your customers:
-
-```html
-<iframe 
-  src="https://api.heir.es/api/embed/wizard?key=heir_pt_xxx&theme=dark&logo=https://your-logo.png"
-  width="100%" 
-  height="800"
-/>
-```
-
-## Base URL
-
-All API requests are made to:
+Headless requests:
 
 ```
 https://api.heir.es/api/v1/
 ```
 
-## API Versioning
+Platform session routes (examples):
 
-The current API version is `v1`. All endpoints are prefixed with `/api/v1/`.
+```
+https://dev.heir.es/api/estate-home/summary
+https://dev.heir.es/api/estate-health-check/schema
+```
 
-::: warning Deprecation Notice
-Legacy `/api/*` endpoints (without version prefix) are deprecated and will be removed on **July 1, 2026**. Please migrate to `/api/v1/*`.
+## API versioning
+
+Current headless version prefix: **`v1`**.
+
+Many product routes also exist under unversioned `/api/*` with **session** auth. Prefer documenting both honestly:
+
+| Pattern | Typical auth | Notes |
+|---------|--------------|-------|
+| `/api/v1/*` | API key hybrid | Integrator surface |
+| `/api/estate-home/*`, `/api/executor/*`, … | Session | Platform spine |
+| `/api/estate-health-check/*` | Public (+ optional session) | Conversion quiz |
+
+::: info Legacy `/api/*` without API key
+Unversioned routes remain part of the product SPA backend. Integrators should use `/api/v1/*` with API keys where hybrid mounts exist. Deprecation is **route-class dependent** — do not assume a single calendar kill date for all unversioned paths.
 :::
 
-## Need Help?
+## Ops honesty
 
-- 📚 [API Reference](/api/) - Complete endpoint documentation
-- 💬 [Discord Community](https://discord.gg/heir) - Get help from the community
-- 📧 [api@heir.es](mailto:api@heir.es) - Enterprise support
-- 🐛 [GitHub Issues](https://github.com/heirlabs/apis/issues) - Report bugs
+Death clearance and email oracle claims are **env-gated** and fail closed when unset. See [Ops gates](/platform/ops-gates).
 
+## Need help?
+
+- [Platform overview](/platform/) — product spine  
+- [API Reference](/api/) — endpoints  
+- [Changelog](/changelog) — what changed in 2026-07  
+- [api@heir.es](mailto:api@heir.es) — API support  
+- [GitHub Issues](https://github.com/heirlabs/apis/issues) — docs issues  
+
+*Not legal or financial advice.*

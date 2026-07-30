@@ -1,123 +1,64 @@
 # SDKs & Libraries
 
-Official SDKs make it easy to integrate the HEIR API into your application.
+**As of 2026-07-30:** there is **no published official npm/PyPI/Go module** for HEIR under `@heirlabs/sdk`, `heir-sdk`, or `github.com/heirlabs/heir-js` (packages and those repos return 404). Integrate with **HTTP + OpenAPI**, or generate a client yourself.
 
-## Official SDKs
-
-### JavaScript / TypeScript
-
-```bash
-npm install @heirlabs/sdk
-```
-
-```javascript
-import { HeirClient } from '@heirlabs/sdk';
-
-const heir = new HeirClient('heir_pk_xxx...');
-
-const contract = await heir.contracts.generate({
-  blockchain: 'evm',
-  ownerAddress: '0x...',
-  beneficiaries: [
-    { name: 'Alice', address: '0xabc...', percentage: 100 }
-  ]
-});
-```
-
-[View on GitHub](https://github.com/heirlabs/heir-js) | [NPM](https://npmjs.com/package/@heirlabs/sdk)
-
----
-
-### Python
-
-```bash
-pip install heir-sdk
-```
-
-```python
-from heir import HeirClient
-
-heir = HeirClient('heir_pk_xxx...')
-
-contract = heir.contracts.generate(
-    blockchain='evm',
-    owner_address='0x...',
-    beneficiaries=[
-        {'name': 'Alice', 'address': '0xabc...', 'percentage': 100}
-    ]
-)
-```
-
-[View on GitHub](https://github.com/heirlabs/heir-python) | [PyPI](https://pypi.org/project/heir-sdk/)
-
----
-
-### Go
-
-```bash
-go get github.com/heirlabs/heir-go
-```
-
-```go
-package main
-
-import (
-    "github.com/heirlabs/heir-go"
-)
-
-func main() {
-    client := heir.NewClient("heir_pk_xxx...")
-    
-    contract, err := client.Contracts.Generate(&heir.GenerateParams{
-        Blockchain:   "evm",
-        OwnerAddress: "0x...",
-        Beneficiaries: []heir.Beneficiary{
-            {Name: "Alice", Address: "0xabc...", Percentage: 100},
-        },
-    })
-}
-```
-
-[View on GitHub](https://github.com/heirlabs/heir-go)
-
----
-
-## OpenAPI Generator
-
-Generate a client for any language using our OpenAPI specification:
-
-```bash
-# Download the spec
-curl -o openapi.json https://api.heir.es/api/docs/openapi.json
-
-# Generate a client (example: Ruby)
-openapi-generator generate -i openapi.json -g ruby -o ./heir-ruby
-```
-
-[OpenAPI Specification](https://api.heir.es/api/docs/openapi.json)
-
-## Community Libraries
-
-::: tip Contributing
-Built an SDK? [Let us know](https://github.com/heirlabs/apis/issues) and we'll list it here!
-:::
-
-| Language | Library | Author |
-|----------|---------|--------|
-| Rust | Coming soon | - |
-| PHP | Coming soon | - |
-| Ruby | Coming soon | - |
-
-## Direct HTTP
-
-You can also use the API directly with any HTTP client:
+## Recommended: direct HTTP
 
 ```bash
 curl -X POST https://api.heir.es/api/v1/contracts/generate \
   -H "Authorization: Bearer heir_pk_xxx..." \
   -H "Content-Type: application/json" \
-  -d '{"blockchain": "evm", ...}'
+  -d '{
+    "blockchain": "evm",
+    "ownerAddress": "0x...",
+    "beneficiaries": [
+      { "name": "Alice", "address": "0xabc...", "percentage": 100 }
+    ]
+  }'
 ```
 
-See [cURL Examples](/sdks/curl) for more.
+More patterns: [cURL examples](/sdks/curl) · [Quick start](/guide/quickstart) · [Generate contract example](/examples/generate-contract).
 
+## OpenAPI client generation
+
+If your deployment exposes OpenAPI:
+
+```bash
+# Adjust URL if your environment serves the spec elsewhere
+curl -o openapi.json https://api.heir.es/api/docs/openapi.json
+
+openapi-generator generate -i openapi.json -g typescript-fetch -o ./heir-ts
+```
+
+Confirm the OpenAPI URL returns 200 in your environment before wiring CI to it.
+
+## Language notes (planned, not published)
+
+| Language | Status |
+|----------|--------|
+| JavaScript / TypeScript | **Use fetch/HTTP.** No published `@heirlabs/sdk` |
+| Python | **Use requests/httpx.** No published `heir-sdk` |
+| Go | **Use net/http.** No published `heir-go` module |
+| Other | Generate from OpenAPI when available |
+
+Historical sample snippets that imported `@heirlabs/sdk` or `heir-sdk` were aspirational and have been removed from the homepage and this index so they cannot be copy-pasted as working installs.
+
+## Platform session APIs
+
+Estate Home, executor, offline assets, and living legacy are primarily **session** routes. SDKs (when published) should document cookie/JWT session flows separately from API keys. See [Platform](/platform/) and [API overview](/api/).
+
+## Community libraries
+
+::: tip Contributing
+Built a maintained client? Open an issue on [heirlabs/apis](https://github.com/heirlabs/apis/issues) with install proof (registry URL + version) and we will list it here.
+:::
+
+| Language | Library | Status |
+|----------|---------|--------|
+| — | — | None listed with registry proof yet |
+
+## See also
+
+- [Authentication](/guide/authentication)  
+- [Contracts API](/api/contracts)  
+- [Examples](/examples/)

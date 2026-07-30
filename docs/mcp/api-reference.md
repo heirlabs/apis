@@ -687,63 +687,18 @@ function verifyWebhook(payload, signature, secret) {
 }
 ```
 
-## SDKs
+## HTTP clients
 
-Official SDKs are available for popular languages:
-
-### JavaScript/TypeScript
+Published language SDKs are **not** available as of 2026-07-30. Call the API with HTTP:
 
 ```bash
-npm install @heir/sdk
+curl -X POST https://api.heir.es/api/v1/contracts/generate \
+  -H "Authorization: Bearer heir_pk_xxx..." \
+  -H "Content-Type: application/json" \
+  -d '{"blockchain":"evm","ownerAddress":"0x...","beneficiaries":[]}'
 ```
 
-```javascript
-import { HeirClient } from '@heir/sdk';
-
-const client = new HeirClient('heir_sk_your_api_key');
-
-const contract = await client.generateContract({
-  blockchain: 'evm',
-  network: 'ethereum',
-  // ... other parameters
-});
-```
-
-### Python
-
-```bash
-pip install heir-sdk
-```
-
-```python
-from heir import HeirClient
-
-client = HeirClient('heir_sk_your_api_key')
-
-contract = client.generate_contract(
-    blockchain='evm',
-    network='ethereum',
-    # ... other parameters
-)
-```
-
-### Go
-
-```bash
-go get github.com/heirlabs/heir-go
-```
-
-```go
-import "github.com/heirlabs/heir-go"
-
-client := heir.NewClient("heir_sk_your_api_key")
-
-contract, err := client.GenerateContract(&heir.ContractParams{
-    Blockchain: "evm",
-    Network: "ethereum",
-    // ... other parameters
-})
-```
+See [SDKs overview](/sdks/), [JavaScript](/sdks/javascript), [Python](/sdks/python), [Go](/sdks/go).
 
 ## Postman Collection
 

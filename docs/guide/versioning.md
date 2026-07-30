@@ -18,31 +18,37 @@ The response includes the API version:
 X-API-Version: v1
 ```
 
-## Legacy Endpoints
+## Unversioned `/api/*` vs `/api/v1/*`
 
-::: warning Deprecation Notice
-Endpoints without version prefix (`/api/*`) are deprecated and will be removed on **July 1, 2026**.
+The production monorepo still mounts **both**:
+
+| Pattern | Typical use |
+|---------|-------------|
+| `/api/v1/*` | Headless integrators (API key hybrid) |
+| `/api/*` (no v1) | Product SPA session routes (Estate Home, executor, …) and some legacy integrator paths |
+
+Some unversioned integrator routes may emit deprecation **headers** encouraging `/api/v1`. That is not a calendar guarantee that all unversioned product routes will disappear.
+
+::: info As of 2026-07-30
+Do not hardcode a single “sunset” date for every unversioned path. Integrators should prefer `/api/v1/*` for contracts/legal/webhooks. Platform spine docs use session `/api/estate-home/*` etc. on purpose.
 :::
 
-Legacy requests return deprecation headers:
+## Migration Guide (integrator contract generate)
 
-```http
-X-API-Deprecation: true
-X-API-Sunset: 2026-07-01T00:00:00Z
-```
-
-## Migration Guide
-
-### Before (deprecated)
+### Prefer versioned
 
 ```bash
-curl https://api.heir.es/api/contracts/generate
+curl https://api.heir.es/api/v1/contracts/generate \
+  -H "Authorization: Bearer heir_pk_xxx..." \
+  -H "Content-Type: application/json" \
+  -d '{"blockchain":"evm",...}'
 ```
 
-### After (current)
+### Legacy unversioned (may send deprecation headers)
 
 ```bash
-curl https://api.heir.es/api/v1/contracts/generate
+curl https://api.heir.es/api/contracts/generate \
+  -H "Authorization: Bearer heir_pk_xxx..."
 ```
 
 ## Breaking Changes Policy

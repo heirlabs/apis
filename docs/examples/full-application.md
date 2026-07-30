@@ -44,7 +44,7 @@ heir-app/
 ```bash
 npx create-next-app@latest heir-app --typescript --tailwind
 cd heir-app
-npm install ethers @heirlabs/sdk
+npm install ethers
 ```
 
 ### 2. Environment Variables
@@ -57,13 +57,26 @@ DATABASE_URL=postgresql://...
 NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID=...
 ```
 
-### 3. API Client
+### 3. API client (HTTP — no published SDK package)
 
 ```typescript
 // src/lib/heir.ts
-import { HeirClient } from '@heirlabs/sdk';
+const API = 'https://api.heir.es/api/v1';
 
-export const heir = new HeirClient(process.env.HEIR_API_KEY!);
+export async function heirGenerateContract(body: unknown) {
+  const res = await fetch(`${API}/contracts/generate`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${process.env.HEIR_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) {
+    throw new Error(`HEIR API ${res.status}`);
+  }
+  return res.json();
+}
 ```
 
 ## Dashboard Page
@@ -400,7 +413,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 ```typescript
 // src/pages/api/contracts/generate.ts
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { heir } from '../../../lib/heir';
+import { heirGenerateContract } from '../../../lib/heir';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
@@ -410,7 +423,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     const { ownerAddress, beneficiaries, deadMansSwitch } = req.body;
 
-    const result = await heir.contracts.generate({
+    const result = await heirGenerateContract({
       blockchain: 'evm',
       ownerAddress,
       beneficiaries,

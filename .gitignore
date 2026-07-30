@@ -1,38 +1,31 @@
-# Dependencies
-node_modules/
 
 # Build outputs
-dist/
-docs/.vitepress/dist/
-docs/.vitepress/cache/
-docs/.vitepress/.temp/
-
+# Dependencies
 # Environment
-.env
-.env.local
-.env.*.local
-
 # IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# OS
-.DS_Store
-Thumbs.db
-
 # Logs
+# Misc
+# OS
+# Test
 *.log
+*.swo
+*.swp
+*.tgz
+.DS_Store
+.cache/
+.env
+.env.*.local
+.env.local
+.idea/
+.nyc_output/
+.vscode/
+Thumbs.db
+coverage/
+dist/
+docs/.vitepress/.temp/
+docs/.vitepress/cache/
+docs/.vitepress/dist/
+node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# Test
-coverage/
-.nyc_output/
-
-# Misc
-*.tgz
-.cache/
-
