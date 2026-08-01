@@ -44,13 +44,15 @@ heir-app/
 ```bash
 npx create-next-app@latest heir-app --typescript --tailwind
 cd heir-app
-npm install ethers @heirlabs/sdk
+npm install ethers
 ```
+
+There is no `@heirlabs/sdk` on npm. Call the REST API with `fetch` from server routes only. Published packages are only [`@morbidcorp/element-sdk`](https://www.npmjs.com/package/@morbidcorp/element-sdk) / [`@morbidcorp/elements-cli`](https://www.npmjs.com/package/@morbidcorp/elements-cli) for Desk Elements.
 
 ### 2. Environment Variables
 
 ```env
-# .env.local
+# .env.local (server-only — do not use NEXT_PUBLIC_ for API keys)
 HEIR_API_KEY=heir_pt_xxx...
 HEIR_WEBHOOK_SECRET=whsec_xxx...
 DATABASE_URL=postgresql://...
@@ -60,10 +62,21 @@ NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID=...
 ### 3. API Client
 
 ```typescript
-// src/lib/heir.ts
-import { HeirClient } from '@heirlabs/sdk';
+// src/lib/heir.ts — server-side only
+const BASE = 'https://api.heir.es/api/v1';
 
-export const heir = new HeirClient(process.env.HEIR_API_KEY!);
+export async function heirFetch(path: string, init: RequestInit = {}) {
+  const res = await fetch(`${BASE}${path}`, {
+    ...init,
+    headers: {
+      Authorization: `Bearer ${process.env.HEIR_API_KEY}`,
+      'Content-Type': 'application/json',
+      ...(init.headers || {}),
+    },
+  });
+  if (!res.ok) throw new Error(`HEIR API ${res.status}`);
+  return res.json();
+}
 ```
 
 ## Dashboard Page
@@ -400,7 +413,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 ```typescript
 // src/pages/api/contracts/generate.ts
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { heir } from '../../../lib/heir';
+import { heirFetch } from '../../../lib/heir';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
@@ -410,12 +423,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     const { ownerAddress, beneficiaries, deadMansSwitch } = req.body;
 
-    const result = await heir.contracts.generate({
-      blockchain: 'evm',
-      ownerAddress,
-      beneficiaries,
-      inheritanceTemplate: 'common-law',
-      deadMansSwitch
+    const result = await heirFetch('/contracts/generate', {
+      method: 'POST',
+      body: JSON.stringify({
+        blockchain: 'evm',
+        ownerAddress,
+        beneficiaries,
+        inheritanceTemplate: 'common-law',
+        deadMansSwitch,
+      }),
     });
 
     res.status(200).json(result);

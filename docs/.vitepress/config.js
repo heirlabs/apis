@@ -141,7 +141,7 @@ export default defineConfig({
           text: 'SDKs & Libraries',
           items: [
             { text: 'Overview', link: '/sdks/' },
-            { text: 'Desk Elements SDK', link: '/elements/' },
+            { text: 'Element SDK & CLI', link: '/elements/' },
             { text: 'JavaScript/TypeScript', link: '/sdks/javascript' },
             { text: 'Python', link: '/sdks/python' },
             { text: 'Go', link: '/sdks/go' },

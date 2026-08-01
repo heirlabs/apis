@@ -8,22 +8,24 @@ Secure your integration with the HEIR API.
 
 ```javascript
 // ❌ Bad - key in client-side code
-const client = new HeirClient('heir_pk_xxx...'); // Exposed!
+const res = await fetch('https://api.heir.es/api/v1/...', {
+  headers: { Authorization: 'Bearer heir_pk_xxx...' }, // Exposed!
+});
 
 // ✅ Good - key on server only
-// Client calls your backend, which calls HEIR API
+// Browser calls your backend; your backend calls the HEIR API
 ```
 
 ### Use Environment Variables
 
 ```bash
-# .env
+# .env (server only — never prefix with NEXT_PUBLIC_ / VITE_)
 HEIR_API_KEY=heir_pk_xxx...
 ```
 
 ```javascript
-// server.js
-const client = new HeirClient(process.env.HEIR_API_KEY);
+// server route only
+const key = process.env.HEIR_API_KEY;
 ```
 
 ### Rotate Keys Regularly

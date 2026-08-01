@@ -94,26 +94,35 @@ curl -X POST https://api.heir.es/api/v1/api-keys \
 }
 ```
 
-## SDK Authentication
+## Client authentication
 
-### JavaScript
+There is no published headless REST SDK. Pass the API key on every request:
+
+### JavaScript / fetch
 
 ```javascript
-import { HeirClient } from '@heirlabs/sdk';
-const heir = new HeirClient('heir_pk_xxx...');
+const res = await fetch('https://api.heir.es/api/v1/...', {
+  headers: {
+    Authorization: `Bearer ${process.env.HEIR_API_KEY}`,
+    'Content-Type': 'application/json',
+  },
+});
 ```
 
 ### Python
 
 ```python
-from heir import HeirClient
-heir = HeirClient('heir_pk_xxx...')
+import requests, os
+requests.get(
+    'https://api.heir.es/api/v1/...',
+    headers={'Authorization': f"Bearer {os.environ['HEIR_API_KEY']}"},
+)
 ```
 
 ### Go
 
 ```go
-client := heir.NewClient("heir_pk_xxx...")
+req.Header.Set("Authorization", "Bearer "+os.Getenv("HEIR_API_KEY"))
 ```
 
 ## Security Recommendations

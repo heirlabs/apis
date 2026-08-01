@@ -689,61 +689,14 @@ function verifyWebhook(payload, signature, secret) {
 
 ## SDKs
 
-Official SDKs are available for popular languages:
+There is no headless REST SDK on npm/PyPI. Published packages:
 
-### JavaScript/TypeScript
+| Package | Purpose | npm |
+|---------|---------|-----|
+| `@morbidcorp/element-sdk` | Desk Elements bridge | [npm](https://www.npmjs.com/package/@morbidcorp/element-sdk) |
+| `@morbidcorp/elements-cli` | `heir-element` CLI | [npm](https://www.npmjs.com/package/@morbidcorp/elements-cli) |
 
-```bash
-npm install @heir/sdk
-```
-
-```javascript
-import { HeirClient } from '@heir/sdk';
-
-const client = new HeirClient('heir_sk_your_api_key');
-
-const contract = await client.generateContract({
-  blockchain: 'evm',
-  network: 'ethereum',
-  // ... other parameters
-});
-```
-
-### Python
-
-```bash
-pip install heir-sdk
-```
-
-```python
-from heir import HeirClient
-
-client = HeirClient('heir_sk_your_api_key')
-
-contract = client.generate_contract(
-    blockchain='evm',
-    network='ethereum',
-    # ... other parameters
-)
-```
-
-### Go
-
-```bash
-go get github.com/heirlabs/heir-go
-```
-
-```go
-import "github.com/heirlabs/heir-go"
-
-client := heir.NewClient("heir_sk_your_api_key")
-
-contract, err := client.GenerateContract(&heir.ContractParams{
-    Blockchain: "evm",
-    Network: "ethereum",
-    // ... other parameters
-})
-```
+For the HTTP API, use [OpenAPI](https://api.heir.es/api/docs/openapi.json), [cURL examples](/sdks/curl), or the [SDKs overview](/sdks/).
 
 ## Postman Collection
 
