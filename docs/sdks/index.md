@@ -1,8 +1,19 @@
 # SDKs & Libraries
 
-Official SDKs make it easy to integrate the HEIR API into your application.
+## Desk Elements (published)
 
-## Official SDKs
+Build sandboxed apps for the Legacy Desk:
+
+| Package | Install | Docs |
+|---------|---------|------|
+| `@morbidcorp/element-sdk` | `npm i @morbidcorp/element-sdk` | [Elements overview](/elements/) · [API](/elements/api) · [Manifest](/elements/manifest) |
+| `@morbidcorp/elements-cli` | `npm i -g @morbidcorp/elements-cli` | [CLI](/elements/cli) · [Getting started](/elements/getting-started) |
+
+Local emulator (`heir-element dev`) and pack/sign work today. The **production registry is not open** for third-party marketplace installs.
+
+## Headless API clients
+
+Integrate the REST API with HTTP clients or OpenAPI generation. The packages below are **illustrative / planned** unless you verify them on npm.
 
 ### JavaScript / TypeScript
 

@@ -46,6 +46,7 @@ export default defineConfig({
     
     nav: [
       { text: 'Guide', link: '/guide/introduction' },
+      { text: 'Elements', link: '/elements/' },
       { text: 'API Reference', link: '/api/' },
       { text: 'Legal Frameworks', link: '/legal-frameworks/' },
       { text: 'Tutorials', link: '/tutorials/' },
@@ -54,7 +55,7 @@ export default defineConfig({
       { text: 'MCP', link: '/mcp/' },
       { text: 'Examples', link: '/examples/' },
       {
-        text: 'v1.0.0',
+        text: 'v1.0',
         items: [
           { text: 'Changelog', link: '/changelog' },
           { text: 'API Status', link: 'https://status.heir.es' }
@@ -123,11 +124,24 @@ export default defineConfig({
           ]
         }
       ],
+      '/elements/': [
+        {
+          text: 'Desk Elements',
+          items: [
+            { text: 'Overview', link: '/elements/' },
+            { text: 'Getting started', link: '/elements/getting-started' },
+            { text: 'Bridge API', link: '/elements/api' },
+            { text: 'Manifest', link: '/elements/manifest' },
+            { text: 'CLI', link: '/elements/cli' }
+          ]
+        }
+      ],
       '/sdks/': [
         {
           text: 'SDKs & Libraries',
           items: [
             { text: 'Overview', link: '/sdks/' },
+            { text: 'Desk Elements SDK', link: '/elements/' },
             { text: 'JavaScript/TypeScript', link: '/sdks/javascript' },
             { text: 'Python', link: '/sdks/python' },
             { text: 'Go', link: '/sdks/go' },
