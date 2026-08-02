@@ -7,17 +7,17 @@ Connect AI assistants to HEIR via [`@morbidcorp/heir`](https://www.npmjs.com/pac
 | Field | Value |
 |-------|--------|
 | npm | `@morbidcorp/heir` |
-| Working version | **2.0.3** (`bin` → `dist/cli.js`) |
+| Working version | **2.0.4** (`bin` → `dist/cli.js`) |
 | Tools | **18** — contracts, estates, jurisdictions, legal, chat |
 | Broken versions | **2.0.1** (and earlier bin) `bin` pointed at monorepo-coupled `index.js` (crashes on `npx`) |
 | Wrong name | `@heir/mcp` — **404** on npm |
 
-## Install (2.0.3+)
+## Install (2.0.4+)
 
 ```bash
-npx -y @morbidcorp/heir@2.0.3
+npx -y @morbidcorp/heir@2.0.4
 # or
-npm i -g @morbidcorp/heir@2.0.3
+npm i -g @morbidcorp/heir@2.0.4
 heir-mcp
 ```
 
@@ -28,7 +28,7 @@ heir-mcp
   "mcpServers": {
     "heir": {
       "command": "npx",
-      "args": ["-y", "@morbidcorp/heir@2.0.3"],
+      "args": ["-y", "@morbidcorp/heir@2.0.4"],
       "env": {
         "HEIR_API_KEY": "heir_pk_..."
       }
