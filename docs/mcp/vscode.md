@@ -6,7 +6,7 @@
     "servers": {
       "heir": {
         "command": "npx",
-        "args": ["-y", "@morbidcorp/heir@2.0.3"],
+        "args": ["-y", "@morbidcorp/heir@2.0.4"],
         "env": {
           "HEIR_API_KEY": "heir_pk_your_key_here"
         }
@@ -16,7 +16,7 @@
 }
 ```
 
-Exact nesting depends on the MCP extension. Pin **2.0.3+**.
+Exact nesting depends on the MCP extension. Pin **2.0.4+**.
 
 ## Verify
 

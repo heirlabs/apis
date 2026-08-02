@@ -1,14 +1,14 @@
 # MCP Tools Reference
 
-Tools from [`@morbidcorp/heir@2.0.3`](https://www.npmjs.com/package/@morbidcorp/heir)
+Tools from [`@morbidcorp/heir@2.0.4`](https://www.npmjs.com/package/@morbidcorp/heir)
 (`dist/cli.js` / `heir-mcp` bin). **Count: 18.**
 
 ```bash
-npx -y @morbidcorp/heir@2.0.3
+npx -y @morbidcorp/heir@2.0.4
 export HEIR_API_KEY="heir_pk_..."
 ```
 
-Package `@heir/mcp` does **not** exist. Prefer **2.0.3+** (2.0.1 bin was broken).
+Package `@heir/mcp` does **not** exist. Prefer **2.0.4+** (2.0.1 bin was broken).
 
 Optional CLI: `--api-key=`, `--api-url=`, `--tools=all|contracts,vaults,jurisdictions,legal,chat`.
 

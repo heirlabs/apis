@@ -15,7 +15,7 @@
   "mcpServers": {
     "heir": {
       "command": "npx",
-      "args": ["-y", "@morbidcorp/heir@2.0.3"],
+      "args": ["-y", "@morbidcorp/heir@2.0.4"],
       "env": {
         "HEIR_API_KEY": "heir_pk_your_key_here"
       }
@@ -34,7 +34,7 @@ Ask Claude to call `heir_jurisdiction_list` or list available HEIR tools (18).
 
 | Symptom | Fix |
 |---------|-----|
-| multiReligionDistributor / MODULE_NOT_FOUND | Pin `@morbidcorp/heir@2.0.3` (not 2.0.1) |
+| multiReligionDistributor / MODULE_NOT_FOUND | Pin `@morbidcorp/heir@2.0.4` (not 2.0.1) |
 | `@heir/mcp` not found | Use `@morbidcorp/heir` |
 | 401 on legal/vault tools | Key must map to a user with scopes |
 
