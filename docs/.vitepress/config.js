@@ -26,14 +26,16 @@ export default defineConfig({
         name: 'HEIR',
         applicationCategory: 'FinanceApplication',
         operatingSystem: 'Web',
-        offers: { '@type': 'Offer', price: '49.99', priceCurrency: 'USD' },
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', description: 'Free developer tier; paid packs and plans available' },
         featureList: [
           'Smart Contract Generation',
           'Legal Documents',
           'Multi-Chain Support',
           '11 Legal Frameworks',
           'Dead Man\'s Switch',
-          'API Access'
+          'API Access',
+          'Heirlooms metering',
+          'Weekly Protection credits'
         ],
         url: 'https://docs.heir.es'
       })
@@ -111,6 +113,7 @@ export default defineConfig({
             { text: 'Legal Documents', link: '/api/legal' },
             { text: 'Memoir', link: '/api/memoir' },
             { text: 'Memoir Credits', link: '/api/memoir-credits' },
+            { text: 'Heirlooms', link: '/api/heirlooms' },
             { text: 'Embed', link: '/api/embed' }
           ]
         },
@@ -201,11 +204,11 @@ export default defineConfig({
       ],
       '/pricing/': [
         {
-          text: 'Pricing',
+          text: 'Billing & credits',
           items: [
             { text: 'Overview', link: '/pricing/' },
-            { text: 'Plans', link: '/pricing/plans' },
-            { text: 'API Tiers', link: '/pricing/api-tiers' },
+            { text: 'Product packs', link: '/pricing/plans' },
+            { text: 'API tiers', link: '/pricing/api-tiers' },
             { text: 'Comparison', link: '/pricing/comparison' }
           ]
         }

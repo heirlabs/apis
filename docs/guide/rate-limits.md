@@ -88,5 +88,6 @@ In addition to windowed rate limits, the API includes burst protection to preven
 
 ## Upgrading Your Tier
 
-Need higher limits? [Upgrade your plan](https://heir.es/pricing) or contact us for enterprise options.
+Need higher limits? Upgrade at [heir.es/developers/billing](https://heir.es/developers/billing)
+or see [API tiers & developer plans](/pricing/api-tiers).
 
