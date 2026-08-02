@@ -15,9 +15,9 @@ Connect AI assistants to HEIR via [`@morbidcorp/heir`](https://www.npmjs.com/pac
 ## Install (2.0.3+)
 
 ```bash
-npx -y @morbidcorp/heir@2.0.2
+npx -y @morbidcorp/heir@2.0.3
 # or
-npm i -g @morbidcorp/heir@2.0.2
+npm i -g @morbidcorp/heir@2.0.3
 heir-mcp
 ```
 
@@ -28,7 +28,7 @@ heir-mcp
   "mcpServers": {
     "heir": {
       "command": "npx",
-      "args": ["-y", "@morbidcorp/heir@2.0.2"],
+      "args": ["-y", "@morbidcorp/heir@2.0.3"],
       "env": {
         "HEIR_API_KEY": "heir_pk_..."
       }

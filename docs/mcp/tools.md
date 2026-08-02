@@ -1,10 +1,10 @@
 # MCP Tools Reference
 
-Tools from [`@morbidcorp/heir@2.0.2`](https://www.npmjs.com/package/@morbidcorp/heir)
+Tools from [`@morbidcorp/heir@2.0.3`](https://www.npmjs.com/package/@morbidcorp/heir)
 (`dist/cli.js` / `heir-mcp` bin). **Count: 18.**
 
 ```bash
-npx -y @morbidcorp/heir@2.0.2
+npx -y @morbidcorp/heir@2.0.3
 export HEIR_API_KEY="heir_pk_..."
 ```
 

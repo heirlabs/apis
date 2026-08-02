@@ -5,7 +5,7 @@
   "mcpServers": {
     "heir": {
       "command": "npx",
-      "args": ["-y", "@morbidcorp/heir@2.0.2"],
+      "args": ["-y", "@morbidcorp/heir@2.0.3"],
       "env": {
         "HEIR_API_KEY": "heir_pk_your_key_here"
       }
