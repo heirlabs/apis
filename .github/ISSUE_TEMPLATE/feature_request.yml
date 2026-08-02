@@ -1,0 +1,34 @@
+name: Integrator feature request
+description: Request a docs topic, example, or documented API capability.
+title: "[request]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This repo tracks **documentation and examples**. Product API roadmap decisions happen outside GitHub; strong use-cases still help prioritization.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What are you trying to build that is hard today?
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: Doc page, example, endpoint, or webhook event you need.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - label: This can be solved with better docs/examples alone
+        - label: This needs a production API change (not just docs)

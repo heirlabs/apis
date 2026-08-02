@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  docs:
+    name: Docs truth + build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Docs truth (anti-LARP + live probes)
+        run: npm test
+
+      - name: Build documentation site
+        run: npm run docs:build
+
+      - name: Examples are executable
+        run: |
+          test -x examples/01-health.sh
+          test -x examples/02-list-templates.sh
+          test -x examples/03-generate-contract.sh
+          test -x examples/04-list-plans.sh
+          ./examples/01-health.sh
+
+      - name: OpenAPI fetch (best-effort snapshot)
+        run: npm run openapi:fetch
+        continue-on-error: true

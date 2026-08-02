@@ -1,0 +1,26 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+    groups:
+      vitepress:
+        patterns:
+          - "vitepress"
+      prod-runtime:
+        patterns:
+          - "express"
+          - "helmet"
+          - "cors"
+          - "dotenv"
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: monthly
+    labels:
+      - dependencies

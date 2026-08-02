@@ -1,0 +1,68 @@
+name: API / docs bug
+description: Something in the docs or live API does not match reality.
+title: "[bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping keep the HEIR API honest. **Redact secrets** (`heir_pk_…`, webhook secrets, emails).
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Surface
+      options:
+        - Documentation (docs.heir.es / this repo)
+        - Live HTTP API (api.heir.es)
+        - Examples in this repo
+        - MCP / npm package
+        - Unsure
+    validations:
+      required: true
+  - type: input
+    id: page_or_path
+    attributes:
+      label: Doc page or API path
+      description: e.g. https://docs.heir.es/guide/webhooks or POST /api/v1/contracts/generate
+      placeholder: /api/v1/...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected
+      description: What the docs or your integration expected.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual
+      description: Status code, redacted response body, or screenshot description.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction
+      description: Minimal curl/fetch. Use placeholders for keys.
+      render: bash
+      placeholder: |
+        curl -sS -X POST https://api.heir.es/api/v1/... \
+          -H "Authorization: Bearer heir_pk_REDACTED" \
+          -H "Content-Type: application/json" \
+          -d '{...}'
+  - type: input
+    id: when
+    attributes:
+      label: When (UTC)
+      placeholder: 2026-08-02T12:00:00Z
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I redacted all API keys and secrets
+          required: true
+        - label: I checked status.heir.es for an active incident
+          required: false
