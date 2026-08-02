@@ -7,7 +7,7 @@ All notable changes to the HEIR public API and docs site.
 ### Documentation (2026-08-02)
 
 - Auth matrix + platform spine product map
-- OpenAPI honesty page; MCP 2.0.2 bin docs
+- OpenAPI honesty page; MCP 2.0.3 bin docs
 - Correct MCP package to `@morbidcorp/heir` (18 tools on working `dist/cli.js`); document broken package `bin` → `index.js`; remove `@heir/mcp` and “100+ tools” claims
 - Correct Memoir base path to `/api/memoir` (not `/api/heirloom`)
 - Document live Legal Documents API (was wrongly labeled “coming soon”)
