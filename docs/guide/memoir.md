@@ -1,45 +1,52 @@
-# Memoir
+# Memoir (MyHeir) guide
 
-Memoir is a legacy-capture feature that builds a personalized AI companion from your journals, questionnaires, and media. The output is a structured personality profile and a contextual chat agent that can preserve intent, values, and family guidance.
+MyHeir is the memoir / life-story agent surface: journals, questionnaires, media
+inference, optional voice clone, chat, and insights.
 
-## Agent-Facing Summary
+## Base path
 
-- **Purpose**: Capture and preserve personal intent, values, and memories to augment estate plans.
-- **Core Inputs**: journal entries, questionnaire answers, media uploads (photo/audio/video), voice samples.
-- **Core Outputs**: personalized agent character profile, insights summary, chat responses, voice status.
-- **Auth**: user session (JWT cookies) + CSRF for non-GET requests.
-- **Credits**: media inference, voice cloning, and chat consume credits via `/api/heirloom/credits`.
+All routes: **`https://api.heir.es/api/memoir/...`**
 
-## Primary User Flow
+| Wrong | Right |
+|-------|-------|
+| `/api/heirloom/*` | `/api/memoir/*` |
+| Confusing with Heirlooms meter | Heirlooms = `/api/heirlooms/*` (AI meter) |
+| Memoir pack wallet | `/api/memoir/credits/*` |
 
-1. **Name the agent** (`POST /api/heirloom/setup`).
-2. **Collect daily prompts** (`GET /api/heirloom/prompt`) and submit journals (`POST /api/heirloom/journal`).
-3. **Complete questionnaires** (`GET/POST /api/heirloom/questionnaire/:category`).
-4. **Upload media** (`POST /api/heirloom/media/upload`) for inference and voice cloning.
-5. **Chat with the agent** (`POST /api/heirloom/chat`).
-6. **Review insights** (`GET /api/heirloom/insights`).
+## Auth
 
-## Capabilities
+Every memoir route runs behind **session auth** (`verifyAuth`). Use a logged-in
+browser session (cookie JWT) or an equivalent user-bound token accepted by the
+main app. Unauthenticated calls return **401**.
 
-- **Legacy journaling** with topic extraction.
-- **Guided questionnaires** by category.
-- **Media inference** (photo/video description) and audio transcription.
-- **Voice cloning** and synthesis (credit-gated).
-- **Personality insights** summary.
-- **Agent chat** backed by ElizaOS when configured (falls back to demo mode otherwise).
+State-changing methods from the browser also require the app CSRF flow.
 
-## Data Contracts (Key Fields)
+## Typical flow
 
-- `agentName`: user-defined name for the Memoir agent.
-- `journals[]`: entries with content, mood, prompt, insights.
-- `questionnaires[]`: category-based questions and answers.
-- `media[]`: IPFS-backed assets with inference metadata.
-- `voiceStatus`: voice profile readiness and sample counts.
+1. **Name the agent** — `POST /api/memoir/setup`
+2. **Daily prompt + journal** — `GET /api/memoir/prompt`, `POST /api/memoir/journal`
+3. **Questionnaires** — `GET/POST /api/memoir/questionnaire/:category`
+4. **Upload media** — `POST /api/memoir/media/upload`
+5. **Chat** — `POST /api/memoir/chat`
+6. **Insights** — `GET /api/memoir/insights`
+7. **Optional voice** — `GET /api/memoir/voice/status`, `POST /api/memoir/voice/synthesize`
 
-## Notes for AI Agents
+## Credits
 
-- Memoir endpoints are **not API-key** endpoints; they rely on user session auth.
-- Non-GET requests require a valid CSRF token.
-- Chat/media actions can return `402` for insufficient credits.
-- Endpoints are served under legacy paths (`/api/heirloom/*`) for compatibility.
-- `GET /api/heirloom/agent` returns demo mode if ElizaOS is not configured.
+- **Memoir packs** (media / voice / chat wallet): [Memoir credits API](/api/memoir-credits)
+- **Heirlooms** (platform AI meter, separate ledger): [Heirlooms API](/api/heirlooms)
+
+Some actions call `meterAction(...)` when `HEIRLOOMS_METERING_ENABLED=true`.
+
+## Operational notes
+
+- Agent runtime may depend on Eliza / Venice configuration on the server. If the
+  agent subsystem is not configured, agent endpoints can return demo or error
+  payloads — check response body rather than assuming a live LLM.
+- Media upload limit is 25MB at the route multer layer.
+- IPFS storage is used when Pinata (or configured IPFS) is available; otherwise
+  local/file fallback paths apply per server config.
+
+## Full endpoint list
+
+See [Memoir API reference](/api/memoir).

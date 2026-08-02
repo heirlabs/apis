@@ -4,7 +4,7 @@ layout: home
 hero:
   name: HEIR API
   text: Build Digital Inheritance Solutions
-  tagline: Programmatic access to smart contract generation, vault management, and estate planning tools
+  tagline: Programmatic access to smart contract generation, legal documents, webhooks, and estate tooling
   image:
     src: /hero-keys.webp
     alt: Three brass keys resting on dark linen in warm lamplight
@@ -16,28 +16,28 @@ hero:
       text: API Reference
       link: /api/
     - theme: alt
-      text: View on GitHub
-      link: https://github.com/heirlabs/apis
+      text: MCP
+      link: /mcp/
 
 features:
   - icon: 📝
     title: Smart Contract Generation
-    details: Generate inheritance smart contracts for Ethereum, Solana, and TON with a single API call. Support for multiple legal frameworks.
+    details: Generate inheritance smart contracts for EVM chains, Solana, and TON with legal-framework templates and dead-man's-switch options.
   - icon: 🔐
     title: Secure by Design
     details: API key authentication with tiered access, rate limiting, IP whitelisting, and webhook signature verification.
   - icon: 🪝
     title: Real-time Webhooks
-    details: Subscribe to events like contract deployments, verifications, and dead man's switch triggers with automatic retries.
-  - icon: 🎨
-    title: Embeddable Wizard
-    details: White-label the contract builder wizard in your application with custom branding and theming.
+    details: Subscribe to events such as contract deployments, verifications, and dead-man's-switch triggers with HMAC verification.
+  - icon: 📜
+    title: Legal Documents
+    details: Live generate/store/encrypt for wills, trusts, POA, and related drafts via /api/v1/legal — not a future placeholder.
   - icon: ⚡
-    title: High Performance
-    details: Built for scale with tiered rate limits up to 10,000 requests per 15 minutes for enterprise customers.
-  - icon: 📚
-    title: Comprehensive SDKs
-    details: Official SDKs for JavaScript, Python, and Go. OpenAPI spec for generating clients in any language.
+    title: Metered Access
+    details: Developer plans for HTTP quotas plus optional Heirlooms metering for AI-heavy actions when enabled on the server.
+  - icon: 🔌
+    title: MCP + OpenAPI
+    details: Use @morbidcorp/heir dist/cli.js (18 MCP tools) or REST with curl / OpenAPI clients. No unpublished language REST SDKs.
 ---
 
 <style>
@@ -53,7 +53,7 @@ features:
 }
 </style>
 
-## Quick Example
+## Quick example
 
 ```bash
 # Generate an inheritance contract
@@ -72,20 +72,37 @@ curl -X POST https://api.heir.es/api/v1/contracts/generate \
   }'
 ```
 
-## API Access
+## Developer plans
 
-**All subscriptions include API access.** Start with our free tier, then upgrade as you grow.
+List prices and limits (source of truth: [API tiers](/pricing/api-tiers) and
+`GET /api/v1/billing/plans`):
 
-| Tier | Rate limit | Monthly cap | Webhooks | Embedding | Price |
-|------|-----------|-------------|----------|-----------|-------|
-| **Free** | 100 req/day | 3,000 | 1 endpoint | ❌ | $0 |
-| **Developer** | 1,000 req/day | 25,000 | 5 endpoints | ❌ | $29/mo |
-| **Partner** | 10,000 req/day | 250,000 | Unlimited | ✅ | $99/mo |
-| **Enterprise** | Unlimited | Unlimited | Unlimited | ✅ | Custom |
+| Plan | List price | Requests / day | Requests / month | API keys |
+|------|-----------:|---------------:|-----------------:|---------:|
+| **free** | $0 | 100 | 3,000 | 1 |
+| **developer** | $29/mo | 500 | 10,000 | 5 |
+| **partner** | $199/mo | 5,000 | 100,000 | unlimited |
+| **enterprise** | Custom | Unlimited | Unlimited | Custom |
 
-::: tip Drafts Are Free
-Create unlimited estate plan drafts at no cost on [heir.es](https://heir.es). You only pay when you deploy.
+Per-key rate windows (Public / Partner / Internal) are separate from plan caps —
+see [API tiers](/pricing/api-tiers).
+
+Manage billing at [heir.es/developers/billing](https://heir.es/developers/billing).
+
+::: tip Drafts on the product app
+Create estate plan drafts on [heir.es](https://heir.es). Product billing
+(Weekly Protection, Memoir packs, Heirlooms) is documented under
+[Billing & credits](/pricing/).
 :::
 
-[View Full Pricing →](https://heir.es/pricing)
+## Clients
 
+| Approach | Status |
+|----------|--------|
+| HTTP + [cURL examples](/sdks/curl) | **Supported** |
+| [OpenAPI](https://api.heir.es/api/docs/openapi.json) codegen | **Supported** (coverage is a partner subset — expand carefully) |
+| MCP [`@morbidcorp/heir`](https://www.npmjs.com/package/@morbidcorp/heir) | **Supported** (18 tools) |
+| Desk Elements [`@morbidcorp/element-sdk`](https://www.npmjs.com/package/@morbidcorp/element-sdk) | **Supported** (local desk apps; public registry not open) |
+| Official REST SDKs (JS / Python / Go packages) | **Not published** — do not install fictional `@heirlabs/sdk` names |
+
+[API Reference →](/api/) · [MCP →](/mcp/) · [Pricing →](/pricing/)

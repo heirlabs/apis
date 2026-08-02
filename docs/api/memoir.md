@@ -1,108 +1,140 @@
-# Memoir API
+# Memoir (MyHeir) API
 
-Memoir uses legacy endpoint paths under `/api/heirloom/*` and relies on user-session auth (JWT cookies) protected by CSRF for state-changing operations.
+Session-authenticated product API for the MyHeir memoir agent: journals,
+questionnaires, media, voice, chat, and insights.
 
-## Authentication & CSRF
+**Base path:** `/api/memoir`  
+**Auth:** Session JWT (`verifyAuth` on the whole router). Not mounted as a public
+anonymous API. Hybrid API-key callers must present a user-bound credential the
+same way as other session product routes.
 
-- **Auth**: user session via cookies.
-- **CSRF**: required on non-GET requests.
+::: warning Path name
+The base path is **`/api/memoir`**, not `/api/heirloom`.  
+`/api/heirloom` returns **404** on production.  
+Do not confuse this with **Heirlooms** (metered AI credits) at `/api/heirlooms`.
+:::
 
-## Endpoints
+Credits / packs for memoir media and voice live under
+[`/api/memoir/credits`](/api/memoir-credits).
 
-### GET /api/heirloom/setup
-Get setup status and current agent name.
+---
 
-### POST /api/heirloom/setup
-Set or update agent name.
+## Setup and agent
 
-**Body:**
-```json
-{ "agentName": "Eleanor" }
-```
+### GET /api/memoir/setup
 
-### GET /api/heirloom/agent
-Fetch agent metadata and character profile. Returns demo mode if ElizaOS is not configured.
+Return setup status for the authenticated user.
 
-### GET /api/heirloom/agent/status
-Get journal count and questionnaire completion.
+### POST /api/memoir/setup
 
-### GET /api/heirloom/prompt
-Get a daily prompt for journaling.
+Set agent display name / initial setup fields.
 
-### POST /api/heirloom/journal
-Create a journal entry and update character profile.
+### GET /api/memoir/agent
 
-**Body:**
-```json
-{ "content": "...", "mood": "neutral", "promptUsed": "..." }
-```
+Current agent/character payload.
 
-### GET /api/heirloom/journal
-List journal entries.
+### GET /api/memoir/agent/status
 
-### GET /api/heirloom/questionnaire/:category
-Get or initialize a questionnaire by category.
+Progress / readiness status for the agent.
 
-### POST /api/heirloom/questionnaire/:category
-Save questionnaire answers.
+### GET /api/memoir/character
 
-**Body:**
-```json
-{ "answers": [{ "questionId": "q1", "answer": "..." }] }
-```
+Character card / built character for the agent.
 
-### POST /api/heirloom/chat
-Send a message to the Memoir agent.
+### GET /api/memoir/prompt
 
-**Body:**
-```json
-{ "message": "What do you want future heirs to know?" }
-```
+Daily prompt content for journaling.
 
-### GET /api/heirloom/insights
-Summarize personality insights derived from journals and questionnaires.
+---
 
-### GET /api/heirloom/character
-Return the full character model used to power the agent.
+## Journal and questionnaires
 
-### POST /api/heirloom/media/upload
-Upload photo/audio/video. Requires `multipart/form-data`.
+### POST /api/memoir/journal
 
-**Fields:**
-- `file`: binary media file
-- `durationMinutes` (optional)
+Submit a journal entry.
 
-### GET /api/heirloom/media
-List uploaded media items.
+### GET /api/memoir/journal
 
-### DELETE /api/heirloom/media/:id
+List journal entries for the user.
+
+### GET /api/memoir/questionnaire/:category
+
+Fetch questionnaire schema for a category.
+
+### POST /api/memoir/questionnaire/:category
+
+Submit answers for a questionnaire category.
+
+---
+
+## Chat and insights
+
+### POST /api/memoir/chat
+
+Chat with the memoir agent (may meter Heirlooms / memoir credits depending on
+server flags and credit service).
+
+### GET /api/memoir/insights
+
+Summarized insights from journals and media.
+
+---
+
+## Media
+
+### POST /api/memoir/media/upload
+
+Upload media (`multipart`). Server accepts image/audio/video within size limits
+(25MB upload limit in route config).
+
+### GET /api/memoir/media
+
+List media items.
+
+### DELETE /api/memoir/media/:id
+
 Delete a media item.
 
-### GET /api/heirloom/media/:id/inference
-Get inference metadata for a media item.
+### GET /api/memoir/media/:id/inference
 
-### GET /api/heirloom/voice/status
-Get voice profile status and sample counts.
+Fetch inference result for a media item.
 
-### POST /api/heirloom/voice/synthesize
-Synthesize voice audio from text. Returns audio buffer.
+---
 
-**Body:**
-```json
-{ "text": "..." }
-```
+## Voice and avatar
 
-### POST /api/heirloom/avatar/generate
-Generate a short avatar video using a photo and synthesized audio.
+### GET /api/memoir/voice/status
 
-**Body:**
-```json
-{ "photoUrl": "https://...", "text": "...", "style": "stylized", "durationSeconds": 10 }
-```
+Voice clone profile status.
 
-## Common Errors
+### POST /api/memoir/voice/synthesize
 
-- `401` Unauthorized (no session)
-- `403` CSRF failure
-- `402` Insufficient credits
-- `404` Unknown category or media item
+Synthesize speech. Metered as `voice_generation_minute` when Heirloom metering
+is enabled.
+
+### POST /api/memoir/avatar/generate
+
+Generate avatar video assets when configured.
+
+---
+
+## Auth and errors
+
+| Status | Meaning |
+|--------|---------|
+| 401 | Missing or invalid session |
+| 400 | Validation / missing fields |
+| 413 / multer errors | File too large or wrong type |
+| 503 / service errors | Downstream voice/IPFS/agent not configured |
+
+CSRF protection applies to cookie session flows for state-changing methods on the
+main app origin (same as other session APIs).
+
+---
+
+## Related
+
+- [Memoir credits](/api/memoir-credits)
+- [Heirlooms (AI meter)](/api/heirlooms)
+- [Memoir guide](/guide/memoir)
+- [Billing overview](/pricing/)

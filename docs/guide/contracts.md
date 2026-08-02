@@ -13,7 +13,7 @@ The HEIR API enables you to generate legally-compliant inheritance smart contrac
 | **EVM** | ✅ Available | Ethereum, Polygon, Arbitrum, Base, BSC |
 | **Solana** | ✅ Available | Mainnet, Devnet |
 | **TON** | ✅ Available | Mainnet, Testnet |
-| **Midnight** | 🔜 Coming Soon | - |
+| **Midnight** | Live on product monorepo (`/api/midnight`, env-gated) | Cardano L2 privacy target |
 
 ## Inheritance Templates
 

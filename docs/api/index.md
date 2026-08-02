@@ -1,6 +1,6 @@
 # API Reference
 
-This section provides detailed documentation for all HEIR API endpoints.
+Detailed documentation for HEIR HTTP endpoints used by integrators.
 
 ## Base URL
 
@@ -8,9 +8,13 @@ This section provides detailed documentation for all HEIR API endpoints.
 https://api.heir.es/api/v1/
 ```
 
+Many product routes also exist under `https://api.heir.es/api/...` with **session**
+auth (browser JWT). The v1 prefix adds hybrid API-key support for partner
+integrations. Always check the page for the correct base path and auth model.
+
 ## Authentication
 
-All requests require an API key via one of these methods:
+API-key requests:
 
 ```bash
 # Authorization header (recommended)
@@ -20,54 +24,45 @@ curl -H "Authorization: Bearer heir_pk_xxx..." https://api.heir.es/api/v1/...
 curl -H "X-API-Key: heir_pk_xxx..." https://api.heir.es/api/v1/...
 ```
 
-See [Authentication Guide](/guide/authentication) for details.
+Session product APIs (Memoir, much of Legal when not using hybrid keys) use the
+logged-in app session. See [Authentication Guide](/guide/authentication).
 
-## Response Format
+Keys and developer billing: [heir.es/developers](https://heir.es/developers).
 
-All responses follow this structure:
+## Response format
 
-### Success Response
+### Success (typical envelope)
 
 ```json
 {
   "success": true,
-  "data": { ... },
+  "data": { },
   "meta": {
     "requestId": "req_abc123xyz",
-    "timestamp": "2024-01-15T12:00:00.000Z",
-    "pagination": {  // Optional, for list endpoints
-      "page": 1,
-      "limit": 20,
-      "total": 150,
-      "pages": 8
-    }
+    "timestamp": "2026-08-02T12:00:00.000Z"
   }
 }
 ```
 
-### Error Response
+Some older routes return bare resource objects without the `success` wrapper —
+match the field names in each endpoint page.
+
+### Error (typical)
 
 ```json
 {
   "success": false,
   "error": {
     "code": "VALIDATION_ERROR",
-    "message": "Invalid beneficiary address",
-    "details": [
-      { "field": "beneficiaries[0].address", "reason": "Invalid checksum" }
-    ]
-  },
-  "meta": {
-    "requestId": "req_abc123xyz",
-    "timestamp": "2024-01-15T12:00:00.000Z"
+    "message": "Invalid beneficiary address"
   }
 }
 ```
 
-## Error Codes
+## Error codes (API-key middleware)
 
-| Code | HTTP Status | Description |
-|------|-------------|-------------|
+| Code | HTTP | Description |
+|------|------|-------------|
 | `API_KEY_MISSING` | 401 | No API key provided |
 | `API_KEY_INVALID` | 401 | Invalid or expired API key |
 | `UNAUTHORIZED` | 401 | Authentication required |
@@ -78,80 +73,91 @@ All responses follow this structure:
 | `VALIDATION_ERROR` | 400 | Invalid request parameters |
 | `RATE_LIMIT_EXCEEDED` | 429 | Too many requests |
 | `INTERNAL_ERROR` | 500 | Server error |
+| `OPENSIGN_UNAVAILABLE` | 503 | E-sign not configured (legal/sign) |
 
-## Rate Limits
+## Rate limits
 
-Requests are rate limited based on your API key tier:
+Per-key windows (API-key auth):
 
-| Tier | Requests/15min | Contract Gen | AI Chat |
+| Tier | Requests/15min | Contract gen | AI chat |
 |------|----------------|--------------|---------|
 | Public | 100 | 10 | 5 |
 | Partner | 1,000 | 100 | 50 |
 | Internal | 10,000 | 1,000 | 200 |
 
-Rate limit headers are included in all responses:
-
-```http
-X-RateLimit-Limit: 1000
-X-RateLimit-Remaining: 999
-X-RateLimit-Reset: 2024-01-15T12:30:00.000Z
-```
+Developer **plan** daily/monthly caps are separate — see [API tiers](/pricing/api-tiers).
 
 ## Endpoints
 
 ### API Keys
-- [`GET /api-keys`](/api/api-keys#list-api-keys) - List your API keys
-- [`POST /api-keys`](/api/api-keys#create-api-key) - Create a new API key
-- [`GET /api-keys/:id`](/api/api-keys#get-api-key) - Get API key details
-- [`PATCH /api-keys/:id`](/api/api-keys#update-api-key) - Update an API key
-- [`DELETE /api-keys/:id`](/api/api-keys#revoke-api-key) - Revoke an API key
+
+- [`GET /api-keys`](/api/api-keys#list-api-keys)
+- [`POST /api-keys`](/api/api-keys#create-api-key)
+- [`GET /api-keys/:id`](/api/api-keys#get-api-key)
+- [`PATCH /api-keys/:id`](/api/api-keys#update-api-key)
+- [`DELETE /api-keys/:id`](/api/api-keys#revoke-api-key)
 
 ### Contracts
-- [`GET /contracts/templates`](/api/contracts#list-templates) - List inheritance templates
-- [`POST /contracts/generate`](/api/contracts#generate-contract) - Generate a contract
-- [`POST /contracts/compile`](/api/contracts#compile-contract) - Compile source code
-- [`POST /contracts/estimate-gas`](/api/contracts#estimate-gas) - Estimate deployment gas
+
+- [`GET /contracts/templates`](/api/contracts#list-templates)
+- [`POST /contracts/generate`](/api/contracts#generate-contract)
+- [`POST /contracts/compile`](/api/contracts#compile-contract)
+- [`POST /contracts/estimate-gas`](/api/contracts#estimate-gas)
 
 ### Webhooks
-- [`GET /webhooks/subscriptions`](/api/webhooks#list-subscriptions) - List webhooks
-- [`POST /webhooks/subscriptions`](/api/webhooks#create-subscription) - Create webhook
-- [`GET /webhooks/events`](/api/webhooks#list-events) - List available events
-- [`POST /webhooks/subscriptions/:id/test`](/api/webhooks#test-webhook) - Test a webhook
 
-### Memoir (Legacy Endpoint Paths)
-- [`GET /heirloom/setup`](/api/memoir) - Get setup status
-- [`POST /heirloom/setup`](/api/memoir) - Set agent name
-- [`GET /heirloom/agent`](/api/memoir) - Get agent/character
-- [`GET /heirloom/agent/status`](/api/memoir) - Get progress status
-- [`POST /heirloom/chat`](/api/memoir) - Chat with agent
-- [`POST /heirloom/media/upload`](/api/memoir) - Upload media
-- [`GET /heirloom/insights`](/api/memoir) - Get insights
+- [`GET /webhooks/subscriptions`](/api/webhooks#list-subscriptions)
+- [`POST /webhooks/subscriptions`](/api/webhooks#create-subscription)
+- [`GET /webhooks/events`](/api/webhooks#list-events)
+- [`POST /webhooks/subscriptions/:id/test`](/api/webhooks#test-webhook)
 
-### Memoir Credits
-- [`GET /heirloom/credits/packs`](/api/memoir-credits) - List credit packs
-- [`GET /heirloom/credits/wallet`](/api/memoir-credits) - Get wallet status
-- [`POST /heirloom/credits/purchase`](/api/memoir-credits) - Purchase credits
-- [`PUT /heirloom/credits/auto-reload`](/api/memoir-credits) - Configure auto-reload
-- [`GET /heirloom/credits/history`](/api/memoir-credits) - Credit history
+### Legal documents (live)
+
+- [`POST /legal/generate`](/api/legal#post-apiv1legalgenerate)
+- [`GET /legal/types/:jurisdiction`](/api/legal#get-apiv1legaltypesjurisdiction)
+- [`GET /legal/documents`](/api/legal#document-crud)
+- [`POST /legal/sign`](/api/legal#post-apiv1legalsign) — requires OpenSign env
+
+### Memoir (session product — `/api/memoir`, not under v1 prefix)
+
+- [`GET /api/memoir/setup`](/api/memoir)
+- [`POST /api/memoir/setup`](/api/memoir)
+- [`GET /api/memoir/agent`](/api/memoir)
+- [`POST /api/memoir/chat`](/api/memoir)
+- [`POST /api/memoir/media/upload`](/api/memoir)
+- [`GET /api/memoir/insights`](/api/memoir)
+
+### Memoir credits
+
+- [`GET /api/memoir/credits/packs`](/api/memoir-credits)
+- [`GET /api/memoir/credits/wallet`](/api/memoir-credits)
+- [`POST /api/memoir/credits/purchase`](/api/memoir-credits)
+- [`PUT /api/memoir/credits/auto-reload`](/api/memoir-credits)
+- [`GET /api/memoir/credits/history`](/api/memoir-credits)
+
+### Heirlooms (AI meter)
+
+- [`GET /api/heirlooms/catalog`](/api/heirlooms) — public
+- [`GET /api/heirlooms/summary`](/api/heirlooms) — authenticated
 
 ### Embed
-- [`GET /embed/wizard`](/api/embed#wizard) - Embeddable wizard iframe
-- [`GET /embed/sdk.js`](/api/embed#sdk) - JavaScript SDK
 
-## OpenAPI Specification
+- [`GET /embed/wizard`](/api/embed#wizard)
+- [`GET /embed/sdk.js`](/api/embed#sdk)
 
-Download the complete OpenAPI 3.0 specification:
+## OpenAPI
 
 - [openapi.json](https://api.heir.es/api/docs/openapi.json)
-- [Interactive Docs](https://api.heir.es/api/docs)
+- [Interactive docs](https://api.heir.es/api/docs)
 
-## SDKs
+OpenAPI today is a **partial** partner subset (path prefixes are inconsistent in
+places). Prefer these markdown pages for memoir/legal/heirlooms until the spec
+is regenerated from the monorepo routers.
 
-Official SDKs are available for:
+## Clients
 
-- [JavaScript/TypeScript](/sdks/javascript)
-- [Python](/sdks/python)
-- [Go](/sdks/go)
+There is **no** published official REST SDK for JavaScript, Python, or Go.
 
-Or generate a client from the OpenAPI spec using [OpenAPI Generator](https://openapi-generator.tech/).
-
+- [cURL examples](/sdks/curl)
+- [SDK overview](/sdks/) — Elements packages + OpenAPI codegen
+- [MCP tools](/mcp/tools) — `@morbidcorp/heir`
