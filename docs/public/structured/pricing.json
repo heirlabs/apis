@@ -1,45 +1,70 @@
 {
+  "asOf": "2026-08-02",
   "currency": "USD",
-  "plans": [
-    {
-      "name": "Basic",
-      "monthly": 49.99,
-      "annual": 537.49,
-      "trusts": 2,
-      "timerCreditsPerMonth": 50,
-      "gasCreditsUSD": 100
-    },
-    {
-      "name": "Family",
-      "monthly": 149.99,
-      "annual": 1612.49,
-      "trusts": 5,
-      "timerCreditsPerMonth": 200,
-      "gasCreditsUSD": 500
-    },
-    {
-      "name": "Estate",
-      "monthly": 1999.99,
-      "annual": 21499.49,
-      "trusts": 20,
-      "timerCreditsPerMonth": "unlimited",
-      "gasCreditsUSD": 5000
-    }
-  ],
-  "addons": [
-    {
-      "name": "Additional Trust Slot",
-      "monthly": 29.99,
-      "annual": 322.49
-    }
-  ],
-  "credits": [
-    { "name": "Timer Credit", "price": 4.99, "credits": 1 },
-    { "name": "Timer Credit Pack", "price": 22.99, "credits": 5 },
-    { "name": "Timer Credit Pack", "price": 44.99, "credits": 10 }
-  ],
   "notes": [
-    "All prices are in USD.",
-    "Enterprise pricing available on request."
-  ]
+    "Gas credits and Basic/Family/Estate trust-slot plans are retired and not sold.",
+    "Heirlooms meter charges only when HEIRLOOMS_METERING_ENABLED=true on the API host.",
+    "Prices are sourced from heirlabs/web server/config; verify catalog endpoints for live truth."
+  ],
+  "systems": {
+    "weeklyProtection": {
+      "status": "live",
+      "cycle": "weekly",
+      "defaultWeeklyCostCredits": 12,
+      "gracePeriodDays": 7,
+      "packs": [
+        { "id": "WP_50", "credits": 50, "priceUSD": 4.99 },
+        { "id": "WP_100", "credits": 100, "priceUSD": 9.99 },
+        { "id": "WP_500", "credits": 500, "priceUSD": 39.99 }
+      ]
+    },
+    "heirlooms": {
+      "status": "live_catalog_metering_flagged",
+      "catalogUrl": "https://api.heir.es/api/heirlooms/catalog",
+      "meteringEnv": "HEIRLOOMS_METERING_ENABLED",
+      "packs": [
+        { "id": "pack_100", "heirlooms": 100, "priceUSD": 4.99, "sku": "es.heir.app.heirlooms.100" },
+        { "id": "pack_500", "heirlooms": 500, "priceUSD": 19.99, "sku": "es.heir.app.heirlooms.500" },
+        { "id": "pack_2000", "heirlooms": 2000, "priceUSD": 59.99, "sku": "es.heir.app.heirlooms.2000" }
+      ],
+      "sampleCosts": {
+        "desk_agent_message": 1,
+        "harness_rebuild": 1,
+        "harness_export": 2,
+        "ai_legal_query": 5,
+        "harness_invoke": 5,
+        "smart_contract_deploy": 0
+      }
+    },
+    "developerApi": {
+      "status": "live",
+      "plansUrl": "https://api.heir.es/api/v1/billing/plans",
+      "plans": [
+        { "id": "free", "priceUSD": 0, "requestsPerDay": 100, "requestsPerMonth": 3000, "apiKeys": 1 },
+        { "id": "developer", "priceUSD": 29, "requestsPerDay": 500, "requestsPerMonth": 10000, "apiKeys": 5 },
+        { "id": "partner", "priceUSD": 199, "requestsPerDay": 5000, "requestsPerMonth": 100000, "apiKeys": null },
+        { "id": "enterprise", "priceUSD": null, "requestsPerDay": null, "requestsPerMonth": null, "apiKeys": null }
+      ],
+      "keyTiers": [
+        { "id": "public", "requestsPer15min": 100 },
+        { "id": "partner", "requestsPer15min": 1000 },
+        { "id": "internal", "requestsPer15min": 10000 }
+      ]
+    },
+    "memoirMyHeir": {
+      "status": "live",
+      "basePath": "/api/memoir/credits",
+      "packs": [
+        { "id": "STARTER", "priceUSD": 4.99, "validityDays": 90 },
+        { "id": "STANDARD", "priceUSD": 14.99, "validityDays": 180 },
+        { "id": "PREMIUM", "priceUSD": 49.99, "validityDays": 365 },
+        { "id": "PRO", "priceUSD": 99.99, "validityDays": 365 }
+      ]
+    }
+  },
+  "retired": {
+    "gasCredits": true,
+    "timerCredits": true,
+    "trustSlotPlans": ["Basic", "Family", "Estate"]
+  }
 }

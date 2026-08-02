@@ -1,30 +1,59 @@
-# Memoir Credits API
+# Memoir / MyHeir credits API
 
-Credits endpoints are served under `/api/heirloom/credits/*` for compatibility.
+Wallet for memoir media, inference, voice, and chat units.
 
-Credits are required for media inference, voice cloning, and chat operations.
+**Base path:** `/api/memoir/credits`  
+Host: `https://api.heir.es`
 
-## GET /api/heirloom/credits/packs
-List available credit packs.
+> Path note: older drafts said `/api/heirloom/credits/*`. That path is **wrong**.
+> Heirlooms (AI meter) live under `/api/heirlooms/*`. Memoir packs live here.
 
-## GET /api/heirloom/credits/wallet
-Get wallet balance and status.
+## GET /api/memoir/credits/packs
 
-## POST /api/heirloom/credits/purchase
-Create a checkout session for a credit pack.
+List pack definitions (public).
+
+**Response (shape):** `{ success: true, packs: [...] }` with ids `STARTER`, `STANDARD`, `PREMIUM`, `PRO`.
+
+## GET /api/memoir/credits/wallet
+
+Authenticated. Returns wallet balance and status.
+
+## POST /api/memoir/credits/purchase
+
+Authenticated. Creates a Stripe checkout session for a pack.
 
 **Body:**
+
 ```json
-{ "packType": "starter", "successUrl": "...", "cancelUrl": "..." }
+{
+  "packType": "STARTER",
+  "successUrl": "https://heir.es/myheir?credits=success",
+  "cancelUrl": "https://heir.es/myheir?credits=cancelled"
+}
 ```
 
-## PUT /api/heirloom/credits/auto-reload
-Enable or update auto-reload settings.
+`packType` must be a key from the packs catalog (`STARTER` | `STANDARD` | `PREMIUM` | `PRO`).
+
+## PUT /api/memoir/credits/auto-reload
+
+Authenticated. Enable or update auto-reload settings.
 
 **Body:**
+
 ```json
-{ "enabled": true, "packType": "starter", "thresholds": [5, 2], "maxMonthlySpend": 50 }
+{
+  "enabled": true,
+  "packType": "STARTER",
+  "thresholds": [5, 2],
+  "maxMonthlySpend": 50
+}
 ```
 
-## GET /api/heirloom/credits/history
-Get credit transaction history.
+## GET /api/memoir/credits/history
+
+Authenticated. Transaction history for the memoir wallet.
+
+## Related
+
+- [Heirlooms API](/api/heirlooms) — separate AI/API meter
+- [Pricing](/pricing/) — all product money systems
