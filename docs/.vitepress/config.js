@@ -3,6 +3,8 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: 'HEIR API',
   description: 'Documentation for the HEIR Protocol Headless API',
+
+  appearance: 'dark',
   
   // Ignore external and planned links
   ignoreDeadLinks: [
@@ -12,7 +14,9 @@ export default defineConfig({
   
   head: [
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
-    ['meta', { name: 'theme-color', content: '#6366f1' }],
+    ['meta', { name: 'theme-color', content: '#d4af37' }],
+    ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
+    ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:title', content: 'HEIR API Documentation' }],
     ['meta', { property: 'og:description', content: 'Build on the HEIR Protocol - Digital inheritance infrastructure' }],

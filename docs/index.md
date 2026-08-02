@@ -6,8 +6,8 @@ hero:
   text: Build Digital Inheritance Solutions
   tagline: Programmatic access to smart contract generation, vault management, and estate planning tools
   image:
-    src: /hero-image.png
-    alt: HEIR API
+    src: /hero-keys.webp
+    alt: Three brass keys resting on dark linen in warm lamplight
   actions:
     - theme: brand
       text: Get Started
@@ -43,9 +43,9 @@ features:
 <style>
 :root {
   --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-  --vp-home-hero-image-background-image: linear-gradient(135deg, #6366f1 20%, #8b5cf6 80%);
-  --vp-home-hero-image-filter: blur(44px);
+  --vp-home-hero-name-background: linear-gradient(135deg, #d4af37 0%, #f0d495 100%);
+  --vp-home-hero-image-background-image: none;
+  --vp-home-hero-image-filter: none;
 }
 
 .VPHero .image-bg {
