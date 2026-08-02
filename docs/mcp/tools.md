@@ -8,7 +8,7 @@ npx -y @morbidcorp/heir@2.0.2
 export HEIR_API_KEY="heir_pk_..."
 ```
 
-Package `@heir/mcp` does **not** exist. Prefer **2.0.2+** (2.0.1 bin was broken).
+Package `@heir/mcp` does **not** exist. Prefer **2.0.3+** (2.0.1 bin was broken).
 
 Optional CLI: `--api-key=`, `--api-url=`, `--tools=all|contracts,vaults,jurisdictions,legal,chat`.
 

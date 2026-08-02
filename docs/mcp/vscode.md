@@ -16,7 +16,7 @@
 }
 ```
 
-Exact nesting depends on the MCP extension. Pin **2.0.2+**.
+Exact nesting depends on the MCP extension. Pin **2.0.3+**.
 
 ## Verify
 

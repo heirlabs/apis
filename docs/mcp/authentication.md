@@ -1,6 +1,6 @@
 # MCP Authentication
 
-Use product developer API keys (`heir_pk_…`) with `@morbidcorp/heir@2.0.2+`.
+Use product developer API keys (`heir_pk_…`) with `@morbidcorp/heir@2.0.3+`.
 
 ## Get a key
 
@@ -30,7 +30,7 @@ Also: `heir-mcp --api-key=heir_pk_...` or `HEIR_API_URL` for non-prod bases.
 
 | Version | `npx @morbidcorp/heir` |
 |---------|-------------------------|
-| 2.0.2+ | Works (`bin` = `dist/cli.js`) |
+| 2.0.3+ | Works (`bin` = `dist/cli.js`) |
 | 2.0.1 | **Broken** monorepo `index.js` bin |
 | `@heir/mcp` | Does not exist |
 

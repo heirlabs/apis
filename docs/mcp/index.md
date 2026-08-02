@@ -7,26 +7,18 @@ Connect AI assistants to HEIR via [`@morbidcorp/heir`](https://www.npmjs.com/pac
 | Field | Value |
 |-------|--------|
 | npm | `@morbidcorp/heir` |
-| Working version | **2.0.2** (`bin` → `dist/cli.js`) |
+| Working version | **2.0.3** (`bin` → `dist/cli.js`) |
 | Tools | **18** — contracts, estates, jurisdictions, legal, chat |
-| Broken version | **2.0.1** `bin` pointed at monorepo-coupled `index.js` (crashes on `npx`) |
+| Broken versions | **2.0.1** (and earlier bin) `bin` pointed at monorepo-coupled `index.js` (crashes on `npx`) |
 | Wrong name | `@heir/mcp` — **404** on npm |
 
-## Install (2.0.2+)
+## Install (2.0.3+)
 
 ```bash
 npx -y @morbidcorp/heir@2.0.2
 # or
 npm i -g @morbidcorp/heir@2.0.2
 heir-mcp
-```
-
-If the registry still only has 2.0.1, install from the monorepo path after the
-`fix/mcp-npm-bin` merge or wait for `npm publish` of 2.0.2:
-
-```bash
-# temporary until 2.0.2 is on the registry
-cd /path/to/heirlabs/web/heir-mcp && npm i -g .
 ```
 
 ## IDE config

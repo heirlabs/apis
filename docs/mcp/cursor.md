@@ -14,7 +14,7 @@
 }
 ```
 
-Pin **2.0.2+**. Do not use `@heir/mcp` or unpinned 2.0.1.
+Pin **2.0.3+**. Do not use `@heir/mcp` or unpinned 2.0.1.
 
 ## Example prompts
 
