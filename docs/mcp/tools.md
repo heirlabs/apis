@@ -1,240 +1,237 @@
 # MCP Tools Reference
 
-Complete reference for all 100+ MCP tools available in the HEIR platform.
+Tools from the **working** entrypoint of [`@morbidcorp/heir@2.0.1`](https://www.npmjs.com/package/@morbidcorp/heir):
+`dist/cli.js` (stdio). **Count: 18.**
 
-## Tool Categories
+Verified 2026-08-02: after `npm i @morbidcorp/heir@2.0.1`,
+`node node_modules/@morbidcorp/heir/dist/cli.js` prints
+`HEIR MCP server running on stdio` and registers these tools.
 
-- **Legal & Compliance**: 20+ tools for jurisdiction analysis and legal compliance
-- **Smart Contracts**: 15+ tools for multi-blockchain contract generation
-- **Document Vault**: 10+ tools for secure document management
-- **Actuarial & Analytics**: 12+ tools for AI-powered analysis
-- **Professional Services**: 8+ tools for connecting with attorneys and CPAs
-- **Blockchain Integration**: 18+ tools for wallet and transaction management
-- **AI Agents**: 10+ tools for orchestrating AI agent swarms
-- **Utilities**: 15+ helper tools for common operations
+::: danger Broken package bin
+The package `bin` field points at legacy `index.js`, which **crashes** on import
+(missing `services/` / `generators/` files).  
+`npx @morbidcorp/heir` / `heir-mcp` therefore **fails**.  
+Always start **`dist/cli.js`** until a fixed release rewires `bin`.
+:::
 
-## Legal & Compliance Tools
+## Install and run (working)
 
-### `get_jurisdiction`
-
-Get detailed legal system information for any country or jurisdiction.
-
-**Parameters:**
-- `country` (string): Country code or name (e.g., "usa", "germany", "usa-california")
-
-**Example Usage:**
-```
-AI Assistant: What are the inheritance laws in Germany?
-� Calls get_jurisdiction("germany")
-� Returns: German BGB inheritance law details, forced heirship rules, etc.
+```bash
+npm i @morbidcorp/heir@2.0.1
+export HEIR_API_KEY="heir_pk_..."
+node node_modules/@morbidcorp/heir/dist/cli.js
 ```
 
-**Response:**
+Optional CLI flags supported by `dist/cli.js`:
+
+| Flag | Meaning |
+|------|---------|
+| `--api-key=heir_pk_...` | Product API key (or `HEIR_API_KEY` env) |
+| `--api-url=https://api.heir.es` | API base (or `HEIR_API_URL`) |
+| `--tools=all` | All categories (default) |
+| `--tools=contracts,vaults,jurisdictions,legal,chat` | Subset by category prefix |
+
+IDE config:
+
 ```json
 {
-  "jurisdiction": "germany",
-  "legalSystem": "civil-law",
-  "forcedHeirshipRules": {
-    "spouse": 0.5,
-    "children": 0.5,
-    "parents": 0.25
-  },
-  "inheritanceTax": {
-    "exempt_threshold_spouse": 500000,
-    "exempt_threshold_children": 400000,
-    "rates": [7, 11, 15, 19, 23, 27, 30]
-  }
-}
-```
-
-### `list_jurisdictions`
-
-Get a complete list of all supported legal jurisdictions.
-
-**Parameters:** None
-
-**Example Usage:**
-```
-AI Assistant: Which countries does HEIR support?
-� Calls list_jurisdictions()
-� Returns: Array of 195+ supported jurisdictions
-```
-
-**Response:**
-```json
-[
-  "usa", "usa-california", "usa-texas", "usa-new-york",
-  "germany", "france", "united-kingdom", "canada",
-  "australia", "japan", "singapore", "saudi-arabia",
-  ...
-]
-```
-
-## Smart Contract Tools
-
-### `generate_contract`
-
-Generate inheritance smart contracts based on user requirements.
-
-**Parameters:**
-- `formData` (object): Complete contract specification including:
-  - `blockchain`: "evm" or "solana"
-  - `network`: Target network name
-  - `ownerAddress`: Wallet address of the estate owner
-  - `assets`: Array of digital assets to include
-  - `beneficiaries`: Array of inheritance recipients
-  - `inheritanceTemplate`: Legal framework and rules
-  - `deadMansSwitch`: Activation conditions
-
-**Example Usage:**
-```
-AI Assistant: Create a smart contract for my Ethereum estate
-� Calls generate_contract(formData)
-� Returns: Solidity contract code, deployment instructions, gas estimate
-```
-
-### `estimate_gas`
-
-Calculate deployment and execution costs for smart contracts.
-
-**Parameters:**
-- `blockchain`: "evm" or "solana"
-- `network`: Network name (e.g., "ethereum", "polygon")
-- `contractSize` (optional): Contract size in bytes
-
-**Example Usage:**
-```
-AI Assistant: How much will it cost to deploy on Ethereum?
-� Calls estimate_gas({blockchain: "evm", network: "ethereum"})
-� Returns: Gas estimate and USD cost
-```
-
-**Response:**
-```json
-{
-  "gasEstimate": 2500000,
-  "gasPrice": 20000000000,
-  "totalCostETH": "0.05",
-  "totalCostUSD": 125.50,
-  "networkFees": {
-    "deployment": "0.035 ETH",
-    "execution": "0.015 ETH"
-  }
-}
-```
-
-## Knowledge Base Tools
-
-### `search_heir_documentation`
-
-Search HEIR's comprehensive estate planning knowledge base.
-
-**Parameters:**
-- `query` (string): Search terms
-- `category` (optional): Filter by category (legal, technical, tutorials)
-
-**Example Usage:**
-```
-AI Assistant: How do I handle crypto assets in a will?
-� Calls search_heir_documentation("crypto assets will")
-� Returns: Relevant documentation and best practices
-```
-
-## Template Tools
-
-### `list_templates`
-
-Get available inheritance contract templates.
-
-**Parameters:** None
-
-**Example Usage:**
-```
-AI Assistant: What inheritance templates are available?
-� Calls list_templates()
-� Returns: Available legal frameworks and templates
-```
-
-**Response:**
-```json
-{
-  "templates": [
-    {
-      "id": "common-law-basic",
-      "name": "Common Law Basic Will",
-      "jurisdiction": "usa",
-      "features": ["simple_distribution", "residuary_clause"]
-    },
-    {
-      "id": "islamic-compliant",
-      "name": "Sharia-Compliant Inheritance",
-      "jurisdiction": "global",
-      "features": ["forced_heirship", "religious_compliance"]
+  "mcpServers": {
+    "heir": {
+      "command": "node",
+      "args": ["node_modules/@morbidcorp/heir/dist/cli.js"],
+      "env": {
+        "HEIR_API_KEY": "heir_pk_your_key_here"
+      }
     }
-  ]
-}
-```
-
-## Error Handling
-
-All tools return structured responses with error handling:
-
-```json
-{
-  "success": true,
-  "data": { ... },
-  "error": null
-}
-```
-
-On error:
-```json
-{
-  "success": false,
-  "data": null,
-  "error": {
-    "code": "JURISDICTION_NOT_FOUND",
-    "message": "Jurisdiction 'xyz' not supported"
   }
 }
 ```
 
-## Rate Limits
+Run from a directory where `@morbidcorp/heir` is installed (project root after
+`npm i @morbidcorp/heir`). Absolute path to `dist/cli.js` also works.
 
-MCP tools respect the same rate limits as the REST API:
-- **Free Tier**: 100 requests/hour
-- **Pro Tier**: 10,000 requests/hour  
-- **Enterprise**: Unlimited
+Package name `@heir/mcp` does **not** exist on npm.
 
-## Authentication
+---
 
-All tools require a valid HEIR API key. See the [Authentication](/mcp/authentication) guide for setup instructions.
+## Contracts (3)
 
-## Tool Combinations
+### `heir_contract_list_templates`
 
-AI assistants can combine multiple tools for complex workflows:
+List inheritance contract templates / legal frameworks. No parameters.
 
-1. **Research � Generate � Estimate**
-   ```
-   User: "Create an Islamic-compliant will for my UAE estate"
-   AI: 
-   1. get_jurisdiction("uae") � Research UAE laws
-   2. generate_contract(...) � Create Sharia-compliant contract  
-   3. estimate_gas(...) � Calculate deployment costs
-   ```
+### `heir_contract_generate`
 
-2. **Explore � Compare � Recommend**
-   ```
-   User: "Compare inheritance taxes across Europe"
-   AI:
-   1. list_jurisdictions() � Get European countries
-   2. get_jurisdiction() for each � Fetch tax rates
-   3. analyze and present comparison
-   ```
+| Parameter | Required | Description |
+|-----------|----------|-------------|
+| `blockchain` | yes | e.g. EVM / Solana / TON family |
+| `ownerAddress` | yes | Owner wallet |
+| `beneficiaries` | yes | Addresses and percentages |
+| `inheritanceTemplate` | no | Framework template |
+| `deadMansSwitch` | no | Check-in configuration |
 
-## Next Steps
+### `heir_contract_estimate_gas`
 
-- [Set up authentication](/mcp/authentication)
-- [Configure Cursor IDE](/mcp/cursor)
-- [Configure VS Code](/mcp/vscode)  
-- [Configure Claude Desktop](/mcp/claude)
+| Parameter | Required |
+|-----------|----------|
+| `blockchain` | yes |
+| `network` | yes |
+| `beneficiaryCount` | yes |
+
+---
+
+## Vaults (4)
+
+### `heir_vault_list`
+
+| Parameter | Required |
+|-----------|----------|
+| `status` | no |
+| `limit` | no |
+
+### `heir_vault_get`
+
+| Parameter | Required |
+|-----------|----------|
+| `vaultId` | yes |
+
+### `heir_vault_create`
+
+| Parameter | Required |
+|-----------|----------|
+| `name` | yes |
+| `blockchain` | yes |
+| `description` | no |
+| `beneficiaries` | no |
+
+### `heir_vault_update`
+
+| Parameter | Required |
+|-----------|----------|
+| `vaultId` | yes |
+| `name` | no |
+| `beneficiaries` | no |
+
+---
+
+## Jurisdictions (4)
+
+### `heir_jurisdiction_list`
+
+| Parameter | Required |
+|-----------|----------|
+| `region` | no |
+| `legalSystem` | no |
+
+### `heir_jurisdiction_get`
+
+| Parameter | Required |
+|-----------|----------|
+| `code` | yes |
+
+### `heir_jurisdiction_compare`
+
+| Parameter | Required |
+|-----------|----------|
+| `codes` | yes |
+| `aspects` | no |
+
+### `heir_jurisdiction_search`
+
+| Parameter | Required |
+|-----------|----------|
+| `query` | no |
+| `features` | no |
+
+---
+
+## Legal documents (4)
+
+These tools call the product API with the configured API key. Legal generate on
+the server still requires a **user-bound** credential; without a valid key/user,
+calls fail honestly.
+
+### `heir_legal_generate_will`
+
+| Parameter | Required |
+|-----------|----------|
+| `jurisdiction` | yes |
+| `testator` | yes |
+| `beneficiaries` | yes |
+| `executor` / `guardian` / `residuaryClause` | no |
+
+### `heir_legal_generate_trust`
+
+| Parameter | Required |
+|-----------|----------|
+| `jurisdiction` | yes |
+| `trustType` | yes |
+| `grantor` | yes |
+| `trustee` | yes |
+| `beneficiaries` | yes |
+| `assets` | no |
+
+### `heir_legal_generate_poa`
+
+| Parameter | Required |
+|-----------|----------|
+| `jurisdiction` | yes |
+| `type` | yes |
+| `principal` | yes |
+| `agent` | yes |
+| `powers` / `limitations` / `effectiveDate` | no |
+
+### `heir_legal_list_templates`
+
+| Parameter | Required |
+|-----------|----------|
+| `jurisdiction` | no |
+| `documentType` | no |
+
+---
+
+## Chat (3)
+
+### `heir_chat_estate_planning`
+
+| Parameter | Required |
+|-----------|----------|
+| `message` | yes |
+| `context` | no |
+| `conversationId` | no |
+
+### `heir_chat_explain_template`
+
+| Parameter | Required |
+|-----------|----------|
+| `template` | yes |
+| `aspects` | no |
+
+### `heir_chat_recommend_plan`
+
+| Parameter | Required |
+|-----------|----------|
+| `jurisdiction` | yes |
+| `familySituation` | yes |
+| `assetTypes` | yes |
+| `concerns` / `religiousLaw` | no |
+
+---
+
+## Not claimed
+
+| Surface | Status |
+|---------|--------|
+| Legacy root `index.js` calculators (`heir_calculate_*`, `heir_health`, …) | Present in package tree but **not** the working `bin`/`dist/cli` surface; do not document as install path |
+| monorepo `billing-mcp.js` extra tools | Not in `dist/cli` tool list |
+| “100+ MCP tools” | False |
+
+## Related HTTP
+
+- REST: [API reference](/api/)
+- Product helpers: `https://api.heir.es/mcp` (health / jurisdiction HTTP; not full MCP stdio)
+
+## Rate limits
+
+Tool calls that hit `api.heir.es` use developer plan + API-key tier limits.
+See [API tiers](/pricing/api-tiers).

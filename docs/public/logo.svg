@@ -1,11 +1,8 @@
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
   <defs>
-    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#6366f1"/>
-      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e6b95c"/><stop offset="1" stop-color="#c9932f"/>
     </linearGradient>
   </defs>
-  <rect width="32" height="32" rx="8" fill="url(#gradient)"/>
-  <text x="16" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="700" fill="white" text-anchor="middle">H</text>
+  <path d="M170.0,280.0 L280.0,280.0 L280.0,170.0 L390.0,170.0 L390.0,60.0 L610.0,60.0 L610.0,170.0 L720.0,170.0 L720.0,280.0 L830.0,280.0 L830.0,390.0 L940.0,390.0 L940.0,610.0 L830.0,610.0 L830.0,720.0 L720.0,720.0 L720.0,830.0 L610.0,830.0 L610.0,940.0 L390.0,940.0 L390.0,830.0 L280.0,830.0 L280.0,720.0 L170.0,720.0 L170.0,610.0 L60.0,610.0 L60.0,390.0 L170.0,390.0 Z" fill="none" stroke="url(#g)" stroke-width="44" stroke-linejoin="miter"/>
 </svg>
-
