@@ -34,7 +34,7 @@ All **18** tool names and parameters: [MCP tools](/mcp/tools).
 Install:
 
 ```bash
-npx -y @morbidcorp/heir
+npx -y @morbidcorp/heir@2.0.2
 ```
 
 ## Monorepo HTTP MCP helpers

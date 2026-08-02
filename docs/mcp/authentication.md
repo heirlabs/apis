@@ -1,26 +1,21 @@
 # MCP Authentication
 
-Use product developer API keys (`heir_pk_…`) with the working MCP entrypoint
-`@morbidcorp/heir` → **`dist/cli.js`**.
+Use product developer API keys (`heir_pk_…`) with `@morbidcorp/heir@2.0.2+`.
 
 ## Get a key
 
-1. Sign in at [heir.es](https://heir.es)
-2. Open [Developers](https://heir.es/developers)
-3. Create a key and copy it once
+1. [heir.es/developers](https://heir.es/developers)
+2. Create key, copy once
+3. Plan quotas: [API tiers](/pricing/api-tiers)
 
-Plan quotas: [API tiers](/pricing/api-tiers).
-
-## Pass the key
-
-Preferred: environment variable in the MCP client config:
+## Config
 
 ```json
 {
   "mcpServers": {
     "heir": {
-      "command": "node",
-      "args": ["node_modules/@morbidcorp/heir/dist/cli.js"],
+      "command": "npx",
+      "args": ["-y", "@morbidcorp/heir@2.0.2"],
       "env": {
         "HEIR_API_KEY": "heir_pk_your_key_here"
       }
@@ -29,34 +24,17 @@ Preferred: environment variable in the MCP client config:
 }
 ```
 
-Also accepted by `dist/cli.js`:
+Also: `heir-mcp --api-key=heir_pk_...` or `HEIR_API_URL` for non-prod bases.
 
-```bash
-node node_modules/@morbidcorp/heir/dist/cli.js --api-key=heir_pk_...
-```
+## Version notes
 
-Optional: `HEIR_API_URL` or `--api-url=` (default `https://api.heir.es`).
+| Version | `npx @morbidcorp/heir` |
+|---------|-------------------------|
+| 2.0.2+ | Works (`bin` = `dist/cli.js`) |
+| 2.0.1 | **Broken** monorepo `index.js` bin |
+| `@heir/mcp` | Does not exist |
 
-## Working vs broken start commands
-
-| Command | Result (2.0.1) |
-|---------|----------------|
-| `node node_modules/@morbidcorp/heir/dist/cli.js` | **Works** (stdio server) |
-| `npx @morbidcorp/heir` / `heir-mcp` | **Fails** — `bin` points at legacy `index.js` |
-| `npx @heir/mcp` | **Fails** — package does not exist |
-
-Install the package in the project (or globally) so `node_modules/@morbidcorp/heir/dist/cli.js` resolves, or pass an absolute path to that file.
-
-## Shell smoke test
-
-```bash
-npm i @morbidcorp/heir@2.0.1
-export HEIR_API_KEY="heir_pk_..."
-# Should log: HEIR MCP server running on stdio
-node node_modules/@morbidcorp/heir/dist/cli.js
-```
-
-## Next
+## Related
 
 - [Tools](/mcp/tools)
-- [Cursor](/mcp/cursor) · [Claude](/mcp/claude) · [VS Code](/mcp/vscode)
+- [Auth matrix](/guide/auth-matrix)

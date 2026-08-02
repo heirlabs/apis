@@ -77,6 +77,8 @@ export default defineConfig({
             { text: 'Introduction', link: '/guide/introduction' },
             { text: 'Quick Start', link: '/guide/quickstart' },
             { text: 'Authentication', link: '/guide/authentication' },
+            { text: 'Auth matrix', link: '/guide/auth-matrix' },
+            { text: 'Platform spine', link: '/guide/platform-spine' },
             { text: 'Rate Limits', link: '/guide/rate-limits' },
             { text: 'Error Handling', link: '/guide/errors' }
           ]

@@ -61,9 +61,11 @@ const RULES = [
     message: 'Do not document mcp.heir.es as a guaranteed public host',
   },
   {
-    id: 'npx-bin-as-primary',
-    re: /"args":\s*\[["']-y["'],\s*["']@morbidcorp\/heir["']\]/,
-    message: 'Do not recommend npx package bin (broken); use dist/cli.js',
+    id: 'npx-bin-unpinned-legacy',
+    re: /@morbidcorp\/heir(?![@\/]|\s|`|"|'|\)|,)/,
+    allow: (_f, line) =>
+      /2\.0\.2|dist\/cli|broken|2\.0\.1|bin|package|@morbidcorp\/heir@/i.test(line),
+    message: 'Prefer pinned @morbidcorp/heir@2.0.2 in install examples',
   },
   {
     id: 'heir-sk-prefix',
