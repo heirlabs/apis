@@ -36,3 +36,6 @@ coverage/
 *.tgz
 .cache/
 
+# Regenerable OpenAPI snapshot (use npm run openapi:fetch)
+openapi/openapi.json
+

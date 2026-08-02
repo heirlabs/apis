@@ -1,0 +1,33 @@
+name: Documentation improvement
+description: Clarify a guide, add an example, or fix a confusing section.
+title: "[docs]: "
+labels: ["documentation"]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page URL or path in repo
+      placeholder: docs/guide/quickstart.md
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is unclear or missing?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Suggested improvement
+      description: Outline or draft wording (optional).
+  - type: dropdown
+    id: audience
+    attributes:
+      label: Primary audience
+      options:
+        - First-time integrator
+        - Partner / platform builder
+        - AI agent / MCP user
+        - Professional / advisor tools
+        - Internal / operator

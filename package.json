@@ -1,9 +1,9 @@
 {
   "name": "@heirlabs/api",
   "version": "1.0.0",
-  "description": "HEIR Protocol API - Headless inheritance smart contract platform",
+  "description": "Public docs and integrator reference for the HEIR HTTP API",
   "type": "module",
-  "main": "src/index.js",
+  "private": true,
   "scripts": {
     "start": "node serve-docs.mjs",
     "dev": "npm run docs:dev",
@@ -11,25 +11,30 @@
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
     "docs:serve": "node serve-docs.mjs",
+    "openapi:fetch": "node scripts/fetch-openapi.mjs",
     "test": "node scripts/validate-docs-truth.mjs",
-    "lint": "eslint src/",
-    "generate:openapi": "node scripts/generate-openapi.js",
-    "test:docs-truth": "node scripts/validate-docs-truth.mjs"
+    "test:docs-truth": "node scripts/validate-docs-truth.mjs",
+    "examples:health": "bash examples/01-health.sh",
+    "examples:plans": "bash examples/04-list-plans.sh"
   },
   "keywords": [
     "heir",
     "inheritance",
+    "estate-planning",
     "smart-contracts",
-    "blockchain",
+    "api",
+    "openapi",
+    "documentation",
+    "webhooks",
+    "mcp",
     "ethereum",
-    "solana",
-    "api"
+    "solana"
   ],
   "author": "HEIR Labs",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/heirlabs/apis.git"
+    "url": "git+https://github.com/heirlabs/apis.git"
   },
   "homepage": "https://docs.heir.es",
   "bugs": {
@@ -39,21 +44,21 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "mongoose": "^8.0.0",
-    "jsonwebtoken": "^9.0.2",
     "express-rate-limit": "^7.1.5",
     "helmet": "^7.1.0",
-    "cors": "^2.8.5",
-    "cookie-parser": "^1.4.6",
-    "dotenv": "^16.3.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.0.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0"
   },
   "devDependencies": {
-    "vitepress": "^1.0.0",
-    "nodemon": "^3.0.2",
     "eslint": "^8.56.0",
-    "jest": "^29.7.0"
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.2",
+    "vitepress": "^1.0.0"
   }
 }
