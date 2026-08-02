@@ -1,237 +1,131 @@
 # MCP Tools Reference
 
-Tools from the **working** entrypoint of [`@morbidcorp/heir@2.0.1`](https://www.npmjs.com/package/@morbidcorp/heir):
-`dist/cli.js` (stdio). **Count: 18.**
-
-Verified 2026-08-02: after `npm i @morbidcorp/heir@2.0.1`,
-`node node_modules/@morbidcorp/heir/dist/cli.js` prints
-`HEIR MCP server running on stdio` and registers these tools.
-
-::: danger Broken package bin
-The package `bin` field points at legacy `index.js`, which **crashes** on import
-(missing `services/` / `generators/` files).  
-`npx @morbidcorp/heir` / `heir-mcp` therefore **fails**.  
-Always start **`dist/cli.js`** until a fixed release rewires `bin`.
-:::
-
-## Install and run (working)
+Tools from [`@morbidcorp/heir@2.0.2`](https://www.npmjs.com/package/@morbidcorp/heir)
+(`dist/cli.js` / `heir-mcp` bin). **Count: 18.**
 
 ```bash
-npm i @morbidcorp/heir@2.0.1
+npx -y @morbidcorp/heir@2.0.2
 export HEIR_API_KEY="heir_pk_..."
-node node_modules/@morbidcorp/heir/dist/cli.js
 ```
 
-Optional CLI flags supported by `dist/cli.js`:
+Package `@heir/mcp` does **not** exist. Prefer **2.0.2+** (2.0.1 bin was broken).
 
-| Flag | Meaning |
-|------|---------|
-| `--api-key=heir_pk_...` | Product API key (or `HEIR_API_KEY` env) |
-| `--api-url=https://api.heir.es` | API base (or `HEIR_API_URL`) |
-| `--tools=all` | All categories (default) |
-| `--tools=contracts,vaults,jurisdictions,legal,chat` | Subset by category prefix |
-
-IDE config:
-
-```json
-{
-  "mcpServers": {
-    "heir": {
-      "command": "node",
-      "args": ["node_modules/@morbidcorp/heir/dist/cli.js"],
-      "env": {
-        "HEIR_API_KEY": "heir_pk_your_key_here"
-      }
-    }
-  }
-}
-```
-
-Run from a directory where `@morbidcorp/heir` is installed (project root after
-`npm i @morbidcorp/heir`). Absolute path to `dist/cli.js` also works.
-
-Package name `@heir/mcp` does **not** exist on npm.
+Optional CLI: `--api-key=`, `--api-url=`, `--tools=all|contracts,vaults,jurisdictions,legal,chat`.
 
 ---
 
 ## Contracts (3)
 
 ### `heir_contract_list_templates`
-
-List inheritance contract templates / legal frameworks. No parameters.
+`GET /api/v1/contracts/templates` — no params.
 
 ### `heir_contract_generate`
+| Parameter | Required |
+|-----------|----------|
+| `blockchain` | yes (`evm` \| `solana` \| `ton`) |
+| `ownerAddress` | yes |
+| `beneficiaries` | yes |
+| `inheritanceTemplate` | no |
+| `deadMansSwitch` | no |
 
-| Parameter | Required | Description |
-|-----------|----------|-------------|
-| `blockchain` | yes | e.g. EVM / Solana / TON family |
-| `ownerAddress` | yes | Owner wallet |
-| `beneficiaries` | yes | Addresses and percentages |
-| `inheritanceTemplate` | no | Framework template |
-| `deadMansSwitch` | no | Check-in configuration |
+`POST /api/v1/contracts/generate`
 
 ### `heir_contract_estimate_gas`
-
 | Parameter | Required |
 |-----------|----------|
 | `blockchain` | yes |
 | `network` | yes |
 | `beneficiaryCount` | yes |
 
+`POST /api/v1/contracts/estimate-gas`
+
 ---
 
-## Vaults (4)
+## Estates / vaults (4)
+
+Product stores drafts on `user.vaults` via **`/api/v1/user/estates`**. PIN-gated
+full load (`/load/:id`) is not exposed as MCP tools.
 
 ### `heir_vault_list`
-
-| Parameter | Required |
-|-----------|----------|
-| `status` | no |
-| `limit` | no |
+`GET /api/v1/user/estates` — metadata list. Optional `limit`.
 
 ### `heir_vault_get`
+Requires `vaultId`. Returns metadata from the estates list only.
+
+### `heir_vault_create` / `heir_vault_update`
+`POST /api/v1/user/estates` with **client-encrypted** payload:
 
 | Parameter | Required |
 |-----------|----------|
-| `vaultId` | yes |
+| `encryptedData` | yes |
+| `saltHex` | yes |
+| `iv` | yes |
+| `name` / `title` | no |
+| `metadata` | no |
 
-### `heir_vault_create`
-
-| Parameter | Required |
-|-----------|----------|
-| `name` | yes |
-| `blockchain` | yes |
-| `description` | no |
-| `beneficiaries` | no |
-
-### `heir_vault_update`
-
-| Parameter | Required |
-|-----------|----------|
-| `vaultId` | yes |
-| `name` | no |
-| `beneficiaries` | no |
+Without encryption fields the tool returns a structured error (does not invent plaintext vaults).
 
 ---
 
 ## Jurisdictions (4)
 
 ### `heir_jurisdiction_list`
-
-| Parameter | Required |
-|-----------|----------|
-| `region` | no |
-| `legalSystem` | no |
+`GET /api/v1/jurisdictions` — optional client filters `region`, `legalSystem`.
 
 ### `heir_jurisdiction_get`
-
-| Parameter | Required |
-|-----------|----------|
-| `code` | yes |
+`GET /api/v1/jurisdictions/:code` — `code` required.
 
 ### `heir_jurisdiction_compare`
-
-| Parameter | Required |
-|-----------|----------|
-| `codes` | yes |
-| `aspects` | no |
+Fetches each code in `codes[]` (min 2) and returns side-by-side payloads.
 
 ### `heir_jurisdiction_search`
-
-| Parameter | Required |
-|-----------|----------|
-| `query` | no |
-| `features` | no |
+Client-side filter over the list using `query` / `features`.
 
 ---
 
-## Legal documents (4)
-
-These tools call the product API with the configured API key. Legal generate on
-the server still requires a **user-bound** credential; without a valid key/user,
-calls fail honestly.
+## Legal (4)
 
 ### `heir_legal_generate_will`
 
-| Parameter | Required |
-|-----------|----------|
-| `jurisdiction` | yes |
-| `testator` | yes |
-| `beneficiaries` | yes |
-| `executor` / `guardian` / `residuaryClause` | no |
+`POST /api/v1/legal/generate` with `type: "will"` and `formData`.
 
 ### `heir_legal_generate_trust`
 
-| Parameter | Required |
-|-----------|----------|
-| `jurisdiction` | yes |
-| `trustType` | yes |
-| `grantor` | yes |
-| `trustee` | yes |
-| `beneficiaries` | yes |
-| `assets` | no |
+`POST /api/v1/legal/generate` with `type: "trust"` and `formData`.
 
 ### `heir_legal_generate_poa`
 
-| Parameter | Required |
-|-----------|----------|
-| `jurisdiction` | yes |
-| `type` | yes |
-| `principal` | yes |
-| `agent` | yes |
-| `powers` / `limitations` / `effectiveDate` | no |
+`POST /api/v1/legal/generate` with `type: "poa"` and `formData`.
+
+All three require an API key bound to a user (`HEIR_API_KEY`).
 
 ### `heir_legal_list_templates`
+`GET /api/v1/legal/types/:jurisdiction` (default `us`).
 
-| Parameter | Required |
-|-----------|----------|
-| `jurisdiction` | no |
-| `documentType` | no |
+E-sign is a separate REST flow (`POST /legal/sign`) and needs OpenSign env on the server.
 
 ---
 
 ## Chat (3)
 
-### `heir_chat_estate_planning`
+All map to `POST /api/v1/chat` (fallback `/api/chat`):
 
-| Parameter | Required |
-|-----------|----------|
-| `message` | yes |
-| `context` | no |
-| `conversationId` | no |
-
-### `heir_chat_explain_template`
-
-| Parameter | Required |
-|-----------|----------|
-| `template` | yes |
-| `aspects` | no |
-
-### `heir_chat_recommend_plan`
-
-| Parameter | Required |
-|-----------|----------|
-| `jurisdiction` | yes |
-| `familySituation` | yes |
-| `assetTypes` | yes |
-| `concerns` / `religiousLaw` | no |
+| Tool | Behavior |
+|------|----------|
+| `heir_chat_estate_planning` | Passes `message` (+ optional context) |
+| `heir_chat_explain_template` | Structured prompt from `template` |
+| `heir_chat_recommend_plan` | Structured prompt from situation fields |
 
 ---
 
 ## Not claimed
 
-| Surface | Status |
-|---------|--------|
-| Legacy root `index.js` calculators (`heir_calculate_*`, `heir_health`, …) | Present in package tree but **not** the working `bin`/`dist/cli` surface; do not document as install path |
-| monorepo `billing-mcp.js` extra tools | Not in `dist/cli` tool list |
+| Item | Status |
+|------|--------|
 | “100+ MCP tools” | False |
-
-## Related HTTP
-
-- REST: [API reference](/api/)
-- Product helpers: `https://api.heir.es/mcp` (health / jurisdiction HTTP; not full MCP stdio)
+| Legacy monorepo calculator tools on npm bin | Railway `index.js` only, not npm bin |
+| Public hosted Streamable `mcp.heir.es` as guaranteed URL | Not documented as SLA |
 
 ## Rate limits
 
-Tool calls that hit `api.heir.es` use developer plan + API-key tier limits.
-See [API tiers](/pricing/api-tiers).
+Tool HTTP calls use developer plan + API-key tier limits — [API tiers](/pricing/api-tiers).

@@ -147,6 +147,7 @@ Developer **plan** daily/monthly caps are separate — see [API tiers](/pricing/
 
 ## OpenAPI
 
+- [OpenAPI honesty notes](/api/openapi)
 - [openapi.json](https://api.heir.es/api/docs/openapi.json)
 - [Interactive docs](https://api.heir.es/api/docs)
 

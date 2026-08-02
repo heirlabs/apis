@@ -2,32 +2,41 @@
 
 Connect AI assistants to HEIR via [`@morbidcorp/heir`](https://www.npmjs.com/package/@morbidcorp/heir).
 
-## Package facts (verified 2026-08-02)
+## Package facts
 
 | Field | Value |
 |-------|--------|
-| npm | `@morbidcorp/heir` **2.0.1** (exists) |
-| Working entry | `dist/cli.js` (stdio) |
-| Tools | **18** — contracts, vaults, jurisdictions, legal, chat |
-| Broken entry | package `bin` → `index.js` (import crash) — do not use `npx @morbidcorp/heir` until fixed |
+| npm | `@morbidcorp/heir` |
+| Working version | **2.0.2** (`bin` → `dist/cli.js`) |
+| Tools | **18** — contracts, estates, jurisdictions, legal, chat |
+| Broken version | **2.0.1** `bin` pointed at monorepo-coupled `index.js` (crashes on `npx`) |
 | Wrong name | `@heir/mcp` — **404** on npm |
 
-## Working install
+## Install (2.0.2+)
 
 ```bash
-npm i @morbidcorp/heir@2.0.1
-export HEIR_API_KEY="heir_pk_..."
-node node_modules/@morbidcorp/heir/dist/cli.js
+npx -y @morbidcorp/heir@2.0.2
+# or
+npm i -g @morbidcorp/heir@2.0.2
+heir-mcp
 ```
 
-Claude Desktop / Cursor / VS Code:
+If the registry still only has 2.0.1, install from the monorepo path after the
+`fix/mcp-npm-bin` merge or wait for `npm publish` of 2.0.2:
+
+```bash
+# temporary until 2.0.2 is on the registry
+cd /path/to/heirlabs/web/heir-mcp && npm i -g .
+```
+
+## IDE config
 
 ```json
 {
   "mcpServers": {
     "heir": {
-      "command": "node",
-      "args": ["node_modules/@morbidcorp/heir/dist/cli.js"],
+      "command": "npx",
+      "args": ["-y", "@morbidcorp/heir@2.0.2"],
       "env": {
         "HEIR_API_KEY": "heir_pk_..."
       }
@@ -36,25 +45,25 @@ Claude Desktop / Cursor / VS Code:
 }
 ```
 
-Create keys at [heir.es/developers](https://heir.es/developers).
+Keys: [heir.es/developers](https://heir.es/developers).
 
-Optional: `--tools=contracts,legal` and `--api-key=` are supported by **`dist/cli.js` only**.
+Optional: `--tools=contracts,legal` and `--api-key=` on the CLI.
 
 ## Tool categories
 
-| Category | Prefix | Count |
-|----------|--------|------:|
-| Contracts | `heir_contract_*` | 3 |
-| Vaults | `heir_vault_*` | 4 |
-| Jurisdictions | `heir_jurisdiction_*` | 4 |
-| Legal | `heir_legal_*` | 4 |
-| Chat | `heir_chat_*` | 3 |
+| Category | Prefix | Count | HTTP |
+|----------|--------|------:|------|
+| Contracts | `heir_contract_*` | 3 | `/api/v1/contracts/*` |
+| Estates | `heir_vault_*` | 4 | `/api/v1/user/estates` |
+| Jurisdictions | `heir_jurisdiction_*` | 4 | `/api/v1/jurisdictions` |
+| Legal | `heir_legal_*` | 4 | `/api/v1/legal/generate`, `/types/:j` |
+| Chat | `heir_chat_*` | 3 | `/api/v1/chat` |
 
-Full schemas: [Available Tools](/mcp/tools).
+Schemas: [Available Tools](/mcp/tools).
 
 ## Related
 
 - [Authentication](/mcp/authentication)
 - [Cursor](/mcp/cursor) · [Claude](/mcp/claude) · [VS Code](/mcp/vscode)
-- REST: [API reference](/api/)
+- [Auth matrix](/guide/auth-matrix) · [Platform spine](/guide/platform-spine)
 - Issues: [heirlabs/apis](https://github.com/heirlabs/apis/issues)
