@@ -1,0 +1,13 @@
+# Fallback if the service is ever built without the Dockerfile.
+# Default Nixpacks would run `npm start` → node src/index.js (file does not exist).
+[phases.setup]
+nixPkgs = ["nodejs_20"]
+
+[phases.install]
+cmds = ["npm ci --include=dev"]
+
+[phases.build]
+cmds = ["npm run docs:build"]
+
+[start]
+cmd = "node serve-docs.mjs"

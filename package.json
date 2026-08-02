@@ -5,11 +5,12 @@
   "type": "module",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js",
+    "start": "node serve-docs.mjs",
+    "dev": "npm run docs:dev",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
+    "docs:serve": "node serve-docs.mjs",
     "test": "jest",
     "lint": "eslint src/",
     "generate:openapi": "node scripts/generate-openapi.js"

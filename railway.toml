@@ -1,0 +1,23 @@
+# Railway configuration for docs.heir.es (this repo's VitePress site).
+#
+# Deploy model matches the rest of the platform: merging to `main` of
+# heirlabs/apis is the deploy. Never `railway up` from this workspace — it has
+# a documented history of deploying to the wrong service.
+#
+# The Dockerfile builder is used rather than Nixpacks because Nixpacks would
+# infer this repo's `npm start` (node src/index.js — a file that does not
+# exist here) instead of the docs. See /Dockerfile.
+#
+# REQUIRED dashboard setting: Networking → Public Networking → Target Port =
+# 3001. Without it Railway's proxy cannot route to the container regardless of
+# what this file says.
+
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+healthcheckPath = "/healthz"
+healthcheckTimeout = 120
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 5

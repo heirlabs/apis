@@ -1,0 +1,12 @@
+node_modules
+.git
+.github
+docs/.vitepress/cache
+docs/.vitepress/dist
+*.md
+!docs/**
+src
+.env
+.env.*
+coverage
+.DS_Store
