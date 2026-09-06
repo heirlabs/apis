@@ -57,7 +57,7 @@
   },
   "devDependencies": {
     "eslint": "^10.8.0",
-    "jest": "^29.7.0",
+    "jest": "^30.5.1",
     "nodemon": "^3.1.14",
     "vitepress": "^1.0.0"
   }
