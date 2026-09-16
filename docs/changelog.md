@@ -4,6 +4,16 @@ All notable changes to the HEIR public API and docs site.
 
 ## [Unreleased]
 
+### Documentation (2026-09-16)
+
+- Product paths page (SPA funnel `/login` → `/welcome` → pay; paid home `/interview`; `/legacy` after complete; `/desk` shell; `/developers/*`)
+- Unversioned `/api/*` is the product spine, not a 2026-07-01 sunset
+- Internal API key prefix documented as `heir_sk_` (not `heir_in_`)
+- MCP pin 2.0.5 + default capability-projection usage
+- Live product SKUs on pricing overview
+- Developer API plans aligned with live `GET /api/v1/billing/plans` (partner $99, not $199)
+- Webhook reference payload/create/retry aligned with `webhookDispatcher.js`
+
 ### Documentation (2026-08-02)
 
 - Auth matrix + platform spine product map

@@ -202,7 +202,7 @@ npx openapi-typescript openapi/openapi.json -o ./heir-api.d.ts
   "mcpServers": {
     "heir": {
       "command": "npx",
-      "args": ["-y", "@morbidcorp/heir"],
+      "args": ["-y", "@morbidcorp/heir@2.0.5"],
       "env": {
         "HEIR_API_KEY": "heir_pk_xxxxxxxx"
       }

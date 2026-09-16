@@ -11,11 +11,29 @@ integration failure.
 | **API key (hybrid)** | `Authorization: Bearer heir_pk_…` or `X-API-Key: heir_pk_…` | `/api/v1/*` partner mounts (contracts, legal, jurisdictions, user, billing, …) |
 | **Public** | None | Health, some catalogs (`/api/heirlooms/catalog`), estate health-check quiz, openAPI assets |
 
-API keys are created at [heir.es/developers](https://heir.es/developers).
+API keys are created at [heir.es/developers/keys](https://heir.es/developers/keys).
+
+Phone OTP is HEIR ID login (`/api/auth/phone/...`), not API-key auth.
 
 Hybrid auth resolves a **user** for ownership-scoped routes (legal documents,
 estates). A bare key without an associated account still fails those handlers
 with 401/403 even if the key string is valid.
+
+## Where users go
+
+SPA map: [Product paths](/guide/product-paths).
+
+| Who | Path |
+|-----|------|
+| Public sign-in (HEIR ID) | `/login` |
+| After sign-in | `/welcome` |
+| Unpaid signed-in hub | `/dashboard` |
+| Paid cinematic / purchase / redeem home | `/interview` |
+| After interview completes | `/legacy` |
+| Paid HeirOS shell | `/desk` |
+| Developer keys | `/developers/keys` |
+
+Paid home is `/interview`, never `/swarm`.
 
 ## Path prefixes
 
@@ -70,6 +88,7 @@ or vault unlock. See [Billing](/pricing/).
 
 ## Related
 
+- [Product paths](/guide/product-paths)
 - [Authentication guide](/guide/authentication)
 - [API keys](/guide/api-keys)
 - [MCP authentication](/mcp/authentication)

@@ -1,0 +1,10 @@
+# HEIR API documentation
+
+Site: https://docs.heir.es
+Product: https://heir.es
+API: https://api.heir.es/api/v1/
+
+- Product paths: https://docs.heir.es/guide/product-paths
+- Quick start: https://docs.heir.es/guide/quickstart
+- API reference: https://docs.heir.es/api/
+- MCP: https://docs.heir.es/mcp/

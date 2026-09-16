@@ -38,7 +38,7 @@ curl "https://api.heir.es/api/v1/contracts/templates?api_key=heir_pk_xxx..."
 |------|--------|-------------|
 | Public | `heir_pk_` | Standard access |
 | Partner | `heir_pt_` | Extended features + embedding |
-| Internal | `heir_in_` | Full access |
+| Internal | `heir_sk_` | Full access |
 
 ## Obtaining API Keys
 

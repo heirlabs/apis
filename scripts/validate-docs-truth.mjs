@@ -64,13 +64,36 @@ const RULES = [
     id: 'npx-bin-unpinned-legacy',
     re: /@morbidcorp\/heir(?![@\/]|\s|`|"|'|\)|,)/,
     allow: (_f, line) =>
-      /2\.0\.2|dist\/cli|broken|2\.0\.1|bin|package|@morbidcorp\/heir@/i.test(line),
-    message: 'Prefer pinned @morbidcorp/heir@2.0.2 in install examples',
+      /2\.0\.5|2\.0\.4|2\.0\.2|dist\/cli|broken|2\.0\.1|bin|package|@morbidcorp\/heir@/i.test(line),
+    message: 'Prefer pinned @morbidcorp/heir@2.0.5 in install examples',
   },
   {
     id: 'heir-sk-prefix',
     re: /heir_sk_your_api_key/,
     message: 'Document heir_pk_ product keys, not heir_sk_',
+  },
+  {
+    id: 'internal-key-prefix',
+    re: /heir_in_/,
+    allow: (_f, line) =>
+      /wrong|not used|not the prefix|do not|don't|incorrect|not `heir_in_`/i.test(line),
+    message: 'Internal keys use `heir_sk_`.',
+  },
+  {
+    id: 'false-v1-sunset',
+    re: /2026-07-01|July 1, 2026/,
+    allow: (_f, line) =>
+      /wrong|not removed|not a sunset|not sunset|never sunset|false|not a \S+ sunset/i.test(line),
+    message: 'Do not claim `/api/*` was sunset 2026-07-01.',
+  },
+  {
+    id: 'swarm-as-home',
+    re: /\/swarm/,
+    allow: (_f, line) =>
+      /never|not [`'"]?\/swarm|do not send|don't send|do not go|not product home|older advisor|multi-tab|do not use as/i.test(
+        line
+      ),
+    message: 'Paid home is `/interview`.',
   },
 ];
 
@@ -185,6 +208,24 @@ function main() {
         message: 'MCP tools page must state the 18-tool count',
       });
     }
+    if (!toolsMd.includes('2.0.5')) {
+      violations.push({
+        file: 'docs/mcp/tools.md',
+        line: 0,
+        id: 'mcp-pin',
+        text: 'missing 2.0.5',
+        message: 'MCP tools page must mention 2.0.5',
+      });
+    }
+    if (!toolsMd.includes('heir_capabilities_search')) {
+      violations.push({
+        file: 'docs/mcp/tools.md',
+        line: 0,
+        id: 'mcp-default-tools',
+        text: 'missing heir_capabilities_search',
+        message: 'MCP tools page must mention heir_capabilities_search',
+      });
+    }
   } else {
     violations.push({
       file: 'docs/mcp/tools.md',
@@ -193,6 +234,31 @@ function main() {
       text: '',
       message: 'docs/mcp/tools.md is required',
     });
+  }
+
+  // Product paths page is required
+  const productPaths = path.join(DOCS, 'guide', 'product-paths.md');
+  if (!fs.existsSync(productPaths)) {
+    violations.push({
+      file: 'docs/guide/product-paths.md',
+      line: 0,
+      id: 'product-paths-missing',
+      text: '',
+      message: 'docs/guide/product-paths.md is required',
+    });
+  } else {
+    const pathsMd = fs.readFileSync(productPaths, 'utf8');
+    for (const required of ['/interview', '/login', '/welcome', '/dashboard', '/desk', '/developers']) {
+      if (!pathsMd.includes(required)) {
+        violations.push({
+          file: 'docs/guide/product-paths.md',
+          line: 0,
+          id: 'product-paths-missing-url',
+          text: required,
+          message: `docs/guide/product-paths.md must contain ${required}`,
+        });
+      }
+    }
   }
 
   // Memoir page must use /api/memoir endpoints

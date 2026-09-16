@@ -4,8 +4,8 @@ Get up and running with the HEIR API in under 5 minutes.
 
 ## Step 1: Get an API Key
 
-1. Sign up at [heir.es](https://heir.es)
-2. Go to the [Developer Portal](https://heir.es/developers)
+1. Sign in at [heir.es/login](https://heir.es/login) → `/welcome`
+2. Open the Developer Portal [heir.es/developers](https://heir.es/developers) → [heir.es/developers/keys](https://heir.es/developers/keys)
 3. Click **Create API Key**
 4. Copy your key (it won't be shown again!)
 
@@ -175,6 +175,8 @@ console.log('Contract deployed at:', await contract.getAddress());
 
 ## Next Steps
 
+- [Product paths](/guide/product-paths) - SPA funnel (`/login` → `/welcome` → pay; paid home `/interview`)
+- [MCP](/mcp/) - `@morbidcorp/heir@2.0.5`
 - [Authentication](/guide/authentication) - Learn about API key tiers and scopes
 - [Webhooks](/guide/webhooks) - Set up real-time event notifications
 - [Embedding](/guide/embedding) - White-label the wizard in your app

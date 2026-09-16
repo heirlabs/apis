@@ -1,5 +1,12 @@
 # Introduction
 
+HEIR has two surfaces:
+
+- **Product app** — [heir.es](https://heir.es) (session cookie `heir_auth`). Human funnel and paid product URLs: [Product paths](/guide/product-paths).
+- **Headless API** — `https://api.heir.es/api/v1/*` (API key `heir_pk_` / `heir_pt_` / `heir_sk_`). Partner/integrator HTTP.
+
+This site is `https://docs.heir.es`.
+
 Welcome to the HEIR API documentation. The HEIR API provides programmatic access to the HEIR Protocol's digital inheritance infrastructure, enabling you to build applications that generate smart contracts, manage vaults, and integrate estate planning tools.
 
 ## What is HEIR?
@@ -86,10 +93,11 @@ https://api.heir.es/api/v1/
 
 ## API Versioning
 
-The current API version is `v1`. All endpoints are prefixed with `/api/v1/`.
+The current API version is `v1`. Partner/integrator endpoints are prefixed with `/api/v1/`.
 
-::: warning Deprecation Notice
-Legacy `/api/*` endpoints (without version prefix) are deprecated and will be removed on **July 1, 2026**. Please migrate to `/api/v1/*`.
+::: info Two URL families
+Partner/integrator HTTP is `/api/v1/*` with an API key.
+The product SPA uses session-authenticated `/api/*` mounts (estate home, interview, memoir, desk). Those are **not** a deprecated alias of v1 and are **not** being removed.
 :::
 
 ## Need Help?

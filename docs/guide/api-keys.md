@@ -12,7 +12,7 @@ Each API key is tied to a specific tier that determines your rate limits and ava
 |------|--------|------------|----------|
 | **Public** | `heir_pk_` | 100 req/15min | Basic contract generation |
 | **Partner** | `heir_pt_` | 1,000 req/15min | + Embedding, webhooks |
-| **Internal** | `heir_in_` | 10,000 req/15min | + Admin features |
+| **Internal** | `heir_sk_` | 10,000 req/15min | + Admin features |
 
 ## Creating API Keys
 
@@ -31,7 +31,7 @@ curl -X POST https://api.heir.es/api/v1/api-keys \
 
 ### Via Dashboard
 
-1. Navigate to [Developer Portal](https://heir.es/developer)
+1. Navigate to [Developer Portal](https://heir.es/developers) → [API keys](https://heir.es/developers/keys)
 2. Click "Create API Key"
 3. Select your desired tier and scopes
 4. Copy and securely store the generated key

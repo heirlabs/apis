@@ -1,16 +1,31 @@
 # MCP Tools Reference
 
-Tools from [`@morbidcorp/heir@2.0.4`](https://www.npmjs.com/package/@morbidcorp/heir)
-(`dist/cli.js` / `heir-mcp` bin). **Count: 18.**
+Tools from [`@morbidcorp/heir@2.0.5`](https://www.npmjs.com/package/@morbidcorp/heir)
+(`dist/cli.js` / `heir-mcp` bin).
 
 ```bash
-npx -y @morbidcorp/heir@2.0.4
+npx -y @morbidcorp/heir@2.0.5
 export HEIR_API_KEY="heir_pk_..."
 ```
 
-Package `@heir/mcp` does **not** exist. Prefer **2.0.4+** (2.0.1 bin was broken).
+Package `@heir/mcp` does **not** exist. Pin **2.0.5**. 2.0.4 also worked (`dist/cli.js`); 2.0.1 bin was broken.
 
 Optional CLI: `--api-key=`, `--api-url=`, `--tools=all|contracts,vaults,jurisdictions,legal,chat`.
+
+## Default vs legacy modules
+
+Default (`--tools=all` or omitted): read-only capability projection:
+
+- `heir_capabilities_search`
+- `heir_capabilities_describe`
+- `heir_guide_get`
+- `heir_action_invoke` (dark unless desk-agent actions enabled)
+- `heir_record_*`
+- resource `heir://compliance` always listed
+
+Legacy 18 HTTP tools: `--tools=contracts,vaults,jurisdictions,legal,chat`. **Count: 18.** Named tools below stay documented for that module list.
+
+Hosted calculators (if any) are a **different process** from this npm bin — not guaranteed, not an SLA, and not a documented public host at `https://mcp.heir.es`.
 
 ---
 

@@ -1,12 +1,14 @@
 # MCP Authentication
 
-Use product developer API keys (`heir_pk_…`) with `@morbidcorp/heir@2.0.4+`.
+Use product developer API keys (`heir_pk_…`) with `@morbidcorp/heir@2.0.5`.
 
 ## Get a key
 
-1. [heir.es/developers](https://heir.es/developers)
+1. [heir.es/developers/keys](https://heir.es/developers/keys)
 2. Create key, copy once
 3. Plan quotas: [API tiers](/pricing/api-tiers)
+
+SPA login is `/login` (HEIR ID). Keys are a different auth model — [Product paths](/guide/product-paths).
 
 ## Config
 
@@ -15,7 +17,7 @@ Use product developer API keys (`heir_pk_…`) with `@morbidcorp/heir@2.0.4+`.
   "mcpServers": {
     "heir": {
       "command": "npx",
-      "args": ["-y", "@morbidcorp/heir@2.0.4"],
+      "args": ["-y", "@morbidcorp/heir@2.0.5"],
       "env": {
         "HEIR_API_KEY": "heir_pk_your_key_here"
       }
@@ -26,11 +28,14 @@ Use product developer API keys (`heir_pk_…`) with `@morbidcorp/heir@2.0.4+`.
 
 Also: `heir-mcp --api-key=heir_pk_...` or `HEIR_API_URL` for non-prod bases.
 
+Default tools are capability projection. Legacy 18 HTTP tools: `--tools=contracts,vaults,jurisdictions,legal,chat`.
+
 ## Version notes
 
 | Version | `npx @morbidcorp/heir` |
 |---------|-------------------------|
-| 2.0.4+ | Works (`bin` = `dist/cli.js`) |
+| 2.0.5 | Works (`bin` = `dist/cli.js`). Pin this. |
+| 2.0.4 | Also worked (`dist/cli.js`) |
 | 2.0.1 | **Broken** monorepo `index.js` bin |
 | `@heir/mcp` | Does not exist |
 

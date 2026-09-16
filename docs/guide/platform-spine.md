@@ -14,6 +14,21 @@ Maturity labels:
 | **Session** | Requires logged-in user (JWT cookie/session) |
 | **Hybrid** | Also available under `/api/v1` with API key scopes when mounted |
 
+## Product SPA paths
+
+SPA URLs on `https://heir.es` (session cookie `heir_auth`). Full funnel: [Product paths](/guide/product-paths).
+
+| Product | SPA | API mounts |
+|---------|-----|------------|
+| Health check UI | heir.es (public quiz) | `/api/estate-health-check/*` |
+| Interview | `https://heir.es/interview` | `/api/legacy-interview/*` |
+| After complete | `/legacy` | `/api/legacy/*`, `/api/verify/legacy` |
+| Desk shell | `https://heir.es/desk` | `/api/desk-agent/*`, `/api/desk-access/*` |
+| Developers | `https://heir.es/developers` | keys + billing UI |
+| Memoir | `https://heir.es/myheir` | `/api/memoir/*` |
+
+Paid cinematic / purchase / redeem home is `/interview`, never `/swarm`. Unpaid `/desk` is blocked → `/dashboard`.
+
 ## Core journey
 
 ```
@@ -102,13 +117,13 @@ Health Check → Estate Home readiness → Interview / plan → Deploy contracts
 | Auth | Session |
 | Notes | Insurance-oriented selective disclosure; not full SNARK marketplace |
 
-### Desk agent / premium — **Live · Session**
+### Desk agent / HeirOS desk — **Live · Session**
 
 | | |
 |--|--|
-| Mount | `/api/desk-agent/*`, `/api/desk-premium/*` |
-| Auth | Session; Stripe webhooks for premium |
-| Notes | Legacy Desk product surface |
+| Mount | `/api/desk-agent/*`, `/api/desk-access/*` (e.g. `/status` 401 without session; bare `/api/desk-access` 404) |
+| Auth | Session; Stripe webhooks exist |
+| Notes | HeirOS desk subscribe after trial (`$88/yr` or `$9.40/mo`). `/api/desk-premium/*` is mounted but **not** a live SKU name. While `DESK_ACCESS_SAAS_ENABLED` is off, desk access equals interview access. Unpaid SPA `/desk` → `/dashboard`. |
 
 ### Memoir (MyHeir) — **Live · Session**
 
@@ -155,6 +170,7 @@ backend. See [MCP tools](/mcp/tools).
 
 ## Related
 
+- [Product paths](/guide/product-paths)
 - [Auth matrix](/guide/auth-matrix)
 - [API reference](/api/)
 - [Billing](/pricing/)
