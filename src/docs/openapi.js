@@ -24,13 +24,13 @@ All API requests require authentication using an API key:
 
 \`\`\`bash
 # Via Authorization header (recommended)
-curl -H "Authorization: Bearer heir_pk_xxx..." https://api.heir.es/v1/contracts
+curl -H "Authorization: Bearer heir_pk_xxx..." https://api.heir.es/api/v1/contracts/templates
 
 # Via X-API-Key header
-curl -H "X-API-Key: heir_pk_xxx..." https://api.heir.es/v1/contracts
+curl -H "X-API-Key: heir_pk_xxx..." https://api.heir.es/api/v1/contracts/templates
 
 # Via query parameter (not recommended for production)
-curl https://api.heir.es/v1/contracts?api_key=heir_pk_xxx...
+curl https://api.heir.es/api/v1/contracts/templates?api_key=heir_pk_xxx...
 \`\`\`
 
 ## Rate Limiting
@@ -56,9 +56,9 @@ Events are signed using HMAC-SHA256. Verify signatures using your webhook secret
 
 ## API Versioning
 
-The current API version is \`v1\`. All endpoints are prefixed with \`/api/v1/\`.
+The current partner API version is \`v1\`. Partner/integrator HTTP is prefixed with \`/api/v1/\`.
 
-Legacy \`/api/\` endpoints are deprecated and will be removed on 2026-07-01.
+Session-authenticated product mounts live under \`/api/*\` (estate home, interview, memoir, desk). Those are not a deprecated alias of v1 and are not being removed.
     `,
     contact: {
       name: 'HEIR Support',

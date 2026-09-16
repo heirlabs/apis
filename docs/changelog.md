@@ -13,6 +13,7 @@ All notable changes to the HEIR public API and docs site.
 - Live product SKUs on pricing overview
 - Developer API plans aligned with live `GET /api/v1/billing/plans` (partner $99, not $199)
 - Webhook reference payload/create/retry aligned with `webhookDispatcher.js`
+- Local `src/docs/openapi.js` example URLs use `/api/v1/…`; sunset sentence removed (live api.heir.es spec is still served by heirlabs/web)
 
 ### Documentation (2026-08-02)
 

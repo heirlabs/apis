@@ -83,7 +83,9 @@ const RULES = [
     id: 'false-v1-sunset',
     re: /2026-07-01|July 1, 2026/,
     allow: (_f, line) =>
-      /wrong|not removed|not a sunset|not sunset|never sunset|false|not a \S+ sunset/i.test(line),
+      /wrong|not removed|not a sunset|not sunset|never sunset|false|not a \S+ sunset|did not happen|was copy|stale until/i.test(
+        line
+      ),
     message: 'Do not claim `/api/*` was sunset 2026-07-01.',
   },
   {
@@ -137,6 +139,8 @@ function main() {
   const files = walk(DOCS);
   const configJs = path.join(DOCS, '.vitepress', 'config.js');
   if (fs.existsSync(configJs)) files.push(configJs);
+  const srcOpenapi = path.join(ROOT, 'src', 'docs', 'openapi.js');
+  if (fs.existsSync(srcOpenapi)) files.push(srcOpenapi);
 
   /** @type {{ file: string, line: number, id: string, text: string, message: string }[]} */
   const violations = [];
