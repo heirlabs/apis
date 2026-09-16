@@ -4,11 +4,13 @@ How the HEIR API handles versioning and deprecation.
 
 ## Current Version
 
-The current API version is **v1**. All endpoints are prefixed with `/api/v1/`.
+The current partner API version is **v1**. Partner/integrator endpoints are prefixed with `/api/v1/`.
 
 ```
 https://api.heir.es/api/v1/
 ```
+
+Unversioned `/api/*` product mounts (estate home, interview, memoir, desk) are **current**. They are not a deprecated alias of v1. See [Product paths](/guide/product-paths) and [Platform spine](/guide/platform-spine).
 
 ## Version Header
 
@@ -18,28 +20,26 @@ The response includes the API version:
 X-API-Version: v1
 ```
 
-## Legacy Endpoints
+## Unversioned `/api/*` vs `/api/v1/*`
 
-::: warning Deprecation Notice
-Endpoints without version prefix (`/api/*`) are deprecated and will be removed on **July 1, 2026**.
-:::
+| Family | Who | Status |
+|--------|-----|--------|
+| `/api/v1/*` | Partner/integrator HTTP (API key) | Current partner API |
+| `/api/*` (non-v1) | Product SPA mounts (session) | Current product spine |
 
-Legacy requests return deprecation headers:
+Do not migrate estate-home, interview, memoir, or desk off `/api/*`. Those mounts are not a sunset of v1.
 
-```http
-X-API-Deprecation: true
-X-API-Sunset: 2026-07-01T00:00:00Z
-```
+## Migration Guide (partner generate only)
 
-## Migration Guide
+If you called `/api/contracts/generate` for the **partner** generate route, use `/api/v1/contracts/generate`.
 
-### Before (deprecated)
+### Partner generate — previous
 
 ```bash
 curl https://api.heir.es/api/contracts/generate
 ```
 
-### After (current)
+### Partner generate — current
 
 ```bash
 curl https://api.heir.es/api/v1/contracts/generate

@@ -1,11 +1,23 @@
 {
-  "asOf": "2026-08-02",
+  "asOf": "2026-09-16",
   "currency": "USD",
   "notes": [
     "Gas credits and Basic/Family/Estate trust-slot plans are retired and not sold.",
     "Heirlooms meter charges only when HEIRLOOMS_METERING_ENABLED=true on the API host.",
-    "Prices are sourced from heirlabs/web server/config; verify catalog endpoints for live truth."
+    "Developer plan numbers verified 2026-09-16 against GET https://api.heir.es/api/v1/billing/plans.",
+    "Product SKUs from heirlabs/web src/config/publicPricing.js. Couple mode is a separate flag.",
+    "Do not sell Desk Premium, Advisor Pro, or $49/mo estate copy."
   ],
+  "productApp": {
+    "pricingUrl": "https://heir.es/pricing",
+    "skus": [
+      { "id": "legacyInterview", "label": "Legacy Interview", "priceUSD": 88, "path": "/interview" },
+      { "id": "coupleLegacyPlan", "label": "Husband & Wife Legacy Plan", "priceUSD": 149, "path": "/interview" },
+      { "id": "heirOsDesk", "label": "HeirOS desk", "yearlyUSD": 88, "monthlyUSD": 9.4, "path": "/desk" },
+      { "id": "practiceSite", "label": "Practice Site", "priceUSD": 1499, "interval": "month", "path": "/practice/site" },
+      { "id": "formalWillKit", "label": "Formal Will Kit", "diyUSD": 249, "hybridUSD": 1000 }
+    ]
+  },
   "systems": {
     "weeklyProtection": {
       "status": "live",
@@ -40,9 +52,9 @@
       "status": "live",
       "plansUrl": "https://api.heir.es/api/v1/billing/plans",
       "plans": [
-        { "id": "free", "priceUSD": 0, "requestsPerDay": 100, "requestsPerMonth": 3000, "apiKeys": 1 },
-        { "id": "developer", "priceUSD": 29, "requestsPerDay": 500, "requestsPerMonth": 10000, "apiKeys": 5 },
-        { "id": "partner", "priceUSD": 199, "requestsPerDay": 5000, "requestsPerMonth": 100000, "apiKeys": null },
+        { "id": "free", "priceUSD": 0, "requestsPerDay": 100, "requestsPerMonth": 3000, "apiKeys": 5 },
+        { "id": "developer", "priceUSD": 29, "requestsPerDay": 1000, "requestsPerMonth": 25000, "apiKeys": 5 },
+        { "id": "partner", "priceUSD": 99, "requestsPerDay": 10000, "requestsPerMonth": 250000, "apiKeys": null },
         { "id": "enterprise", "priceUSD": null, "requestsPerDay": null, "requestsPerMonth": null, "apiKeys": null }
       ],
       "keyTiers": [

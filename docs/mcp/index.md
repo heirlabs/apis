@@ -7,19 +7,23 @@ Connect AI assistants to HEIR via [`@morbidcorp/heir`](https://www.npmjs.com/pac
 | Field | Value |
 |-------|--------|
 | npm | `@morbidcorp/heir` |
-| Working version | **2.0.4** (`bin` → `dist/cli.js`) |
-| Tools | **18** — contracts, estates, jurisdictions, legal, chat |
+| Working version | **2.0.5** (`bin` → `dist/cli.js`) |
+| Default tools | Capability projection (`heir_capabilities_search`, `heir_capabilities_describe`, `heir_guide_get`, `heir_action_invoke`, `heir_record_*`); resource `heir://compliance` always listed |
+| Legacy HTTP tools | **18** via `--tools=contracts,vaults,jurisdictions,legal,chat` |
+| Also worked | **2.0.4** (`dist/cli.js`) |
 | Broken versions | **2.0.1** (and earlier bin) `bin` pointed at monorepo-coupled `index.js` (crashes on `npx`) |
 | Wrong name | `@heir/mcp` — **404** on npm |
 
-## Install (2.0.4+)
+## Install (2.0.5)
 
 ```bash
-npx -y @morbidcorp/heir@2.0.4
+npx -y @morbidcorp/heir@2.0.5
 # or
-npm i -g @morbidcorp/heir@2.0.4
+npm i -g @morbidcorp/heir@2.0.5
 heir-mcp
 ```
+
+2.0.4 also worked (`dist/cli.js`). 2.0.1 bin is broken.
 
 ## IDE config
 
@@ -28,7 +32,7 @@ heir-mcp
   "mcpServers": {
     "heir": {
       "command": "npx",
-      "args": ["-y", "@morbidcorp/heir@2.0.4"],
+      "args": ["-y", "@morbidcorp/heir@2.0.5"],
       "env": {
         "HEIR_API_KEY": "heir_pk_..."
       }
@@ -37,11 +41,24 @@ heir-mcp
 }
 ```
 
-Keys: [heir.es/developers](https://heir.es/developers).
+Keys: [heir.es/developers/keys](https://heir.es/developers/keys). See [Product paths](/guide/product-paths).
 
-Optional: `--tools=contracts,legal` and `--api-key=` on the CLI.
+Optional: `--tools=contracts,vaults,jurisdictions,legal,chat` and `--api-key=` on the CLI.
 
-## Tool categories
+## Default vs legacy modules
+
+Default (`--tools=all` or omitted): read-only capability projection:
+
+- `heir_capabilities_search`
+- `heir_capabilities_describe`
+- `heir_guide_get`
+- `heir_action_invoke` (dark unless desk-agent actions enabled)
+- `heir_record_*`
+- resource `heir://compliance` always listed
+
+Legacy 18 HTTP tools: `--tools=contracts,vaults,jurisdictions,legal,chat`
+
+## Tool categories (legacy 18)
 
 | Category | Prefix | Count | HTTP |
 |----------|--------|------:|------|

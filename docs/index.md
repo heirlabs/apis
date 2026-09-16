@@ -37,7 +37,7 @@ features:
     details: Developer plans for HTTP quotas plus optional Heirlooms metering for AI-heavy actions when enabled on the server.
   - icon: 🔌
     title: MCP + OpenAPI
-    details: Use @morbidcorp/heir dist/cli.js (18 MCP tools) or REST with curl / OpenAPI clients. No unpublished language REST SDKs.
+    details: "MCP (`@morbidcorp/heir@2.0.5`): default capability projection; 18 HTTP tools via `--tools=contracts,vaults,jurisdictions,legal,chat`. REST with curl / OpenAPI clients. No unpublished language REST SDKs."
 ---
 
 <style>
@@ -79,9 +79,9 @@ List prices and limits (source of truth: [API tiers](/pricing/api-tiers) and
 
 | Plan | List price | Requests / day | Requests / month | API keys |
 |------|-----------:|---------------:|-----------------:|---------:|
-| **free** | $0 | 100 | 3,000 | 1 |
-| **developer** | $29/mo | 500 | 10,000 | 5 |
-| **partner** | $199/mo | 5,000 | 100,000 | unlimited |
+| **free** | $0 | 100 | 3,000 | 5 |
+| **developer** | $29/mo | 1,000 | 25,000 | 5 |
+| **partner** | $99/mo | 10,000 | 250,000 | unlimited |
 | **enterprise** | Custom | Unlimited | Unlimited | Custom |
 
 Per-key rate windows (Public / Partner / Internal) are separate from plan caps —
@@ -101,7 +101,7 @@ Create estate plan drafts on [heir.es](https://heir.es). Product billing
 |----------|--------|
 | HTTP + [cURL examples](/sdks/curl) | **Supported** |
 | [OpenAPI](https://api.heir.es/api/docs/openapi.json) codegen | **Supported** (coverage is a partner subset — expand carefully) |
-| MCP [`@morbidcorp/heir`](https://www.npmjs.com/package/@morbidcorp/heir) | **Supported** (18 tools) |
+| MCP [`@morbidcorp/heir@2.0.5`](https://www.npmjs.com/package/@morbidcorp/heir) | **Supported** (default capability projection; 18 HTTP tools via `--tools=contracts,vaults,jurisdictions,legal,chat`) |
 | Desk Elements [`@morbidcorp/element-sdk`](https://www.npmjs.com/package/@morbidcorp/element-sdk) | **Supported** (local desk apps; public registry not open) |
 | Official REST SDKs (JS / Python / Go packages) | **Not published** — do not install fictional `@heirlabs/sdk` names |
 

@@ -28,9 +28,9 @@ Managed at **heir.es/developers/billing** and ` /api/v1/billing/* `.
 
 | Plan ID | List price | Requests / day | Requests / month | API keys |
 |---------|-----------:|---------------:|-----------------:|---------:|
-| `free` | $0 | 100 | 3,000 | 1 |
-| `developer` | $29/mo | 500 | 10,000 | 5 |
-| `partner` | $199/mo | 5,000 | 100,000 | unlimited |
+| `free` | $0 | 100 | 3,000 | 5 |
+| `developer` | $29/mo | 1,000 | 25,000 | 5 |
+| `partner` | $99/mo | 10,000 | 250,000 | unlimited |
 | `enterprise` | Custom | Unlimited | Unlimited | Custom |
 
 Source of list prices in API: `GET /api/v1/billing/plans` (public).  

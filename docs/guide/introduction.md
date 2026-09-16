@@ -1,15 +1,22 @@
 # Introduction
 
-Welcome to the HEIR API documentation. The HEIR API provides programmatic access to the HEIR Protocol's digital inheritance infrastructure, enabling you to build applications that generate smart contracts, manage vaults, and integrate estate planning tools.
+HEIR has two surfaces:
+
+- **Product app** — [heir.es](https://heir.es) (session cookie `heir_auth`). Human funnel and paid product URLs: [Product paths](/guide/product-paths).
+- **Headless API** — `https://api.heir.es/api/v1/*` (API key `heir_pk_` / `heir_pt_` / `heir_sk_`). Partner/integrator HTTP.
+
+This site is `https://docs.heir.es`.
+
+The HEIR API is partner HTTP for contract templates, legal drafts, webhooks, and estate tooling. It is not a court-valid instrument by itself. Not legal advice.
 
 ## What is HEIR?
 
-HEIR is a decentralized inheritance protocol that enables:
+HEIR is an inheritance product and partner API. The product app is [heir.es](https://heir.es). Partner HTTP is `https://api.heir.es/api/v1/*`.
 
-- **Smart Contract Generation** - Create legally-compliant inheritance contracts for multiple blockchains
-- **Dead Man's Switch** - Automatic asset distribution if the owner becomes unresponsive
-- **Multi-Jurisdictional Support** - Templates for Common Law, Civil Law, Islamic Law, and more
-- **Secure Vault Storage** - Encrypted storage for beneficiary information and documents
+- **Contract generation** — templates for EVM, Solana, and TON, including optional dead-man's-switch configuration. Generated code is not a court-valid instrument by itself.
+- **Dead man's switch** — an inactivity / proof-of-life option on generated contracts. It does not automatically distribute every asset, and on-chain assets stay under each chain's own cryptography.
+- **Jurisdictional templates** — Common Law, Civil Law, Islamic, and other templates. Templates are not compliance.
+- **Vault / document storage** — encrypted storage for beneficiary data and drafts.
 
 ## Who is this for?
 
@@ -86,10 +93,11 @@ https://api.heir.es/api/v1/
 
 ## API Versioning
 
-The current API version is `v1`. All endpoints are prefixed with `/api/v1/`.
+The current API version is `v1`. Partner/integrator endpoints are prefixed with `/api/v1/`.
 
-::: warning Deprecation Notice
-Legacy `/api/*` endpoints (without version prefix) are deprecated and will be removed on **July 1, 2026**. Please migrate to `/api/v1/*`.
+::: info Two URL families
+Partner/integrator HTTP is `/api/v1/*` with an API key.
+The product SPA uses session-authenticated `/api/*` mounts (estate home, interview, memoir, desk). Those are **not** a deprecated alias of v1 and are **not** being removed.
 :::
 
 ## Need Help?

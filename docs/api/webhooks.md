@@ -40,7 +40,7 @@ GET /api/v1/webhooks/subscriptions
   "data": [
     {
       "_id": "wh_abc123",
-      "event": "contract.deployed",
+      "events": ["contract.deployed"],
       "url": "https://your-app.com/webhooks/heir",
       "status": "active",
       "failures": 0,
@@ -64,9 +64,10 @@ POST /api/v1/webhooks/subscriptions
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `event` | string | Yes | Event name to subscribe to |
 | `url` | string | Yes | HTTPS URL to receive webhooks |
-| `secret` | string | No | Secret for signing payloads |
+| `events` | string[] | Yes | Event names (or `*` / `category.*`) |
+| `name` | string | No | Label in the developer portal |
+| `secret` | string | No | Signing secret (server may generate one) |
 | `status` | string | No | `active` or `paused` (default: `active`) |
 
 **Example:**
@@ -76,9 +77,9 @@ curl -X POST https://api.heir.es/api/v1/webhooks/subscriptions \
   -H "Authorization: Bearer heir_pt_xxx..." \
   -H "Content-Type: application/json" \
   -d '{
-    "event": "contract.deployed",
     "url": "https://your-app.com/webhooks/heir",
-    "secret": "your_webhook_secret"
+    "name": "Production Webhook",
+    "events": ["contract.deployed", "deadman.triggered"]
   }'
 ```
 
@@ -109,22 +110,24 @@ All webhook payloads follow this structure:
 
 ```json
 {
-  "event": "contract.deployed",
-  "timestamp": "2024-01-15T12:00:00.000Z",
-  "webhookId": "wh_abc123",
-  "data": {
-    // Event-specific data
-  }
+  "id": "evt_…",
+  "type": "contract.deployed",
+  "created": 1710000000,
+  "data": {},
+  "apiVersion": "v1"
 }
 ```
+
+Do not expect `{ event, timestamp, webhookId }`. Read `type` and `id`.
 
 ### Headers
 
 | Header | Description |
 |--------|-------------|
-| `X-Webhook-Event` | Event name |
-| `X-Webhook-Attempt` | Delivery attempt number (1-5) |
-| `X-Webhook-Signature` | HMAC SHA-256 signature (if secret configured) |
+| `X-Webhook-Signature` | HMAC SHA-256 of the body (if secret configured) |
+| `X-Webhook-Timestamp` | Unix seconds used in the signed payload |
+| `X-Webhook-Event` | Same as `type` |
+| `X-Webhook-Delivery` | Same as payload `id` |
 
 ## Verifying Signatures
 
@@ -151,7 +154,7 @@ app.post('/webhooks/heir', (req, res) => {
   }
   
   // Process the webhook
-  const { event, data } = req.body;
+  const { type, data } = req.body;
   // ...
   
   res.status(200).send('OK');
@@ -160,18 +163,17 @@ app.post('/webhooks/heir', (req, res) => {
 
 ## Retry Policy
 
-Failed webhook deliveries are retried with exponential backoff:
+Failed deliveries retry with exponential backoff from 1s (2^(n-1), jitter, cap 5 minutes). Default `maxRetries` is **5**.
 
-| Attempt | Delay |
-|---------|-------|
+| Attempt | Delay (default) |
+|---------|-----------------|
 | 1 | Immediate |
-| 2 | 1 second |
-| 3 | 5 seconds |
-| 4 | 10 seconds |
-| 5 | 30 seconds |
-| 6 | 60 seconds |
+| 2 | ~1 second |
+| 3 | ~2 seconds |
+| 4 | ~4 seconds |
+| 5 | ~8 seconds |
 
-After 5 failed attempts, the webhook is paused and must be manually reactivated.
+A single delivery is marked failed after those attempts. The subscription is set `failed` after **50 consecutive** failures — not after 5. Re-enable from [heir.es/developers/webhooks](https://heir.es/developers/webhooks). See also [Webhooks guide](/guide/webhooks).
 
 ## Best Practices
 

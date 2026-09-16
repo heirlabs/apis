@@ -12,7 +12,7 @@ Authorization: Bearer heir_pk_...
 X-API-Key: heir_pk_...
 ```
 
-Create keys at [heir.es/developers](https://heir.es/developers).
+Create keys at [heir.es/developers/keys](https://heir.es/developers/keys).
 
 There is no separate `heir_sk_…` MCP-only key format in the published package docs.
 
@@ -29,12 +29,12 @@ There is no separate `heir_sk_…` MCP-only key format in the published package 
 
 ## MCP package tools
 
-All **18** tool names and parameters: [MCP tools](/mcp/tools).
+Pin **`@morbidcorp/heir@2.0.5`**. Default is capability projection (`heir_capabilities_search`, …). All **18** legacy HTTP tool names and parameters: [MCP tools](/mcp/tools) (`--tools=contracts,vaults,jurisdictions,legal,chat`). 2.0.4 also worked (`dist/cli.js`).
 
 Install:
 
 ```bash
-npx -y @morbidcorp/heir@2.0.4
+npx -y @morbidcorp/heir@2.0.5
 ```
 
 ## Monorepo HTTP MCP helpers

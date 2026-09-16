@@ -3,9 +3,25 @@
 HEIR does **not** use a single gas-credit wallet. Product money is split into **four
 real systems**, each with its own ledger and API. This page is the source of truth
 for what is live on [heir.es](https://heir.es) / [api.heir.es](https://api.heir.es)
-as of 2026-08-02.
+as of 2026-09-16.
 
 Machine-readable snapshot: [`/structured/pricing.json`](/structured/pricing.json).
+
+## Product app SKUs
+
+Live consumer/practice SKUs on [heir.es/pricing](https://heir.es/pricing) — not the developer plan table below.
+
+| SKU | Price | Path |
+|-----|-------|------|
+| Legacy Interview | $88 one time | `/interview` |
+| Husband & Wife Legacy Plan | $149 one time | `/interview` |
+| HeirOS desk | $88/yr or $9.40/mo after trial | `/desk` |
+| Practice Site | $1,499/mo | `/practice/site` |
+| Formal Will Kit | $249 (hybrid + counsel $1,000) | desk after interview |
+
+Couple **mode** (`COUPLE_MODE_ENABLED`) is a separate flag. The $149 SKU is not Practice Site. Desk subscribe is the HeirOS price above — do not sell “Desk Premium”, Advisor Pro, or $49/mo estate copy. While `DESK_ACCESS_SAAS_ENABLED` is off, desk access equals interview access.
+
+See [Product paths](/guide/product-paths).
 
 ## At a glance
 

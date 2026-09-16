@@ -52,7 +52,7 @@ The API key object represents credentials for authenticating with the HEIR API.
 |------|--------|------------|----------|
 | `public` | `heir_pk_` | 100/15min | Basic API access |
 | `partner` | `heir_pt_` | 1,000/15min | + Embedding, webhooks |
-| `internal` | `heir_in_` | 10,000/15min | + Admin features |
+| `internal` | `heir_sk_` | 10,000/15min | + Admin features |
 
 ## Scopes
 

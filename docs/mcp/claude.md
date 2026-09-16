@@ -4,7 +4,7 @@
 
 1. [Claude Desktop](https://claude.ai/desktop)
 2. Node.js 18+
-3. API key from [heir.es/developers](https://heir.es/developers)
+3. API key from [heir.es/developers/keys](https://heir.es/developers/keys)
 
 ## Config
 
@@ -15,7 +15,7 @@
   "mcpServers": {
     "heir": {
       "command": "npx",
-      "args": ["-y", "@morbidcorp/heir@2.0.4"],
+      "args": ["-y", "@morbidcorp/heir@2.0.5"],
       "env": {
         "HEIR_API_KEY": "heir_pk_your_key_here"
       }
@@ -28,15 +28,15 @@ Restart Claude Desktop.
 
 ## Verify
 
-Ask Claude to call `heir_jurisdiction_list` or list available HEIR tools (18).
+Ask Claude to call `heir_capabilities_search` (default) or, with `--tools=contracts,vaults,jurisdictions,legal,chat`, `heir_jurisdiction_list` (18 HTTP tools).
 
 ## Troubleshooting
 
 | Symptom | Fix |
 |---------|-----|
-| multiReligionDistributor / MODULE_NOT_FOUND | Pin `@morbidcorp/heir@2.0.4` (not 2.0.1) |
+| multiReligionDistributor / MODULE_NOT_FOUND | Pin `@morbidcorp/heir@2.0.5` (not 2.0.1). 2.0.4 also worked (`dist/cli.js`). |
 | `@heir/mcp` not found | Use `@morbidcorp/heir` |
-| 401 on legal/vault tools | Key must map to a user with scopes |
+| 401 on legal/vault tools | Key must map to a user with scopes; those tools need `--tools=contracts,vaults,jurisdictions,legal,chat` |
 
 ## Support
 

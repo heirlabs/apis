@@ -153,7 +153,7 @@ API keys use prefixes to identify their tier:
 |--------|------|-------------|
 | `heir_pk_` | Public | Standard access |
 | `heir_pt_` | Partner | Extended access + embedding |
-| `heir_in_` | Internal | Full access |
+| `heir_sk_` | Internal | Full access |
 
 ## Best Practices
 
