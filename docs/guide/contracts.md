@@ -4,7 +4,7 @@ Learn how to generate and manage inheritance smart contracts via the API.
 
 ## Overview
 
-The HEIR API enables you to generate legally-compliant inheritance smart contracts for multiple blockchain platforms. Each contract is customized based on your chosen inheritance template and beneficiary configuration.
+The HEIR API generates inheritance smart-contract *templates* for multiple chains. Generated code is not a court-valid instrument by itself. Each contract is customized from the chosen template and beneficiary configuration. Not legal advice.
 
 ## Supported Blockchains
 

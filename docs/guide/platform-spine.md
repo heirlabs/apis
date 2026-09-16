@@ -31,6 +31,11 @@ Paid cinematic / purchase / redeem home is `/interview`, never `/swarm`. Unpaid 
 
 ## Core journey
 
+This is the **paid product spine**, not the public funnel.
+Cold / unpaid path is `/login` → `/welcome` → `/dashboard` → pay.
+Paid cinematic home is `/interview`. Estate Home is not the public homepage
+and is not “Estate Dashboard.”
+
 ```
 Health Check → Estate Home readiness → Interview / plan → Deploy contracts
 → Proof-of-life → Soft vault / offline assets → Heir package / claim

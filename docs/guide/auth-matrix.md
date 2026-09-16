@@ -7,7 +7,7 @@ integration failure.
 
 | Model | How credentials are sent | Typical surfaces |
 |-------|--------------------------|------------------|
-| **Session JWT** | Cookie `heir_auth` (browser) or `Authorization: Bearer <session JWT>` | Product SPA: Estate Home, Legacy Interview, Memoir, Desk, Data Passport, Executor |
+| **Session JWT** | Cookie `heir_auth` (browser) or `Authorization: Bearer <session JWT>` | Product SPA: Legacy Interview, Memoir, Desk, Data Passport, Executor. Estate Home is a session API — not the public funnel and not an Estate Dashboard CTA. |
 | **API key (hybrid)** | `Authorization: Bearer heir_pk_…` or `X-API-Key: heir_pk_…` | `/api/v1/*` partner mounts (contracts, legal, jurisdictions, user, billing, …) |
 | **Public** | None | Health, some catalogs (`/api/heirlooms/catalog`), estate health-check quiz, openAPI assets |
 

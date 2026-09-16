@@ -26,7 +26,7 @@ Use the product app for humans. Use `/api/v1/*` for partner/integrator HTTP.
 
 Funnel: **`/login` → `/welcome` → pay**. Unpaid signed-in hub is `/dashboard`.
 
-## Paid / entitled (`@h3ir.com` or purchase / seat / testGrant)
+## Paid / entitled (`@h3ir.com` or purchase / seat)
 
 | Path | Who | Notes |
 |------|-----|-------|
