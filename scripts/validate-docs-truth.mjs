@@ -90,7 +90,7 @@ const RULES = [
     id: 'swarm-as-home',
     re: /\/swarm/,
     allow: (_f, line) =>
-      /never|not [`'"]?\/swarm|do not send|don't send|do not go|not product home|older advisor|multi-tab|do not use as/i.test(
+      /never|not [`'"]?\/swarm|do not send|don't send|do not go|do not use|not product home|older advisor|multi-tab|do not use as/i.test(
         line
       ),
     message: 'Paid home is `/interview`.',
